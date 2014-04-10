@@ -1,0 +1,30 @@
+div.fake {
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	width: 100%;
+	height: 1024px;
+}
+
+div.fake.church {
+	background-image: url("/img/pages/Iglesia.jpg");	
+}
+
+div.fake.dinner {
+	background-image: url("/img/pages/Dinner.jpg");	
+}
+
+div.fake.upload {
+	background-image: url("/img/pages/El-pajarito.jpg");	
+}
+
+div.fake.comment {
+	background-image: url("/img/pages/El-muro.jpg");	
+}
+
+div.fake.questionnaire {
+	background-image: url("/img/pages/Subir.jpg");	
+}
+
+div.fake.accomodation {
+	background-image: url("/img/pages/Muro.jpg");	
+}

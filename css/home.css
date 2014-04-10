@@ -1,0 +1,226 @@
+body.home {
+    background-image: url("/img/fondo.jpg");
+    /*background-repeat: repeat-y;
+    background-size: 100% auto;*/
+    font-family: architects_daughterregular;
+    height: 100%;
+}
+
+body.home div.page-container {
+	height: 100%;
+}
+
+body.home div.content-container {
+	/*background: red;*/
+	height: 50px;
+	width: 100%;
+	margin-top: 25px;
+}
+
+body.home div.frame-container {
+	width: 300px;
+	margin: auto;
+}
+
+body.home div.frame-center{
+	position: absolute;	
+}
+
+body.home h1.pagetitle {
+	margin-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	
+	font-weight: bolder;
+	font-size: 44px;
+	font-family: architects_daughterregular;
+	
+	color: white;
+	background: #558aa9;
+	
+	/*position: absolute;
+	left:0;
+	right: 0;*/
+}
+
+body.home div.frame {
+	width: 80px;
+	height: 94px;	
+	display: inline-block;
+	position: absolute;
+}
+
+body.home div.frame img.photo {	
+	width: 100%;		
+	height: 100%;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 18px;
+}
+
+body.home div.frame span.title {	
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 10px;
+	margin-top: -16px;
+}
+
+body.home div.frame .title.small {
+	font-size: 6px;
+}
+
+body.home div.frame.us {
+	left: 0px;
+	top: 0px;
+	z-index: 5;
+    -webkit-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+}
+
+body.home div.frame.calendar {
+	top: 20px;
+	left: 70px;	
+	z-index: 4;
+	-webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+body.home div.frame.church {
+	left: 138px;
+	-webkit-transform: rotate(2deg);
+	transform: rotate(2deg);	
+}
+
+body.home div.frame.dinner {
+	left: 210px;
+	top: -4px;
+	z-index: 4;
+    -webkit-transform: rotate(20deg);
+	transform: rotate(20deg);
+}
+
+body.home div.frame.accomodation {
+	left: 22px;
+	top: 100px;
+	z-index: 2;
+    -webkit-transform: rotate(35deg);
+	transform: rotate(35deg);
+}
+
+body.home div.frame.upload {
+	left: 116px;
+	top: 105px;
+	z-index: 1;
+    -webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+}
+
+body.home div.frame.questionnaire {
+	left: 215px;
+	top: 105px;
+	z-index: 5;
+	-webkit-transform: rotate(5deg);
+	transform: rotate(5deg);    
+}
+
+body.home div.frame.comment {
+	left: 60px;
+	top: 175px;
+	z-index: 0;
+	-webkit-transform: rotate(-3deg);
+	transform: rotate(-5deg);
+}
+
+body.home div.frame.other {
+	left: 150px;
+	top: 185px;
+	z-index: 0;
+    -webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+}
+
+@media (min-width: 768px) { 	
+		
+	body.home h1.pagetitle {
+		margin-top: 20px;
+		padding-top: 10px;
+		padding-bottom: 30px;	
+		font-size: 72px;	
+	}
+	
+	body.home div.content-container {
+		margin-top: 50px;
+	}
+	
+	body.home div.frame-container {
+		width: 600px;		
+	}
+	
+	body.home div.frame {
+		width: 160px;
+		height: 188px;		
+	}
+	
+	body.home div.frame img.photo {	
+		padding-top: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-bottom: 35px;
+	}
+	
+	body.home div.frame span.title {	
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 14px;
+		margin-top: -30px;
+	}
+	
+	body.home div.frame .title.small {
+		font-size: 12px;
+	}
+	
+	body.home div.frame.us {
+		left: 0px;
+		top: 0px;		
+	}
+	
+	body.home div.frame.calendar {
+		top: 40px;
+		left: 140px;			
+	}
+	
+	body.home div.frame.church {
+		left: 272px;	
+	}
+	
+	body.home div.frame.dinner {
+		left: 420px;
+		top: -8px;		
+	}
+	
+	body.home div.frame.accomodation {
+		left: 44px;
+		top: 200px;		
+	}
+	
+	body.home div.frame.upload {
+		left: 232px;
+		top: 210px;		
+	}
+	
+	body.home div.frame.questionnaire {
+		left: 430px;
+		top: 210px;
+	}
+	
+	body.home div.frame.comment {
+		left: 120px;
+		top: 350px;		
+	}
+	
+	body.home div.frame.other {
+		left: 300px;
+		top: 370px;		
+	}
+}

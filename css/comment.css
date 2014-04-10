@@ -1,0 +1,58 @@
+body.comment div.page-container {
+	height: 100%;
+	
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: colu
+}
+
+body.comment div.content-container {	
+	flex-grow: 1;	
+	
+}
+
+body.comment h1.pagetitle {
+	background-color: #28adad;
+}
+
+body.comment form.comment-form{
+	margin-bottom: 20px;
+}
+
+body.comment div.message-group{
+	
+}
+
+body.comment .submit-comment{
+	background-color: #28adad;
+	color: black;	
+	padding: 5px;
+}
+
+body.comment .submitting-comment{
+	padding: 5px;
+} 
+
+body.comment .form-group {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+@media (min-width: 768px) { 
+	body.comment .submit-comment{
+		padding: 10px;
+	}
+	
+	body.comment .submitting-comment{
+		padding: 10px;
+	}	
+}

@@ -1,0 +1,26 @@
+
+body.dinner h1.pagetitle {
+	background-color: #3aa647;
+}
+
+
+body.dinner div.description {
+    background-color: #cc1824;
+}
+
+
+body.dinner div.transportation {
+	background-color: #ebf268;
+}
+
+body.dinner div.open-map{
+	background-color: #ebf268;
+	color: black;
+} 
+
+body.dinner img.photo-map {
+	width: 100%;
+	height: auto;
+	background: white;
+}
+

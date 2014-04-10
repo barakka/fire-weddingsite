@@ -1,0 +1,101 @@
+body.static-inner {
+	width: 100%;
+	height: 100%;
+	background-image: url("/img/fondo-trasp.jpg");
+	font-family: architects_daughterregular;
+}
+
+body.static-inner .row {
+	margin-bottom: 15px;
+}
+
+body.static-inner h1.pagetitle {
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-weight: bolder;
+	font-family: architects_daughterregular;
+	font-size: 30px !important;
+}
+
+body.static-inner h1.pagetitle span.subtitle {
+	font-weight: normal;	
+}
+
+body.static-inner div.frame {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+body.static-inner div.frame img.photo {	
+	padding-top: 6%;
+	padding-left: 6%;
+	padding-right: 6%;	
+}
+
+body.static-inner div.frame span.title {	
+	padding-top: 2px;
+	padding-left: 6%;
+	padding-right: 6%;		
+}
+
+body.static-inner div.frame.church {
+	width: calc(100% + 30px);
+	margin-left: 15px;	
+    -webkit-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+}
+
+body.static-inner div.description {
+    padding: 10px;
+    text-align: justify;
+}
+
+body.static-inner div.transportation {
+	padding: 10px;
+	text-align: justify;
+	margin-left: -15px;
+}
+
+body.static-inner div.open-map{
+	padding: 5px;	
+	margin-bottom: 20px;	
+} 
+
+@media (min-width: 768px) { 
+		
+	body.static-inner h1.pagetitle {
+		margin-top: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;		
+	}
+	
+	body.static-inner h1.pagetitle span.subtitle {		
+		
+	}
+	
+	body.static-inner div.frame {
+		margin-bottom: 45px;
+	}
+	
+	body.static-inner div.frame span.title {	
+		padding-top: 3px;
+		padding-bottom: 3px;
+		padding-left: 6%;
+		padding-right: 6%;
+	}
+	
+	body.static-inner div.frame.church {
+		left: 5%;
+		top: 1%;		    
+	}
+	
+	body.static-inner div.description {
+		padding: 20px;
+	}
+	
+	body.static-inner div.open-map{
+		padding: 10px;			
+		margin-bottom: 20px;
+	}
+}

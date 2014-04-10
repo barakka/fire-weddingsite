@@ -1,0 +1,20 @@
+
+body.church h1.pagetitle {
+	background-color: #eb1e77;
+}
+
+
+body.church div.description {
+    background-color: #f59120;
+}
+
+
+body.church div.transportation {
+	background-color: #3bb349;
+}
+
+body.church div.open-map{
+	background-color: #3bb349;
+	color: white;
+} 
+
