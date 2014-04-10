@@ -1,0 +1,428 @@
+
+<div class="stage" ng-switch="stage">
+    <div class="panel panel-default" ng-switch-when="0">
+        <div class="panel-heading">
+            <h3 class="panel-title">¡¡Importante!!</h3>
+        </div>
+        <div class="panel-body">            
+        	<p>Responde unas preguntitas, porfa.</p>
+        	<p>Un minutito ahora, ahorra muchos después.</p>
+            <button class="btn btn-primary" ng-click="next()">Empezar</button>
+            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-switch-when="1">
+        <div class="panel-heading">
+            <h3 class="panel-title">Confirmación de asistencia</h3>
+        </div>
+        <div class="panel-body">
+            <p>Esta respuesta no es vinculante (hasta el 10 de Julio)</p>
+            <form name="confirmationForm">
+                <div class="form-group" ng-class="{'has-error': confirmationForm.participationConfirmed.$invalid}">
+                    <label for="participationConfirmed">¿Tienes intención de venir?</label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input type="radio" id="participationConfirmed1" ng-value="{{true}}"
+                                   ng-model="group.profile.participationConfirmed" name="participationConfirmed"> Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" id="participationConfirmed2" ng-value="{{false}}"
+                                   ng-model="group.profile.participationConfirmed" name="participationConfirmed"> No
+                        </label>
+                    </div>
+                </div>
+                
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+    
+    <div class="panel panel-default" ng-switch-when="2">
+        <div class="panel-heading">
+            <h3 class="panel-title">Composición del grupo</h3>
+        </div>
+        <div class="panel-body">            
+            <form name="compositionForm">                
+                <div class="form-group" ng-class="{'has-error': compositionForm.numParticipants.$invalid}">
+                    <label for="numParticipants">¿Cuántos venís (total)?</label>
+                    <input type="number" class="form-control" id="numParticipants" placeholder="Participantes"
+                           ng-model="group.profile.numParticipants" name="numParticipants"
+                           required 
+                           min="1">
+                </div>
+
+                <div class="form-group" ng-class="{'has-error': compositionForm.numYoungChildren.$invalid}">
+                    <label for="numYoungChildren">¿peques (hasta 12 años)?</label>
+                    <input type="number" class="form-control" id="numYoungChildren" placeholder="Peques"
+                           ng-model="group.profile.numYoungChildren"
+                           name="numYoungChildren" >
+                </div>
+                
+                <div class="form-group" ng-class="{'has-error': compositionForm.numMajorChildren.$invalid}">
+                    <label for="numMajorChildren">¿y no tan peques (hasta 17 años)?</label>
+                    <input type="number" class="form-control" id="numMajorChildren" placeholder="no tan peques"
+                           ng-model="group.profile.numMajorChildren"
+                           name="numMajorChildren"  >
+                </div>
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="compositionForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+    
+    <div class="panel panel-default" ng-switch-when="3">
+        <div class="panel-heading">
+            <h3 class="panel-title">Cena</h3>
+        </div>
+        <div class="panel-body">            
+            <form name="dinnerRequirementsForm">
+            	<div class="form-group" >
+                    <label for="vegetarian">Dinos si tienes algún requisito especial para la cena. Marca tantas como necesites.</label>
+
+                    <div class="form-control checks-inline">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="vegetarian" 
+                                   ng-model="group.profile.vegetarian" name="vegetarian"> Vegetariano
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="celiac" 
+                                   ng-model="group.profile.celiac" name="celiac"> Celiáco
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="allergies" 
+                                   ng-model="group.profile.allergies" name="allergies"> Alérgico
+                        </label>                        
+                    </div>
+                </div>
+                
+                <div class="form-group" ng-class="{'has-error': dinnerRequirementsForm.allergiesDetails.$invalid}"
+                	ng-show="group.profile.allergies">
+                    <label for="allergiesDetails">Alérgico a:</label>
+                    <input type="text" class="form-control" id="allergiesDetails" placeholder="alergias"
+                           ng-model="group.profile.allergiesDetails"
+                           name="allergiesDetails"
+                           ng-required="group.profile.allergies">
+                </div>
+                                
+                <div class="form-group" ng-class="{'has-error': dinnerRequirementsForm.otherDinnerRequirements.$invalid}">
+                    <label for="otherDinnerRequirements">Otras notas...</label>
+                    <input type="text" class="form-control" id="otherDinnerRequirements" placeholder="notas"
+                           ng-model="group.profile.otherDinnerRequirements"
+                           name="otherDinnerRequirements">
+                </div>
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="dinnerRequirementsForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-switch-when="4">
+        <div class="panel-heading">
+            <h3 class="panel-title">Transporte</h3>
+        </div>
+        <div class="panel-body">            
+            <form name="transportationForm">
+                <div class="form-group" ng-class="{'has-error': transportationForm.origin.$invalid}">
+                    <label for="origin">¿De dónde vienes?</label>
+                    <select class="form-control" id="origin"
+                            ng-model="group.profile.origin" name="origin"
+                            required >
+                        <option value="Alicante">Alicante</option>
+                        <option value="Barcelona">Barcelona</option>
+                        <option value="Burgos">Burgos</option>
+                        <option value="Soria">Soria</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="ValenciaAlrededore">Valencia (alrededores)</option>
+                        <option value="Vizcaya">Vizcaya</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" ng-class="{'has-error': transportationForm.orginDetails.$invalid}">
+                    <label for="orginDetails">Si quieres concretar...</label>
+                    <input type="text" class="form-control" id="orginDetails" placeholder="detalles"
+                           ng-model="group.profile.orginDetails"
+                           name="orginDetails">
+                </div>
+                
+                <div class="form-group" ng-class="{'has-error': transportationForm.transportation.$invalid}"
+                	ng-hide="group.profile.origin == 'Valencia' || group.profile.origin == null">
+                    <label for="transportation">¿Cómo pensáis venir?</label>
+                    <select class="form-control" id="transportation"
+                            ng-model="group.profile.transportation" name="transportation"
+                            ng-required="group.profile.origin != 'Valencia'" >
+                        <option value="CocheCompartido">Compartiendo coche</option>
+                        <option value="Coche">Coche</option>
+                        <option value="Tren">Tren</option>
+                        <option value="Autobus">Autobús</option>
+                        <option value="Avion">Avión</option>
+                        <option value="Barco">¿Barco?</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+    
+    <div class="panel panel-default" ng-switch-when="5">
+        <div class="panel-heading">
+            <h3 class="panel-title">Alojamiento</h3>
+        </div>
+        <div class="panel-body">            
+            <form name="accommodationForm">                
+                <div class="form-group" ng-class="{'has-error': accommodationForm.needsAccommodation.$invalid}">
+                    <label for="needsAccommodation1">¿Necesitáis alojamiento?</label>
+
+                    <div class="form-control radios-inline">
+                        <label class="radio-inline">
+                            <input type="radio" id="needsAccommodation1" ng-value="{{true}}"
+                                   ng-model="group.profile.needsAccommodation" name="needsAccommodation"> Si
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" id="needsAccommodation2" ng-value="{{false}}"
+                                   ng-model="group.profile.needsAccommodation" name="needsAccommodation"> No
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group" ng-class="{'has-error': accommodationForm.accommodationType.$invalid}"
+                	ng-show="group.profile.needsAccommodation">
+                    <label for="accommodationType">¿De qué tipo?</label>
+                    <select class="form-control" id="accommodationType"
+                            ng-model="group.profile.accommodationType" name="accommodationType"
+                            ng-required="group.profile.needsAccommodation">
+                        <option value="Hotel">¡Un hotel sería perfecto!</option>
+                        <option value="Apartamento">Un apartamentito nos vendría genial</option>
+                        <option value="CompartirCondocidos">No me importa compartir con familiares/conocidos</option>
+                        <option value="CompartirDesconocidos">No me importa compartir con desconocidos</option>
+                        <option value="LoQueSea">Duermo en cualquier lado, cuánto más barato mejor</option>                        
+                    </select>
+                </div>
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="accommodationForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-switch-when="6">
+        <div class="panel-heading">
+            <h3 class="panel-title">Otros servicios</h3>
+        </div>
+        <div class="panel-body">            
+            <form name="otherForm">
+                <div class="form-group" >
+                    <label for="needsBeautyService">Dinos si necesitas cualquier otra cosa. Marca tantas como necesites.</label>
+
+                    <div class="form-control checks-inline">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="needsBeautyService" 
+                                   ng-model="group.profile.needsBeautyService" name="needsBeautyService"> Peluquería
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="needsIroning" 
+                                   ng-model="group.profile.needsIroning" name="needsIroning"> Plancha
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="needsMakeUp" 
+                                   ng-model="group.profile.needsMakeUp" name="needsMakeUp"> Maquillaje
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="needsFlowers" 
+                                   ng-model="group.profile.needsFlowers" name="needsFlowers"> Unas flores
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="needsSightseeing" 
+                                   ng-model="group.profile.needsSightseeing" name="needsSightseeing"> Visita guiada por Valencia
+                        </label>
+                    </div>
+                </div>
+                                
+                <div class="form-group" >                     
+                    <label for="needsOther">Otras cositas...</label>
+                    <input type="text" class="form-control" id="needsOther" placeholder="otras"
+                           ng-model="group.profile.needsOther"
+                           name="needsOther">                
+                </div>
+            </form>
+
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="otherForm.$invalid">Siguente</button>
+            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-switch-when="7">
+        <div class="panel-heading">
+            <h3 class="panel-title">Contactos</h3>
+        </div>
+        <div class="panel-body">
+        	<div ng-show="editableUser==null">
+	            <p>Corrije tus datos si es necesario...</p>
+	            <form name="userForm">
+	                <table class="table hidden-xs">
+	                    <thead>
+	                        <tr>
+	                        	<th>Princ.</th>
+	                            <th>Nombre</th>
+	                            <th>e-mail</th>
+	                            <th>Teléfono</th>
+	                            <th width="10%"></th>
+	                        </tr>
+	                        </thead>
+	                        <tbody>
+	                        <tr ng-form="uForm" ng-repeat="user in group.users">
+	                        	<td ng-class="{'has-error': uForm.predefined.$invalid}">
+	                                <input type="checkbox"
+	                                       class=""
+	                                       id="predefined"                                       
+	                                       ng-model="user.predefined"
+	                                       name="predefined">
+	                            </td>
+	                            <td ng-class="{'has-error': uForm.userName.$invalid}">
+	                                <input type="text"
+	                                       class="form-control"
+	                                       id="userName"
+	                                       placeholder="Nombre"
+	                                       ng-model="user.name"
+	                                       name="userName"
+	                                       required>
+	                            </td>
+	                            <td ng-class="{'has-error': uForm.email.$invalid}">
+	                                <input type="email"
+	                                       class="form-control"
+	                                       id="userMail"
+	                                       placeholder="e-mail"
+	                                       ng-model="user.email"
+	                                       name="email">
+	                            </td>
+	                            <td ng-class="{'has-error': uForm.phoneNumber.$invalid}">
+	                                <input type="text"
+	                                       class="form-control"
+	                                       id="userPhone"
+	                                       placeholder="Telefono"
+	                                       ng-model="user.phoneNumber"
+	                                       name="phoneNumber"
+	                                       ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">
+	                            </td>
+	                            <td>
+	                                <button class="btn btn-primary btn-sm" ng-click="remove($index)"
+	                                        ng-hide="user.predefined">
+	                                    <span class="glyphicon glyphicon-trash"></span>
+	                                </button>
+	                            </td>
+	                        </tr>
+	                        </tbody>
+	                        <tfoot>
+	                        <tr>
+	                        	<td></td>
+	                            <td></td>
+	                            <td></td>
+	                            <td></td>
+	                            <td>
+	                                <button class="btn btn-primary btn-sm" ng-click="add()" ng-disabled="!canAdd()">
+	                                    <span class="glyphicon glyphicon-plus"></span>
+	                                </button>
+	                            </td>
+	                        </tr>
+	                    </tfoot>
+	                </table>
+	                
+	                <table class="table visible-xs">
+	                    <thead>
+	                        <tr>
+	                        	<th >Nombre</th>
+	                            <th ></th>
+	                        </tr>
+	                        </thead>
+	                        <tbody>
+	                        <tr ng-form="uForm" ng-repeat="user in group.users">
+	                        	<td style="width:99%">{{user.name}}
+	                            </td>
+	                            <td style="white-space: nowrap;">
+	                            	<button class="btn btn-primary btn-sm" ng-click="editEditableUser($index)">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</button>
+	                                <button class="btn btn-primary btn-sm" ng-click="remove($index)"
+	                                        ng-hide="user.predefined">
+	                                    <span class="glyphicon glyphicon-trash"></span>
+	                                </button>
+	                            </td>
+	                        </tr>
+	                        </tbody>
+	                        <tfoot>
+	                        <tr>
+	                        	<td></td>
+	                            <td>	                            	
+	                                <button class="btn btn-primary btn-sm" style="width: 100%" ng-click="addEditableUser()">
+	                                    <span class="glyphicon glyphicon-plus"></span>
+	                                </button>
+	                            </td>
+	                        </tr>
+	                    </tfoot>
+	                </table>
+	               	
+	               	
+	            </form>
+	
+	            <button class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid || !canAdd()">Terminar</button>
+	            <button class="btn btn-primary" ng-click="cancel()" >Cancelar</button>
+            </div>
+            
+            <div ng-show="editableUser!=null">
+	            <form name="editableUserForm">
+	            	<div class="form-group" ng-class="{'has-error': editableUserForm.predefined.$invalid}">
+	                    <label for="predefined">Predefinido:</label>
+	                    <input type="checkbox"
+	                           class=""
+	                           id="predefined"                                       
+	                           ng-model="editableUser.predefined"
+	                           name="predefined">
+	                </div>
+	                
+	                <div class="form-group" ng-class="{'has-error': editableUserForm.userName.$invalid}">                     
+	                    <label for="userName">Nombre:</label>
+	                    <input type="text"
+	                                 class="form-control"
+	                                 id="userName"
+	                                 placeholder="Nombre"
+	                                 ng-model="editableUser.name"
+	                                 name="userName"
+	                                 required>               
+	                </div>
+	                
+	                <div class="form-group" ng-class="{'has-error': editableUserForm.userMail.$invalid}">                     
+	                    <label for="email">e-mail:</label>
+	                    <input type="email"
+	                           class="form-control"
+	                           id="userMail"
+	                           placeholder="e-mail"
+	                           ng-model="editableUser.email"
+	                           name="userMail">          
+	                </div>
+	                
+	                <div class="form-group" ng-class="{'has-error': editableUserForm.userPhone.$invalid}">                     
+	                    <label for="userPhone">Teléfono:</label>
+	                    <input type="text"
+	                           class="form-control"
+	                           id="userPhone"
+	                           placeholder="Telefono"
+	                           ng-model="editableUser.phoneNumber"
+	                           name="userPhone"
+	                           ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">       
+	                </div>
+	            </form>
+	            <button class="btn btn-primary" ng-click="saveEditableUser()" ng-disabled="editableUserForm.$invalid">Ok</button>
+	            <button class="btn btn-primary" ng-click="cancelEditableUser()" >Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

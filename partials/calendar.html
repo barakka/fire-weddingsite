@@ -1,0 +1,27 @@
+<link rel='stylesheet' href='/clibs/fullcalendar/fullcalendar.css' />
+<link href="/css/calendar.css" rel="stylesheet">
+<script src='/js/moment.min.js'></script>
+<script src='/clibs/fullcalendar/fullcalendar.js'></script>
+<script src='/clibs/fullcalendar/gcal.js'></script>
+<script src='/clibs/fullcalendar/lang/es.js'></script>
+
+<h1 class="text-center pagetitle font-huge">Eventos</h1>
+<div class="content-container" >
+	
+	<div id="scheduler" class="scheduler" ng-show="event == null" >       
+	</div>	
+	
+	<div class="event" ng-show="event !=null">
+		<h2>{{event.title}}</h2>
+		<p><span class="eventLabel">Desde:</span> {{event.start.format('LLLL')}}</p>
+		<p><span class="eventLabel">Hasta:</span> {{event.end.format('LLLL')}}</p>
+		<p><span class="eventLabel">Donde:</span> {{event.location}}</p>
+		<div ng-show="event.description">
+			<p ><span class="eventLabel">Que:</span></p>
+			<p>{{event.description}}</p>
+		</div> 
+		
+		<button class="btn btn-primary pull-right" ng-click="closeEvent()">Cerrar</button>
+	</div>
+</div>
+

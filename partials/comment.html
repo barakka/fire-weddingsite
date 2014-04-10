@@ -1,0 +1,41 @@
+<link href="/css/comment.css" rel="stylesheet">
+
+<h1 class="text-center pagetitle font-huge">El Muro</h1>
+<div class="content-container flex-vertical flex-grow" >
+	
+	<form ng-submit="saveComment()" class="form-horizontal comment-form flex-vertical flex-grow" 
+		name="commentForm">
+		<div class="form-group" ng-class="{'has-error': commentForm.to.$invalid}">
+    		<label for="to" class="col-sm-2 control-label">Para</label>
+    		<div class="col-sm-10">
+      			<select class="form-control" required name="to" id="to" ng-model="comment.to">
+					  <option value="AxelYSol">Axel y Sol / Sol y Axel</option>
+					  <option value="Axel">Axel</option>
+					  <option value="Sol">Sol</option>					  
+				</select>
+    		</div>
+  		</div>
+		
+		<div class="form-group message-group flex-vertical flex-grow"
+			ng-class="{'has-error': commentForm.message.$invalid}">
+    		<label for="to" class="col-sm-2 control-label">Mensaje</label>
+    		<textarea class="form-control flex-grow" rows="3" id="message" name="message"
+    			ng-model="comment.message" required autofocus></textarea>    		
+  		</div>
+		
+		
+    	<button class="submit-comment text-center font-big" 
+    		ng-disabled="commentForm.$invalid" ng-show="!sending"
+    		style="width: 100%">
+    		<span class="glyphicon glyphicon-envelope"></span>&nbsp;Enviar
+    	</button>
+    	
+    	<button class="submitting-comment text-center font-big" ng-show="sending"
+    		disabled
+    		style="width: 100%">
+    		<span class="glyphicon glyphicon-envelope"></span>&nbsp;Enviando...
+    	</button>
+	    
+	</form>
+</div>
+
