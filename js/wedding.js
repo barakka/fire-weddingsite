@@ -11,61 +11,61 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
 	}];
 	
     $routeProvider.when('/login', {
-        templateUrl: '/partials/login.html',
+        templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
         resolve: {
             group: function(){return null;}
         }
     }).when('/:groupId/home',{
-        templateUrl: '/partials/home.html',
+        templateUrl: 'partials/home.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/calendar',{
-        templateUrl: '/partials/calendar.html',
+        templateUrl: 'partials/calendar.html',
         controller: 'CalendarCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/church',{
-        templateUrl: '/partials/church.html',
+        templateUrl: 'partials/church.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/dinner',{
-        templateUrl: '/partials/dinner.html',
+        templateUrl: 'partials/dinner.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/upload',{
-        templateUrl: '/partials/fake.html',
+        templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/comment',{
-        templateUrl: '/partials/comment.html',
+        templateUrl: 'partials/comment.html',
         controller: 'CommentCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/accomodation',{
-        templateUrl: '/partials/fake.html',
+        templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when('/:groupId/questionnaire',{
-        templateUrl: '/partials/fake.html',
+        templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
             group: groupLoaderFunction
         }
     }).when("/:groupId/survey/:stageId",{
-        templateUrl: "/partials/survey.html",
+        templateUrl: "partials/survey.html",
         controller: 'SurveyCtrl',
         resolve: {
             group: groupLoaderFunction
