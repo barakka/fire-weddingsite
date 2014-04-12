@@ -13,15 +13,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in group.users">
+				<tr ng-repeat="(userId,user) in users">
 					<td>{{user.name}}</td>
 					<td>{{user.email}}</td>
 					<td>
-						<button class="btn btn-primary btn-sm" ng-click="edit(user)">
+						<button class="btn btn-primary btn-sm" ng-click="edit(userId)">
 							<span
 								class="glyphicon glyphicon-pencil"></span>
 						</button>
-						<button class="btn btn-primary btn-sm" ng-click="remove(user.id)">
+						<button class="btn btn-primary btn-sm" ng-click="remove(userId)">
 							<span class="glyphicon glyphicon-trash"></span>
 						</button>
 					</td>

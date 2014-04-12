@@ -7,9 +7,9 @@
         
         <input type="text" class="form-control"
                name="group"  required autofocus ng-model="groupId"
-               ng-minlength="4"
-               ng-maxlength="4"
-               ng-pattern="/\d{4}/"
+               ng-minlength="6"
+               ng-maxlength="6"
+               ng-pattern="/\w{2}\d{4}/"
                ng-change="access()"
                >
 
@@ -19,7 +19,7 @@
         </div>
 
         <!--  <a class="btn btn-lg btn-primary btn-block" ng-href="#/{{groupId}}/home" ng-disabled="signinForm.$invalid">Accede</a>-->
-        <p class="text-center form-signin-link"><a href="#/0/home">Acceder sin código</a></p>
+        <p class="text-center form-signin-link"><a href="#/AA0000/home">Acceder sin código</a></p>
     </form>
     
 </div>

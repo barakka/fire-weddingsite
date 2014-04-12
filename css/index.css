@@ -111,6 +111,14 @@ iframe.map {
     flex: 1 1 auto;
 }
 
+.flex-fix {
+	-webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+}
+
 @media (min-width: 768px) { 
 	
 	div.page-container{

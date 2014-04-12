@@ -1,14 +1,79 @@
 /**
  * Created by rserafin on 21/01/2014.
  */
+ /// <reference path="config.js" />
+ /* global $ */ 
+ /* global angular */
+ /* global moment */
 
-var weddingModule = angular.module("wedding", ["ngRoute"]);
+var weddingModule = angular.module("wedding", ["ngRoute","firebase"]);
+var NO_GROUP_ID="AA000";
+
+var fLoaderFunction = function($q,$firebase,ref){
+    var deferred = $q.defer();						
+	var fire = $firebase(ref);		
+    fire.$on("loaded",function(){
+		fire.$off("loaded");
+        if (fire.hasOwnProperty("$value") && fire.$value == null){
+            deferred.reject("No object found at path: " + fire.$getRef().toString());   
+        } else {
+		    deferred.resolve(fire);
+        }
+	});
+                    	    
+    return deferred.promise;
+}
 
 weddingModule.config([ '$routeProvider', function ($routeProvider) {
-	
-	groupLoaderFunction = ["$route","groupService", function($route,groupService){
-	    return groupService.loadGroup($route.current.params.groupId);
-	}];
+    
+    var fLoader =function (ref,pathId){
+		return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+			if (pathId){
+				ref = ref.child($route.current.params[pathId]);
+			} 
+			
+            return fLoaderFunction($q,$firebase,ref);
+		}];
+	}
+    
+    var groupLoader = function(){
+        return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+			var groupId = $route.current.params.groupId;
+            
+            if (groupId!=NO_GROUP_ID){
+                return fLoaderFunction($q,$firebase,groupsRef.child(groupId));    
+            } else {
+                return {
+                	id: NO_GROUP_ID,
+                };
+            }            
+		}];
+    }
+    
+    var profileLoader = function(){
+        return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+			var groupId = $route.current.params.groupId;
+            
+            if (groupId!=NO_GROUP_ID){
+                return fLoaderFunction($q,$firebase,profilesRef.child(groupId))
+                    .then(
+                        function(profile){
+                            return profile;
+                        },
+                        function(){
+                            var profile= $firebase(profilesRef.child(groupId));
+                            profile.complete=false;
+                            profile.stage=0;  
+                            profile.participationConfirmed=false;                          
+                            return profile;   
+                        });    
+            } else {
+                return {
+                    complete: true
+                };
+            }            
+		}];
+    }
 	
     $routeProvider.when('/login', {
         templateUrl: 'partials/login.html',
@@ -20,60 +85,72 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader(),
+            profile: profileLoader()
         }
     }).when('/:groupId/calendar',{
         templateUrl: 'partials/calendar.html',
         controller: 'CalendarCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/church',{
         templateUrl: 'partials/church.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/dinner',{
         templateUrl: 'partials/dinner.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/upload',{
         templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/comment',{
         templateUrl: 'partials/comment.html',
-        controller: 'CommentCtrl',
+        controller: 'CommentsCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/accomodation',{
         templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when('/:groupId/questionnaire',{
         templateUrl: 'partials/fake.html',
         controller: 'HomeCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader()
         }
     }).when("/:groupId/survey/:stageId",{
         templateUrl: "partials/survey.html",
         controller: 'SurveyCtrl',
         resolve: {
-            group: groupLoaderFunction
+            group: groupLoader(),
+            profile: profileLoader()
+        }
+    }).when('/:groupId',{
+        redirectTo:  function (routeParams, path, search) {            
+            return "/" + routeParams.groupId + "/home";
         }
     }).otherwise({
         redirectTo: '/login'
     });
 } ]);
+
+weddingModule.factory("fireLoader",["$q","$firebase",function($q,$firebase){
+    return function(ref){
+        return fLoaderFunction($q,$firebase,ref);
+    }
+}]);
 
 weddingModule.factory("groupService", ["$http","$q", function($http,$q){
     var service = {}
@@ -133,7 +210,7 @@ weddingModule.factory("groupService", ["$http","$q", function($http,$q){
 weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($scope,$location,$route){	
 	$scope.bodyStyle = "";
 	
-	computeStyle=function(){
+	var computeStyle=function(){
 		var parts=$location.path().split('/');
 		if (parts.length>2){
 			var style = parts[2];
@@ -151,38 +228,39 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
 	$scope.$on("$viewContentLoaded", function(){
 		$scope.bodyStyle = computeStyle();
 	});
+    
+    $scope.$on("$routeChangeError",function(){
+        $location.path("/login").replace();
+    });
 }]);
 
-weddingModule.controller("LoginCtrl",["$scope", "$location", "groupService", function($scope,$location,groupService){
+weddingModule.controller("LoginCtrl",["$scope", "$location", "fireLoader", function($scope,$location,fireLoader){
 	$scope.loading = false;
 	
 	$scope.access = function(){		
 		if ($scope.signinForm.group.$valid){
 			$scope.loading = true;
-			groupService
-				.loadGroup($scope.groupId)
-				.then(function(group){
-					if (group.profile){
-						if (group.profile.complete){
-							$location.path("/" + $scope.groupId + "/home");
-						} else {
-							$location.path("/" + group.id + "/survey/" + group.profile.stage);
-						}
-					} else {
-						$scope.loading=false;
-						$scope.signinForm.group.$setValidity("pattern",false);
-					}
-				});
+            var groupId = $scope.groupId.toUpperCase();
+            fireLoader(groupsRef.child(groupId))
+                .then(function(group){
+                    $location.path("/" + groupId + "/home");
+                },function(){
+                    $scope.loading=false;
+					$scope.signinForm.group.$setValidity("pattern",false);
+                });
+            //$location.path("/" + group.id + "/survey/" + group.profile.stage);           			
 		}
 	}
 		
 }]);
 
-weddingModule.controller("HomeCtrl",["$scope", "$location", "group", function($scope,$location,group){
+weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", function($scope,$location,group,profile){
     $scope.group = group;
 
-    if (!group.profile.complete){
-        $location.path("/" + group.id + "/survey/" + group.profile.stage).replace();
+    if (!profile.complete){
+        if (!profile.lastModified || moment().isAfter(moment(profile.lastModified).add('hours',4))){
+            $location.path("/" + group.id + "/survey/" + profile.stage).replace();
+        }
     }
 
     $scope.goTo = function(page){
@@ -222,10 +300,11 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group", function($s
     }
 }]);
 
-weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$location","groupService",function($scope, group,$routeParams, $location, groupService){
-    $scope.group = group;
-    $scope.stage = parseInt($routeParams.stageId);
-    STAGES = {
+weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$location","profile","$firebase" ,
+    function($scope, group,$routeParams, $location, profile,$firebase){
+    
+    
+    var STAGES = {
     	intro: 0,
     	participation: 1,
     	participants: 2,
@@ -236,57 +315,98 @@ weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$locatio
     	participantsDetails: 7
     }
 
+    var touchProfile = function(){
+        profile.stage = $scope.stage;
+        profile.lastModified = new Date();
+    }
+    
+    $scope.group = group;
+    $scope.stage = parseInt($routeParams.stageId);
+    $scope.profile = profile;
+    $scope.users = $firebase(usersRef.child($routeParams.groupId));
+    touchProfile();
+    $scope.profile.$save();
+
     $scope.next = function(){
-    	if ($scope.stage==STAGES.participation && group.profile.participationConfirmed == false){
+    	if ($scope.stage==STAGES.participation && profile.participationConfirmed == false){
     		$scope.stage = STAGES.participantsDetails;
-    	}else if ($scope.stage==STAGES.transportation && group.profile.origin == 'Valencia'){
+    	}else if ($scope.stage==STAGES.transportation && profile.origin == 'Valencia'){
     		// Skip accomodation if from valencia
     		$scope.stage = STAGES.participantsDetails;        
     	} else {    		
     		$scope.stage += 1;
     	}
     	
-    	$location.path("/" + group.id + "/survey/" + $scope.stage);
-    };
-
-    $scope.add = function(){
-        group.users.push({
-           name: null,
-           email: null
+        touchProfile();
+        profile.$save().then(function(){
+    	   $location.path("/" + group.id + "/survey/" + $scope.stage);            
         });
+        
     };
 
-    $scope.canAdd = function(){
-        if (group.users.length){
-            return group.users[group.users.length -1].name;
-        } else {
-            return true;
+    $scope.remove = function(id){
+        $scope.users.$remove(id);
+    };
+    
+    var getPredefinedEmails = function(){
+        var emails = [];
+        
+        if ($scope.users){            
+             angular.forEach($scope.users.$getIndex(),function(element) {
+                 var user = $scope.users[element];
+                 if (user.predefined && user.email){
+                     emails.push(user.email);
+                 }                
+            }, this);
         }
-    };
-
-    $scope.remove = function(index){
-        var user = group.users.splice(index,1)[0];
-        groupService.removeUser(group,user);
-    };
+        return emails;
+    }
+    
+    $scope.hasPredefined = function(){
+        return getPredefinedEmails().length > 0;
+    }
 
     $scope.save = function(){
-        group.profile.stage = $scope.stage;
-        group.profile.complete = true;
-
-        groupService.saveGroup(group).then(function(data){
-            $location.path("/" + group.id + "/home").replace();
-        });
+        touchProfile();
+        profile.complete = true;
+                        
+        $scope.users.$save().then(function(){
+            // Remove every one from the mailing list
+            $firebase(mailingListRef).$remove(group.$id);
+            
+            // Add the new pred if any
+            if (profile.inMailingList){
+                var mailingList = getPredefinedEmails();
+                if (mailingList.length>0){
+                    angular.forEach(mailingList,function(email){
+                        $firebase(mailingListRef.child(group.$id)).$add(email);
+                    });
+                }
+            }
+            
+            profile.$save().then(function(data){
+                if (profile.needsAccommodation){
+                    $('#accommodationAlert').on('hidden.bs.modal', function (e) {  
+                        $scope.$apply(function(){
+                            $location.path("/" + group.id + "/home").replace();    
+                        });
+                    }).modal();    
+                } else {
+                    $location.path("/" + group.id + "/home").replace();
+                }                
+            });    
+        });        
     };
     
     $scope.cancel = function(){
     	$location.path("/" + group.id + "/home").replace();
-    }
+    }    
     
     $scope.editableUser = null;
     $scope.editableIndex = null;
     
     $scope.editEditableUser = function (index){
-    	$scope.editableUser = angular.copy(group.users[index]);
+    	$scope.editableUser = angular.copy($scope.users[index]);
     	$scope.editableIndex = index;
     }
     
@@ -305,9 +425,9 @@ weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$locatio
     
     $scope.saveEditableUser = function(){
     	if ($scope.editableIndex){
-    		group.users.splice($scope.editableIndex,1,$scope.editableUser);    		
+    		$scope.users[$scope.editableIndex] = $scope.editableUser;    		
     	} else {
-    		group.users.push($scope.editableUser);
+    		$scope.users.$add($scope.editableUser);
     	}
     	
     	$scope.editableUser = null;
@@ -322,7 +442,7 @@ weddingModule.controller("CalendarCtrl",["$scope","group",function($scope,group)
 	$scope.$on("$viewContentLoaded",function(){
 		$("#scheduler").fullCalendar({
 			defaultDate : '2014-09-06',
-			events: 'http://www.google.com/calendar/feeds/barakka.org_8g6smdg6nt1ge257qk26o1ekg8%40group.calendar.google.com/public/basic',
+			events: 'https://www.google.com/calendar/feeds/barakka.org_8g6smdg6nt1ge257qk26o1ekg8%40group.calendar.google.com/public/basic',
 			
 			eventClick: function(calEvent, jsEvent, view) {
 				$scope.event = calEvent;
@@ -339,27 +459,52 @@ weddingModule.controller("CalendarCtrl",["$scope","group",function($scope,group)
 	
 }]);
 
-weddingModule.controller("CommentCtrl",["$scope","$http","group",function($scope,$http,group){
+weddingModule.controller("CommentsCtrl",["$scope","$firebase","group","fireLoader", function($scope,$firebase,group,fireLoader){
 	$scope.sending = false;
-	resetComment = function(){
+    $scope.composing= false;    
+    $scope.comments = $firebase(commentsRef.child("public").endAt().limit(20));    
+    
+	
+    var resetComment = function(){
 		$scope.comment = { 
-				to: "AxelYSol"
-			};
+			to: "Wall",
+            from: group.name
+		};
 	}
 	
+    $scope.addComment = function(){
+        $scope.composing = true;
+    }
+    
+    $scope.cancelComment = function(){
+        $scope.composing = false;
+        resetComment();
+    }
+    
 	$scope.saveComment = function(){
 		$scope.sending = true;
 		$scope.comment.date = new Date();
-		return $http.post("/groups/"+ group.id + "/comments",$scope.comment)
-        	.success(function(data){        		
-        		resetComment();
-        		$scope.sending = false;
-        	})
-        	.error(function(){
-        		alert("Ha ocurrido un error al enviar el mensaje. Intentalo de nuevo.")
-        		$scope.sending = false;
-        	});
+        $scope.comment.group = group.$id;
+        
+        var ref = $scope.comment.to == "Wall" ? commentsRef.child("public") : commentsRef.child("private"); 
+        
+        $firebase(ref).$add($scope.comment)
+            .then(
+                function(){        		
+            		resetComment();
+            		$scope.sending = false;
+                    $scope.composing = false;
+            	},
+            	function(){
+            		alert("Ha ocurrido un error al enviar el mensaje. Intentalo de nuevo.")
+            		$scope.sending = false;
+            	}
+            );
 	};
 		
 	resetComment();
+}]);
+
+weddingModule.controller("CommentCtrl",["$scope",function($scope){
+    $scope.date = moment($scope.comment.date).format("lll");
 }]);

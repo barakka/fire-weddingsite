@@ -12,24 +12,51 @@ body.comment div.page-container {
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
     -webkit-flex-direction: column;
-    -ms-flex-direction: colu
+    -ms-flex-direction: column;
+	flex-direction: column;
 }
 
 body.comment div.content-container {	
-	flex-grow: 1;	
-	
+	flex-grow: 1;		
+}
+
+body.comment div.row {
+	margin-right: 0;
+	margin-left: 0;
 }
 
 body.comment h1.pagetitle {
 	background-color: #28adad;
 }
 
-body.comment form.comment-form{
+/*body.comment form.comment-form,*/
+body.comment div.comments{
 	margin-bottom: 20px;
 }
 
-body.comment div.message-group{
-	
+body.comment div.comments-list {
+	overflow: auto;
+	margin-bottom: 10px;
+}
+
+body.comment div.comment{
+	background: white;
+	padding: 10px;
+	border: 2px solid #558aa9;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+body.comment div.comment.even{
+	text-align: right;
+}
+
+body.comment div.comment.even p.commentdate {
+	text-align: left;
+}
+
+body.comment div.comment.odd p.commentdate {
+	text-align: right;
 }
 
 body.comment .submit-comment{

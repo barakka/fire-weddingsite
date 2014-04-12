@@ -1,74 +1,119 @@
 /**
  * 
  */
-var adminModule = angular.module("admin", [ "ngRoute" ]);
+var adminModule = angular.module("admin", [ "ngRoute", "firebase" ]);
 
 adminModule.config([ '$routeProvider', function($routeProvider) {
+	
+	var fLoader =function (ref,pathId){
+		return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+			var deferred = $q.defer();
+			
+			var fire;
+			if (pathId){
+				fire = $firebase(ref.child($route.current.params[pathId]));
+			} else {
+				fire = $firebase(ref);
+			}
+						
+	        fire.$on("loaded",function(){
+				fire.$off("loaded");
+				deferred.resolve(fire);
+			});
+	                        	    
+		    return deferred.promise;
+		}];
+	}
+	
 	$routeProvider.when('/groups', {
-		templateUrl : '/admin/groups-list.html',
+		templateUrl : 'groups-list.html',
 		controller : 'GroupListCtrl'
 	}).when('/groups/:groupId', {
-		templateUrl : '/admin/group-edit.html',
-		controller : 'GroupEditCtrl'
+		templateUrl : 'group-edit.html',
+		controller : 'GroupEditCtrl',
+		resolve: {
+			group: fLoader(groupsRef,'groupId'),
+			users: fLoader(usersRef,'groupId') 
+		}
 	}).when('/group', {
-		templateUrl : '/admin/group-edit.html',
-		controller : 'GroupAddCtrl'
+		templateUrl : 'group-edit.html',
+		controller : 'GroupAddCtrl',
+		resolve: {
+            groupsIndex: fLoader(groupsIndexRef)
+        }
 	}).otherwise({
 		redirectTo : '/groups'
 	});
 } ]);
 
-adminModule.controller("GroupListCtrl", ["$scope", "$http", function($scope, $http) {
-	function reload(){
-		$http.get('/groups').success(function(data) {
-			$scope.groups = data;
-		});
-	}
+adminModule.controller("GroupListCtrl", ["$scope", "$firebase", function($scope, $firebase) {	
 	
 	$scope.remove = function(id) {
-		$http.delete("/groups/" + id)
-			.success(function(data){
-				$scope.groups = data;
-			});
+		groupsIndexRef.child(id).remove();
+		commentsRef.child(id).remove();
+		usersRef.child(id).remove();
+		profilesRef.child(id).remove();
+		mailingListRef.child(id).remove();
+		// we should probably remove comments as well
+		$scope.groups.$remove(id);
 	};
 	
-	reload();
+	$scope.groups = $firebase(groupsRef);
 }]);
 
-adminModule.controller("GroupEditCtrl", [ "$scope", "$routeParams", "$http", "$location", function($scope, $routeParams,$http, $location) {
+adminModule.controller("GroupEditCtrl", [ "$scope", "$location", "group","users", function($scope, $location,group,users) {
 	$scope.isEditing = true;
-	
-	$http.get('/groups/' + $routeParams.groupId).success(function(data) {
-		$scope.group = data;
-	});
+		
+	$scope.group = group;
+	$scope.users = users;
 	
 	$scope.save = function(){
-		$http.put("/groups/"+ $routeParams.groupId,$scope.group)
-			.success(function(data){
-				$location.path("/groups").replace();
-			});
+		$scope.group.$save().then(function(ref){
+			$location.path("/groups").replace();			
+		});
 	};
 }]);
 
-adminModule.controller("GroupAddCtrl", [ "$scope", "$http", "$location", function($scope,$http,$location) {
-	$scope.group = {id: 0, name: ""};
-	$scope.isEditing = false;
+adminModule.controller("GroupAddCtrl", [ "$scope", "$location", "$firebase","groupsIndex", function($scope,$location,$firebase,groupsIndex) {
 	
+	function randomString(len)
+	{
+	    var possible ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var text = '';
+	    for( var i=0; i < len; i++ )
+        	text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    	return text;
+	}
+	
+	var groupId = randomString(2) + ("0000" + groupsIndex.$getIndex().length).slice(-4);	
+	
+	$scope.group = {name: "", id: groupId};
+	$scope.isEditing = false;	
+		
 	$scope.save = function(){
-		$http.post("/groups",$scope.group)
-			.success(function(data){
-				$location.path("/groups").replace();
+		if (groupsIndex[$scope.group.id]){
+			$scope.groupForm.groupIdtxt.$setValidity("minlength",false);
+		} else {
+			var group = $firebase(groupsRef.child($scope.group.id));		
+			// add to index
+			groupsIndex.$child($scope.group.id).$set(true);
+			// add to collection
+			group.$set($scope.group).then(function(ref){
+				$location.path("/groups").replace();	
 			});
+		}		
 	};
 }]);
 
-adminModule.controller("UsersListCtrl", ["$scope","$http","$route", function($scope,$http,$route){
+adminModule.controller("UsersListCtrl", ["$scope","$route","$firebase", function($scope,$route,$firebase){
+	
 	$scope.add = function(){
 		$scope.user = {};
 	}
 	
-	$scope.edit = function(user){
-		$scope.user = user;
+	$scope.edit = function(userId){
+		$scope.user = $scope.users.$child(userId);
 	}
 	
 	$scope.cancelUser = function(){
@@ -76,25 +121,18 @@ adminModule.controller("UsersListCtrl", ["$scope","$http","$route", function($sc
 	}
 	
 	$scope.save = function(){
-		if ($scope.user.id){
-			$http.put("/groups/"+ $scope.group.id + "/users/" + $scope.user.id,$scope.user)
-				.success(function(data){
-					$scope.group.users = data;
-					$scope.user=null;					
-				});
+		if ($scope.user.$id){
+			$scope.user.$save().then(function(){
+				$scope.user = null;
+			});
 		} else {
-			$http.post("/groups/" + $scope.group.id + "/users", $scope.user)
-				.success(function(data){
-					$scope.group.users = data;
-					$scope.user = null;
-				});
+			$scope.users.$add($scope.user).then(function(){
+				$scope.user = null;
+			});			
 		}
 	};
 	
 	$scope.remove = function(id) {
-		$http.delete("/groups/" + $scope.group.id + "/users/" + id)
-			.success(function(data){
-				$scope.group.users = data;
-			});
+		$scope.users.$remove(id);
 	};
 }])
