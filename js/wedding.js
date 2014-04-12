@@ -64,7 +64,8 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
                             var profile= $firebase(profilesRef.child(groupId));
                             profile.complete=false;
                             profile.stage=0;  
-                            profile.participationConfirmed=false;                          
+                            profile.participationConfirmed=false;
+                            profile.inMailingList=true;                          
                             return profile;   
                         });    
             } else {
@@ -96,19 +97,19 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         }
     }).when('/:groupId/church',{
         templateUrl: 'partials/church.html',
-        controller: 'HomeCtrl',
+        controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
         }
     }).when('/:groupId/dinner',{
         templateUrl: 'partials/dinner.html',
-        controller: 'HomeCtrl',
+        controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
         }
     }).when('/:groupId/upload',{
         templateUrl: 'partials/fake.html',
-        controller: 'HomeCtrl',
+        controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
         }
@@ -120,16 +121,10 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         }
     }).when('/:groupId/accomodation',{
         templateUrl: 'partials/fake.html',
-        controller: 'HomeCtrl',
+        controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
-        }
-    }).when('/:groupId/questionnaire',{
-        templateUrl: 'partials/fake.html',
-        controller: 'HomeCtrl',
-        resolve: {
-            group: groupLoader()
-        }
+        }    
     }).when("/:groupId/survey/:stageId",{
         templateUrl: "partials/survey.html",
         controller: 'SurveyCtrl',
@@ -271,6 +266,9 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
     	}
 	}
     
+}]);
+
+weddingModule.controller("StaticCtrl",["$scope",  function($scope){    
     $scope.openChurchMap = function(){
     	var os = $.ua.os.name;
     	

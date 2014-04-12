@@ -126,6 +126,14 @@
                         <option value="Otros">Otros</option>
                     </select>
                 </div>
+                <div class="form-group" ng-class="{'has-error': transportationForm.whenComing.$invalid}">
+                    <label for="whenComing">¿Cuando piensas llegar?</label>
+                    <select class="form-control" id="whenComing" ng-model="profile.whenComing" name="whenComing" required>
+                        <option value="Viernes">El viernes</option>
+                        <option value="Sabado">El Sabado</option>
+                        <option value="Otro">Otro dia</option>                        
+                    </select>
+                </div>
             </form>
             <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Siguente</button>
             <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
@@ -250,12 +258,16 @@
                     <table class="table visible-xs">
                         <thead>
                             <tr>
+                                <th>Princ.</th>
                                 <th>Nombre</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-form="uForm" ng-repeat="(key, user) in users">
+                                <td style="white-space: nowrap;" ng-class="{'has-error': uForm.predefined.$invalid}">
+                                    <input type="checkbox" class="" id="predefined" ng-model="user.predefined" name="predefined">
+                                </td>
                                 <td style="width:99%">{{user.name}}</td>
                                 <td style="white-space: nowrap;">
                                     <button class="btn btn-primary btn-sm" ng-click="editEditableUser(key)">
@@ -270,6 +282,7 @@
                         <tfoot>
                             <tr>
                                 <td></td>
+                                <td></td>
                                 <td>
                                     <button class="btn btn-primary btn-sm" style="width: 100%" ng-click="addEditableUser()">
                                         <span class="glyphicon glyphicon-plus"></span>
@@ -279,10 +292,10 @@
                         </tfoot>
                     </table>
                     <div class="form-group" ng-show="hasPredefined()">
-                        <label for="inMailingList">Queires recibir un correo con la novedades sobre la boda a la dirección principal?</label>
+                        <label for="inMailingList" class="hidden-xs">¿Quieres recibir un correo con la novedades sobre la boda a la dirección principal?</label>
                         <div class="form-control checks-inline">
                             <label class="checkbox-inline">
-                                <input type="checkbox" id="inMailingList" ng-model="profile.inMailingList" name="inMailingList">Enviame novedades</label>
+                                <input type="checkbox" id="inMailingList" ng-model="profile.inMailingList" name="inMailingList">Mantenme informado via e-mail</label>
                         </div>
                     </div>
                 </form>
