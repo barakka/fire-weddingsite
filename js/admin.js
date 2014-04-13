@@ -86,12 +86,14 @@ adminModule.controller("GroupAddCtrl", [ "$scope", "$location", "$firebase","gro
     	return text;
 	}
 	
-	var groupId = randomString(2) + ("0000" + groupsIndex.$getIndex().length).slice(-4);	
+	var groupId = randomString(4) + ("0000" + groupsIndex.$getIndex().length).slice(-4);	
 	
 	$scope.group = {name: "", id: groupId};
 	$scope.isEditing = false;	
 		
 	$scope.save = function(){
+		$scope.group.id = $scope.group.id.toUpperCase();
+		
 		if (groupsIndex[$scope.group.id]){
 			$scope.groupForm.groupIdtxt.$setValidity("minlength",false);
 		} else {

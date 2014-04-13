@@ -4,7 +4,7 @@
 			<label for="groupIdtxt">Codigo</label>           
 			<input type="text" ng-if="!isEditing"
 				class="form-control" id="groupIdtxt" name="groupIdtxt" placeholder="Codigo"
-				ng-model="group.id" ng-maxlength="6" ng-minlength="6" required>
+				ng-model="group.id" ng-maxlength="8" ng-minlength="8" ng-pattern="/\w{4}\d{4}/" required>
             <p class="form-control-static" ng-if="isEditing">{{group.id}}</p>			
 		</div>
 		<div class="form-group" ng-class="{'has-error': groupForm.groupName.$invalid}">
