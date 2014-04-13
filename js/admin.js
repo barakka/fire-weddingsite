@@ -68,9 +68,11 @@ adminModule.controller("GroupEditCtrl", [ "$scope", "$location", "group","users"
 	$scope.users = users;
 	
 	$scope.save = function(){
-		$scope.group.$save().then(function(ref){
-			$location.path("/groups").replace();			
-		});
+		$scope.users.$save().then(function(){
+			$scope.group.$save().then(function(ref){
+				$location.path("/groups").replace();			
+			});	
+		});		
 	};
 }]);
 
@@ -111,28 +113,8 @@ adminModule.controller("GroupAddCtrl", [ "$scope", "$location", "$firebase","gro
 adminModule.controller("UsersListCtrl", ["$scope","$route","$firebase", function($scope,$route,$firebase){
 	
 	$scope.add = function(){
-		$scope.user = {};
+		$scope.users.$add({name:""});
 	}
-	
-	$scope.edit = function(userId){
-		$scope.user = $scope.users.$child(userId);
-	}
-	
-	$scope.cancelUser = function(){
-		$scope.user = null;
-	}
-	
-	$scope.save = function(){
-		if ($scope.user.$id){
-			$scope.user.$save().then(function(){
-				$scope.user = null;
-			});
-		} else {
-			$scope.users.$add($scope.user).then(function(){
-				$scope.user = null;
-			});			
-		}
-	};
 	
 	$scope.remove = function(id) {
 		$scope.users.$remove(id);

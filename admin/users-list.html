@@ -1,39 +1,60 @@
+
 <div ng-controller="UsersListCtrl">
-	<div ng-if="user==null" class="panel panel-default">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Lista de usuarios del grupo</h3>
 		</div>
 
 		<table class="table">
 			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Email</th>
-					<th width="10%"></th>
-				</tr>
-			</thead>
+                <tr>
+                    <th>Princ.</th>
+                    <th>Nombre</th>
+                    <th>e-mail</th>
+                    <th>Teléfono</th>
+					<th>Hombre</th>
+                    <th>
+						<button class="btn btn-primary btn-sm" ng-click="add()" ng-disabled="groupForm.$invalid">
+							<span class="glyphicon glyphicon-plus"></span> 
+						</button>
+					</th>
+                </tr>
+            </thead>
 			<tbody>
-				<tr ng-repeat="(userId,user) in users">
-					<td>{{user.name}}</td>
-					<td>{{user.email}}</td>
-					<td>
-						<button class="btn btn-primary btn-sm" ng-click="edit(userId)">
-							<span
-								class="glyphicon glyphicon-pencil"></span>
-						</button>
-						<button class="btn btn-primary btn-sm" ng-click="remove(userId)">
-							<span class="glyphicon glyphicon-trash"></span>
-						</button>
-					</td>
-				</tr>
+				<tr ng-form="uForm" ng-repeat="(key, user) in users">
+                    <td ng-class="{'has-error': uForm.predefined.$invalid}">
+                        <input type="checkbox" class="" id="predefined" ng-model="user.predefined" name="predefined">
+                    </td>
+                    <td ng-class="{'has-error': uForm.userName.$invalid}">
+                        <input type="text" class="form-control" id="userName" placeholder="Nombre" ng-model="user.name" name="userName" required>
+                    </td>
+                    <td ng-class="{'has-error': uForm.email.$invalid}">
+                        <input type="email" class="form-control" id="userMail" placeholder="e-mail" ng-model="user.email" name="email" ng-required="user.predefined">
+                    </td>
+                    <td ng-class="{'has-error': uForm.phoneNumber.$invalid}">
+                        <input type="text" class="form-control" id="userPhone" placeholder="Telefono" ng-model="user.phoneNumber" name="phoneNumber"
+                        ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">
+                    </td>
+					<td ng-class="{'has-error': uForm.male.$invalid}">
+                        <input type="checkbox" class="" id="male" ng-model="user.male" name="male">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" ng-click="remove(key)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>				
 			</tbody>
 			<tfoot>
 				<tr>
 					<td></td>
 					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td>
-						<button class="btn btn-primary btn-sm" ng-click="add()">
-							<span class="glyphicon glyphicon-plus"></span> Añadir
+						<button class="btn btn-primary btn-sm" ng-disabled="groupForm.$invalid" ng-click="add()">
+							<span class="glyphicon glyphicon-plus"></span> 
 						</button>
 					</td>
 				</tr>
@@ -42,34 +63,4 @@
 
 	</div>
 
-	<div ng-if="user!=null" class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">Crear/editar usuario</h3>
-		</div>
-		<div class="panel-body">
-			<form role="form">
-				<div class="form-group">
-					<label for="userName">Nombre</label> <input type="text"
-						class="form-control" id="userName" placeholder="Nombre"
-						ng-model="user.name">
-				</div>
-				<div class="form-group">
-					<label for="userMail">e-mail</label> <input type="email"
-						class="form-control" id="userMail" placeholder="e-mail"
-						ng-model="user.email">
-				</div>
-				<div class="form-group">
-					<label for="userMale"> <input type="checkbox"
-						ng-model="user.male" id="userMale">Hombre
-					</label>
-				</div>
-				<div class="pull-right">
-					<button class="btn btn-primary" ng-click="cancelUser()">Cancelar</button>
-					<button type="submit" class="btn btn-primary" ng-click="save()">
-						<span class="glyphicon glyphicon-save"></span> Guardar
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
 </div>

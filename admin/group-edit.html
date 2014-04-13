@@ -1,5 +1,6 @@
-<div class="row">
-	<form role="form" name="groupForm">
+<form role="form" name="groupForm">
+	<div class="row">
+	
 		<div class="form-group" ng-class="{'has-error': groupForm.groupIdtxt.$invalid}">
 			<label for="groupIdtxt">Codigo</label>           
 			<input type="text" ng-if="!isEditing"
@@ -13,18 +14,16 @@
 				class="form-control" id="groupName" name="groupName" placeholder="Nombre"
 				ng-model="group.name" required autofocus>
 		</div>
-	</form>
-</div>
-<div class="row">
-	<div class="col-md-3 col-md-offset-9">
-		<a href="#/groups" class="btn btn-primary">Cancelar</a>
-		<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="groupForm.$invalid">
-			<span class="glyphicon glyphicon-save"></span> Guardar
-		</button>
 	</div>
-</div>
-<div class="row">
-</div>
-<div class="row">
-	<div ng-if="isEditing" ng-include="'users-list.html'"></div>
-</div>
+	<div class="row">
+		<div class="col-md-3 col-md-offset-9">
+			<a href="#/groups" class="btn btn-primary">Cancelar</a>
+			<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="groupForm.$invalid">
+				<span class="glyphicon glyphicon-save"></span> Guardar
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div ng-if="isEditing" ng-include="'users-list.html'"></div>
+	</div>
+</form>
