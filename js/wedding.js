@@ -240,7 +240,11 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
 
     if (!profile.complete){
         if (!profile.lastModified || moment().isAfter(moment(profile.lastModified).add('hours',4))){
-            $location.path("/" + group.id + "/survey/" + profile.stage).replace();
+            if (profile.stage){
+                $location.path("/" + group.id + "/survey/" + profile.stage).replace();
+            } else {
+                $location.path("/" + group.id + "/survey/0").replace();
+            }
         }
     }
 
@@ -308,6 +312,14 @@ weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$locatio
     $scope.stage = parseInt($routeParams.stageId);
     $scope.profile = profile;
     $scope.users = $firebase(usersRef.child($routeParams.groupId));
+    
+    if (!profile.stage){
+        profile.complete=false;
+        profile.stage=0;  
+        profile.participationConfirmed=false;
+        profile.inMailingList=true;
+    }
+    
     touchProfile();
     $scope.profile.$save();
 

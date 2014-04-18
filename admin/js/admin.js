@@ -125,23 +125,31 @@ adminModule.controller("GroupListCtrl", ["$scope", "$firebase", function($scope,
 	};
 	
 	$scope.loading = true;
-	$firebase(groupsRef).$on("loaded",function(data){
-		$scope.loading = false;
-		$scope.groups = data;
+	$scope.groups = $firebase(groupsRef)
+	$scope.groups.$on("loaded",function(data){
+		$scope.loading = false;		
 	})
 
-	$scope.createAccounts = function(){
-		angular.forEach($scope.groups,function(element){
-			$scope.loginObj.$createUser(element.id + "@barakka.org", element.id, true).then(
-				function(){
-					console.log("Account " + element.id + "@barakka.org created.");		
-				}, 
-				function(error){
-					console.log("Error creating accoutn " + element.id + "@barakka.org created. " + error);
-				}
-			);			
-		});
-	}
+//	var createAccount = function(index){
+//		if (index < $scope.groups.$getIndex().length){
+//			var group = $scope.groups[$scope.groups.$getIndex()[index]];
+//			console.log("Creating password for group: " + group.id);
+//			$scope.loginObj.$createUser(group.id + "@barakka.org", group.id, true).then(
+//				function(){
+//					console.log("Account " + group.id + "@barakka.org created.");
+//					createAccount(index+1);		
+//				}, 
+//				function(error){
+//					console.log("Error creating accoutn " + group.id + "@barakka.org created. " + error);
+//					createAccount(index+1);
+//				}
+//			);				
+//		}
+//	}
+//
+//	$scope.createAccounts = function(){
+//		createAccount(0);
+//	}
 
 }]);
 
@@ -151,6 +159,13 @@ adminModule.controller("GroupEditCtrl", [ "$scope", "$location", "group","users"
 	$scope.group = group;
 	$scope.users = users;
 	$scope.profile = profile;
+	
+	if (!profile.stage){
+		profile.complete=false;
+        profile.stage=0;  
+        profile.participationConfirmed=false;
+        profile.inMailingList=true;    
+	}
 	
 	$scope.save = function(){
 		$scope.users.$save().then(function(){
