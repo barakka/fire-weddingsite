@@ -16,13 +16,20 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-3 col-md-offset-9">
-			<a href="#/groups" class="btn btn-primary">Cancelar</a>
+		<div class="col-md-3 col-md-offset-9">			
+			<button type="submit" class="btn btn-primary" ng-click="cancel()" ng-disabled="groupForm.$invalid">
+				<span class="glyphicon glyphicon-remove"></span> Cancelar
+			</button>
 			<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="groupForm.$invalid">
 				<span class="glyphicon glyphicon-save"></span> Guardar
 			</button>
 		</div>
 	</div>
+
+	<div class="row">
+		<ng-include src="'profile-edit.html'" ng-if="isEditing"></ng-include>	
+	</div>
+
 	<div class="row">
 		<div ng-if="isEditing" ng-include="'users-list.html'"></div>
 	</div>

@@ -147,61 +147,6 @@ weddingModule.factory("fireLoader",["$q","$firebase",function($q,$firebase){
     }
 }]);
 
-weddingModule.factory("groupService", ["$http","$q", function($http,$q){
-    var service = {}
-    service.group = null;
-
-    service.loadGroup= function(groupId){
-        if (service.group==null || service.group.id != parseInt(groupId)){
-            return service.loadGroupFromServer(groupId);
-        } else {
-            return service.group;
-        }
-    };
-
-    service.loadGroupFromServer= function(groupId){
-        if (parseInt(groupId)!=0){
-            return $http.get('/groups/' + groupId)
-                .then(function(response){
-                    service.group = response.data;
-                    return response.data;
-                });
-        } else {
-        	var deferred = $q.defer();
-        	
-            service.group = {
-            	id: 0,
-                profile : {
-                    id: 0,
-                    complete: true
-                }
-            };
-            
-            deferred.resolve(service.group);
-            return deferred.promise;
-        }
-    };
-
-    service.saveGroup= function(group){
-        return $http.put("/groups/"+ group.id,group)
-            .success(function(data){
-                service.group = data;
-            });
-    };
-
-    service.removeUser= function(group,user){
-        if (user.id){
-            $http.delete("/groups/" + group.id + "/users/" + user.id);
-//                .success(function(data){
-//                    $scope.group.users = data;
-//                });
-        }
-    }
-
-
-    return service;
-}]);
-
 weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($scope,$location,$route){	
 	$scope.bodyStyle = "";
 	
@@ -229,20 +174,37 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
     });
 }]);
 
-weddingModule.controller("LoginCtrl",["$scope", "$location", "fireLoader", function($scope,$location,fireLoader){
+weddingModule.controller("LoginCtrl",["$scope", "$location", "fireLoader","$firebaseSimpleLogin", function($scope,$location,fireLoader,$firebaseSimpleLogin){
 	$scope.loading = false;
 	
 	$scope.access = function(){		
 		if ($scope.signinForm.group.$valid){
 			$scope.loading = true;
-            var groupId = $scope.groupId.toUpperCase();
-            fireLoader(groupsRef.child(groupId))
-                .then(function(group){
-                    $location.path("/" + groupId + "/home");
-                },function(){
+            $firebaseSimpleLogin(fBaseRef).$login('password', {
+               email: ($scope.groupId + '@barakka.org'),
+               password: $scope.groupId.toUpperCase(),
+               debug: true
+            }).then(
+                function(user) {
+                    var groupId = $scope.groupId.toUpperCase();
+                    fireLoader(groupsRef.child(groupId)).then(
+                        function(group){
+                            $location.path("/" + groupId + "/home");
+                        },
+                        function(){
+                            $scope.loading=false;
+                            $scope.signinForm.group.$setValidity("pattern",false);
+                        }
+                    );
+                },
+                function(error) {
                     $scope.loading=false;
-					$scope.signinForm.group.$setValidity("pattern",false);
-                });
+                    $scope.signinForm.group.$setValidity("pattern",false);
+                    console.error(error);
+                }
+            );
+
+            
             //$location.path("/" + group.id + "/survey/" + group.profile.stage);           			
 		}
 	}
