@@ -7,55 +7,92 @@
  /* global moment */
 
 var weddingModule = angular.module("wedding", ["ngRoute","firebase"]);
-var NO_GROUP_ID="AA000";
+var NO_GROUP_ID="AAAA0000";
 
-var fLoaderFunction = function($q,$firebase,ref){
-    var deferred = $q.defer();						
-	var fire = $firebase(ref);		
-    fire.$on("loaded",function(){
-		fire.$off("loaded");
-        if (fire.hasOwnProperty("$value") && fire.$value == null){
-            deferred.reject("No object found at path: " + fire.$getRef().toString());   
-        } else {
-		    deferred.resolve(fire);
+var fLoaderFunction = function($q,$firebase,$firebaseSimpleLogin,groupId,ref){        
+    
+    var loadRef = function(){    
+        var deferred = $q.defer();						
+    	var fire = $firebase(ref);		
+        fire.$on("loaded",function(){
+    		fire.$off("loaded");
+            if (fire.hasOwnProperty("$value") && fire.$value == null){
+                deferred.reject("No object found at path: " + fire.$getRef().toString());   
+            } else {
+                deferred.resolve(fire);
+            }
+    	});
+                        	    
+        return deferred.promise;
+    }
+    
+    
+    
+    var ensureLoggedIn = function(){
+        var deferred = $q.defer();
+        var loginObj = $firebaseSimpleLogin(fBaseRef);
+        
+        var login = function(){
+            
+            return loginObj.$login('password', {
+                        email: (groupId + '@barakka.org'),
+                        password: groupId.toUpperCase(),
+                        debug: true
+                    }).then(
+                        function(user){
+                            deferred.resolve(user);
+                        },
+                        function(error){
+                            deferred.reject("User not logged in.");
+                        }
+                    );
         }
-	});
-                    	    
-    return deferred.promise;
+    
+		loginObj.$getCurrentUser().then(
+			function(user){                
+				if (user){                    
+                    if (user.email.toLowerCase() == (groupId + '@barakka.org').toLowerCase()){
+                        deferred.resolve(user);
+                    } else {
+                        loginObj.$logout();
+                        deferred.reject("Already logged in with a different user.");        
+                    }
+				} else {
+                    login();	
+				}
+			}, 
+			login
+		);
+
+		return deferred.promise;
+    }
+    
+    return ensureLoggedIn().then(loadRef);
 }
 
 weddingModule.config([ '$routeProvider', function ($routeProvider) {
     
-    var fLoader =function (ref,pathId){
-		return ["$q","$firebase","$route",function($q,$firebase,$route){ 
-			if (pathId){
-				ref = ref.child($route.current.params[pathId]);
-			} 
-			
-            return fLoaderFunction($q,$firebase,ref);
-		}];
-	}
-    
     var groupLoader = function(){
-        return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+        return ["$q","$firebase","$firebaseSimpleLogin","$route",function($q,$firebase,$firebaseSimpleLogin,$route){ 
 			var groupId = $route.current.params.groupId;
             
             if (groupId!=NO_GROUP_ID){
-                return fLoaderFunction($q,$firebase,groupsRef.child(groupId));    
-            } else {
+                return fLoaderFunction($q,$firebase,$firebaseSimpleLogin,groupId,groupsRef.child(groupId));    
+            } else {                
                 return {
                 	id: NO_GROUP_ID,
+                    anonymous: true
                 };
             }            
 		}];
     }
     
     var profileLoader = function(){
-        return ["$q","$firebase","$route",function($q,$firebase,$route){ 
+        return ["$q","$firebase","$firebaseSimpleLogin","$route",function($q,$firebase,$firebaseSimpleLogin,$route){ 
 			var groupId = $route.current.params.groupId;
             
             if (groupId!=NO_GROUP_ID){
-                return fLoaderFunction($q,$firebase,profilesRef.child(groupId))
+                return fLoaderFunction($q,$firebase,$firebaseSimpleLogin,groupId,profilesRef.child(groupId))
                     .then(
                         function(profile){
                             return profile;
@@ -68,7 +105,7 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
                             profile.inMailingList=true;                          
                             return profile;   
                         });    
-            } else {
+            } else {                
                 return {
                     complete: true
                 };
@@ -80,7 +117,8 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl',
         resolve: {
-            group: function(){return null;}
+            group: function(){return null;},
+            profile: function(){return null;}
         }
     }).when('/:groupId/home',{
         templateUrl: 'partials/home.html',
@@ -141,9 +179,9 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
     });
 } ]);
 
-weddingModule.factory("fireLoader",["$q","$firebase",function($q,$firebase){
-    return function(ref){
-        return fLoaderFunction($q,$firebase,ref);
+weddingModule.factory("fireLoader",["$q","$firebase","$firebaseSimpleLogin",function($q,$firebase,$firebaseSimpleLogin){
+    return function(groupId,ref){
+        return fLoaderFunction($q,$firebase,$firebaseSimpleLogin,groupId,ref);
     }
 }]);
 
@@ -180,35 +218,21 @@ weddingModule.controller("LoginCtrl",["$scope", "$location", "fireLoader","$fire
 	$scope.access = function(){		
 		if ($scope.signinForm.group.$valid){
 			$scope.loading = true;
-            $firebaseSimpleLogin(fBaseRef).$login('password', {
-               email: ($scope.groupId + '@barakka.org'),
-               password: $scope.groupId.toUpperCase(),
-               debug: true
-            }).then(
-                function(user) {
-                    var groupId = $scope.groupId.toUpperCase();
-                    fireLoader(groupsRef.child(groupId)).then(
-                        function(group){
-                            $location.path("/" + groupId + "/home");
-                        },
-                        function(){
-                            $scope.loading=false;
-                            $scope.signinForm.group.$setValidity("pattern",false);
-                        }
-                    );
+            
+            var groupId = $scope.groupId.toUpperCase();
+            fireLoader(groupId, groupsRef.child(groupId)).then(
+                function(group){
+                    $location.path("/" + groupId + "/home");
                 },
-                function(error) {
+                function(){
                     $scope.loading=false;
                     $scope.signinForm.group.$setValidity("pattern",false);
-                    console.error(error);
                 }
-            );
-
-            
-            //$location.path("/" + group.id + "/survey/" + group.profile.stage);           			
+            );                           			
 		}
 	}
 		
+    $firebaseSimpleLogin(fBaseRef).$logout();
 }]);
 
 weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", function($scope,$location,group,profile){
@@ -332,7 +356,7 @@ weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$locatio
                         
         $scope.users.$save().then(function(){
             // Remove every one from the mailing list
-            $firebase(mailingListRef).$remove(group.$id);
+            $firebase(mailingListRef.child(group.$id)).$remove();
             
             // Add the new pred if any
             if (profile.inMailingList){

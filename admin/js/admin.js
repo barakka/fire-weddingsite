@@ -96,14 +96,18 @@ adminModule.controller("AdminCtrl",["$scope","$location","$firebaseSimpleLogin",
 }]);
 
 adminModule.controller("LoginCtrl",["$scope","$location","$firebaseSimpleLogin",function($scope,$location,$firebaseSimpleLogin){	
+	$scope.email = "";
+	$scope.passwrod = "";
+	
 	$scope.login = function(){
 		$scope.loginObj.$login('password', {
-			   email: 'admin@barakka.org',
-			   password: 'fgfh6.79'
+			   email: $scope.email,
+			   password: $scope.password
 			}).then(function(user) {
 			   $location.path('/groups');
 			}, function(error) {
-			   console.error('Login failed: ', error);
+			   $scope.email="";
+			   $scope.password="";
 		});
 	}
 }]);
