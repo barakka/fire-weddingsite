@@ -1,6 +1,9 @@
 /**
  * 
  */
+
+/* global saveAs */
+
 var adminModule = angular.module("admin", [ "ngRoute", "firebase" ]);
 
 adminModule.config([ '$routeProvider', function($routeProvider) {
@@ -73,7 +76,8 @@ adminModule.config([ '$routeProvider', function($routeProvider) {
 		controller : 'ExportCtrl',
 		resolve: {
 			login: uLoader(),
-            groups: fLoader(groupsRef)
+            groups: fLoader(groupsRef),
+			mailingList: fLoader(mailingListRef)
         }
     }).when('/login', {
 		templateUrl : 'login.html',
@@ -96,12 +100,13 @@ adminModule.controller("AdminCtrl",["$scope","$location","$firebaseSimpleLogin",
 }]);
 
 adminModule.controller("LoginCtrl",["$scope","$location","$firebaseSimpleLogin",function($scope,$location,$firebaseSimpleLogin){	
-	$scope.email = "";
-	$scope.passwrod = "";
+	$scope.email = null;
+	$scope.passwrod = null;
 	
 	$scope.login = function(){
+		
 		$scope.loginObj.$login('password', {
-			   email: $scope.email,
+			   email: $scope.email + '@barakka.org',
 			   password: $scope.password
 			}).then(function(user) {
 			   $location.path('/groups');
@@ -241,6 +246,33 @@ adminModule.controller("UsersListCtrl", ["$scope","$route","$firebase", function
 	};
 }])
 
-adminModule.controller("ExportCtrl",["$scope","groups",function($scope,groups){
-	$scope.groups = groups;	
+adminModule.controller("ExportCtrl",["$scope","groups","mailingList", function($scope,groups, mailingList){
+	
+	
+	$scope.exportGuestList = function(){
+		var guestList = [];
+		guestList.push("Clave,Nombre,Url");
+		
+		angular.forEach(groups.$getIndex(), function(key){
+			var group = groups[key];
+			guestList.push(group.id + "," + group.name + ",http://axelysolboda.appspot.com/#/" + group.id + "\r\n");
+		});
+		
+		var blob = new Blob(guestList, {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "guestList.csv");
+	}
+	
+	$scope.exportMailingList = function(){
+		var mails = [];
+				
+		angular.forEach(mailingList.$getIndex(), function(key){
+			var groupMails = mailingList[key];
+			angular.forEach(groupMails,function(mail){
+				mails.push(mail + "\r\n");	
+			});				
+		});
+		
+		var blob = new Blob(mails, {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "mailingList.txt");
+	}
 }]);

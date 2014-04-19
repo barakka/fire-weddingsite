@@ -2,3 +2,8 @@ body.admin div.userlist,
 body.admin div.group-profile{
 	margin-top: 20px;
 }
+
+body.admin div.row.spaced {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}

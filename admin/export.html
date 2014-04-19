@@ -1,3 +1,17 @@
-<pre ng-repeat="(key, group) in groups">
-{{key}},{{group.name}},http://axelysolboda.appspot.com/#/{{key}}
-</pre>
+<script src="../jslib/filesaver/filesaver.js"></script>
+<div class="row spaced">
+	<div class="col-xs-10">
+		Exportar lista de invitados
+	</div>
+	<div class="col-xs-2">
+		<button ng-click="exportGuestList()" class="btn btn-primary">Exportar</button>
+	</div>
+</div>
+<div class="row spaced">
+	<div class="col-xs-10">
+		Exportar mailing list
+	</div>
+	<div class="col-xs-2">
+		<button ng-click="exportMailingList()" class="btn btn-primary">Exportar</button>
+	</div>
+</div>

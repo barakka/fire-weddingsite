@@ -1,15 +1,18 @@
-<form role="form" name="loginForm">	
+<form role="form" name="loginForm" ng-submit="login()" autocomplete="off">	
 	<div class="form-group" ng-class="{'has-error': loginForm.txtEmail.$invalid}">
-		<label for="txtEmail">e-mail</label>           
-		<input type="email" 
-			class="form-control" id="txtEmail" name="txtEmail" placeholder="email"
-			ng-model="email"  required>        			
+		<label for="txtEmail">e-mail</label>   
+		<div class="input-group">        
+			<input type="text" 
+				class="form-control" id="txtEmail" name="txtEmail" placeholder="email"
+				ng-model="email" >
+			<span class="input-group-addon">@barakka.org</span>
+		</div>        			
 	</div>
 	<div class="form-group" ng-class="{'has-error': loginForm.txtPassword.$invalid}">
 		<label for="txtPassword">Password</label>
         <input type="password"
 			class="form-control" id="txtPassword" name="txtPassword" placeholder="password"
-			ng-model="password" required>
+			ng-model="password">
 	</div>
 	<button class="btn btn-primary" ng-click="login()">Login</button>	
 </form>
