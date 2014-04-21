@@ -461,7 +461,7 @@ weddingModule.controller("CalendarCtrl",["$scope","group",function($scope,group)
 
 weddingModule.controller("CommentsCtrl",["$scope","$firebase","group","fireLoader", function($scope,$firebase,group,fireLoader){
 	$scope.sending = false;
-    $scope.composing= false;    
+    $scope.composing= true;    
     $scope.comments = $firebase(commentsRef.child("public").endAt().limit(20));    
     
 	

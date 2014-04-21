@@ -22,5 +22,6 @@ body.dinner img.photo-map {
 	width: 100%;
 	height: auto;
 	background: white;
+	border: 1px solid #cccccc;
 }
 

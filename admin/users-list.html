@@ -26,7 +26,7 @@
                         <input type="checkbox" class="" id="predefined" ng-model="user.predefined" name="predefined">
                     </td>
                     <td ng-class="{'has-error': uForm.userName.$invalid}">
-                        <input type="text" class="form-control" id="userName" placeholder="Nombre" ng-model="user.name" name="userName" required>
+                        <input type="text" class="form-control" id="userName" placeholder="Nombre" ng-model="user.name" name="userName" required autofocus>
                     </td>
                     <td ng-class="{'has-error': uForm.email.$invalid}">
                         <input type="email" class="form-control" id="userMail" placeholder="e-mail" ng-model="user.email" name="email" ng-required="user.predefined">

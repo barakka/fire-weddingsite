@@ -16,9 +16,25 @@ body.comment div.page-container {
 	flex-direction: column;
 }
 
+
 body.comment div.content-container {	
 	flex-grow: 1;		
 }
+
+body.comment div.frame.comment {
+	margin: 0;
+	position: absolute;
+	width: 17%;
+	top: -35px;
+	left: 0;
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
+}
+
+body.comment .title-spacer {
+	margin-top: 20px;	
+}
+
 
 body.comment div.row {
 	margin-right: 0;
@@ -26,7 +42,7 @@ body.comment div.row {
 }
 
 body.comment h1.pagetitle {
-	background-color: #28adad;
+	background-color: #28adad;	
 }
 
 /*body.comment form.comment-form,*/
@@ -40,7 +56,7 @@ body.comment div.comments-list {
 	margin-bottom: 10px;
 }
 
-body.comment div.comment{
+body.comment div.comment-frame{
 	background: white;
 	padding: 10px;
 	border: 2px solid #558aa9;
@@ -48,15 +64,15 @@ body.comment div.comment{
 	border-radius: 5px;
 }
 
-body.comment div.comment.even{
+body.comment div.comment-frame.even{
 	text-align: right;
 }
 
-body.comment div.comment.even p.commentdate {
+body.comment div.comment-frame.even p.commentdate {
 	text-align: left;
 }
 
-body.comment div.comment.odd p.commentdate {
+body.comment div.comment-frame.odd p.commentdate {
 	text-align: right;
 }
 
@@ -76,6 +92,15 @@ body.comment .form-group {
 }
 
 @media (min-width: 768px) { 
+	body.comment div.frame.comment {
+		width: 14%;
+		top: -50px;		
+	}
+	
+	body.comment .title-spacer {
+		margin-top: 60px;
+	}
+	
 	body.comment .submit-comment{
 		padding: 10px;
 	}

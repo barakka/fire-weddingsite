@@ -3,6 +3,11 @@
  */
 
 /* global saveAs */
+/* global angular */
+/* global $ */
+
+/// <reference path="../../js/config.js" />
+
 
 var adminModule = angular.module("admin", [ "ngRoute", "firebase" ]);
 
@@ -189,19 +194,7 @@ adminModule.controller("GroupEditCtrl", [ "$scope", "$location", "group","users"
 
 adminModule.controller("GroupAddCtrl", [ "$scope", "$location", "$firebase","groupsIndex", function($scope,$location,$firebase,groupsIndex) {
 	
-	function randomString(len)
-	{
-	    var possible ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		var text = '';
-	    for( var i=0; i < len; i++ )
-        	text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    	return text;
-	}
-	
-	var groupId = randomString(4) + ("0000" + groupsIndex.$getIndex().length).slice(-4);	
-	
-	$scope.group = {name: "", id: groupId};
+	$scope.group = {name: "", id: ""};
 	$scope.isEditing = false;	
 		
 	$scope.save = function(){
@@ -239,6 +232,7 @@ adminModule.controller("UsersListCtrl", ["$scope","$route","$firebase", function
 	
 	$scope.add = function(){
 		$scope.users.$add({name:""});
+		setTimeout(function() { $("[name='userName']").last().focus() }, 500);		
 	}
 	
 	$scope.remove = function(id) {
