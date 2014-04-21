@@ -35,7 +35,8 @@ body.comment div.comments{
 }
 
 body.comment div.comments-list {
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	margin-bottom: 10px;
 }
 

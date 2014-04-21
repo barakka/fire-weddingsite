@@ -6,7 +6,7 @@ body.static-inner {
 }
 
 body.static-inner .row {
-	margin-bottom: 15px;
+	padding-bottom: 15px;
 }
 
 body.static-inner h1.pagetitle {
@@ -40,6 +40,13 @@ body.static-inner div.frame span.title {
 }
 
 body.static-inner div.frame.church {
+	width: calc(100% + 30px);
+	margin-left: 15px;	
+    -webkit-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+}
+
+body.static-inner div.frame.upload {
 	width: calc(100% + 30px);
 	margin-left: 15px;	
     -webkit-transform: rotate(-20deg);

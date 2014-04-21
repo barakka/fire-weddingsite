@@ -145,9 +145,9 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         resolve: {
             group: groupLoader()
         }
-    }).when('/:groupId/upload',{
-        templateUrl: 'partials/fake.html',
-        controller: 'StaticCtrl',
+    }).when('/:groupId/upload/:key?',{
+        templateUrl: 'partials/upload.html',
+        controller: 'UploadCtrl',
         resolve: {
             group: groupLoader()
         }
@@ -193,7 +193,11 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
 		if (parts.length>2){
 			var style = parts[2];
 			
-			if (parts[2] == "church" || parts[2] == "dinner" || parts[2] == "calendar" || parts[2] == "comment"){
+			if (parts[2] == "church" 
+				|| parts[2] == "dinner" 
+				|| parts[2] == "calendar" 
+				|| parts[2] == "comment"
+				|| parts[2] == "upload"){
 				style += " static-inner";
 			}
 			
@@ -492,7 +496,7 @@ weddingModule.controller("CommentsCtrl",["$scope","$firebase","group","fireLoade
                     $scope.composing = false;
             	},
             	function(){
-            		alert("Ha ocurrido un error al enviar el mensaje. Intentalo de nuevo.")
+            		alert("Ha ocurrido un error al enviar el mensaje. Intentalo de nuevo.");
             		$scope.sending = false;
             	}
             );
@@ -504,3 +508,90 @@ weddingModule.controller("CommentsCtrl",["$scope","$firebase","group","fireLoade
 weddingModule.controller("CommentCtrl",["$scope",function($scope){
     $scope.date = moment($scope.comment.date).format("lll");
 }]);
+
+weddingModule.controller("UploadCtrl",["$scope", "$http","$firebase", "group", function($scope, $http, $firebase, group){
+	var uploadAction="";	
+	
+	var resetDetails = function(){
+		$scope.photoDetails = {
+			title: null,
+			comment: null,
+			keys: null
+		};
+	};
+	
+	$scope.sending = false;
+	
+	$http.get("/backend/" + group.id + "/newblob")
+		.success(function(data){			
+			uploadAction = data;
+		});		
+	
+	$scope.upload = function(){
+		
+		$scope.photoDetails.keys = null;
+		$scope.sending = true;
+		
+		var fd = new FormData($("#uploadForm")[0]);
+		
+		$http.post(uploadAction, fd,{
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).success(function(data,status,headers,config){        	
+        	// store key
+        	$scope.photoDetails.keys = data;  
+        	// upload details
+        	$firebase(photosRef.child(group.id)).$add($scope.photoDetails).then(
+        		function(data){
+        			$scope.sending = false;
+        			$scope.previewImages = null;
+        		},
+        		function(error){
+        			$scope.sending = false;
+        			console.error("Error uploading photodetails to firebase. " + error);
+        		}
+        	);
+        }).error(function(data,status,headers,config){
+        	$scope.sending = false;
+        	console.error("Error uploading photo to blobstore");
+        });
+	};
+	
+	$scope.chooseImage = function(){
+		$("#image-selector").trigger("click");
+	};
+	
+	function readURL(input) {		
+		if (input.files){
+			angular.forEach(input.files, function(file, index){
+				var reader = new FileReader();
+				
+		        reader.onload = function (e) {
+		            $('#image-preview' + index).css('background-image', 'url(' + e.target.result + ')' );
+		            $('#frame-preview' + index).show();
+		        };
+				
+		        reader.readAsDataURL(file);	
+			});
+			
+			$scope.previewImages = input.files;
+			$scope.$apply();
+		}
+	}
+	
+	$("#image-selector").change(function(){
+	    readURL(this);
+	});
+	
+	$scope.imageStyle = function(image){
+		return {
+			'background-image': "url('/backend/blob/" + image + "')"
+		};
+	};
+	
+	$scope.uploadMore = function(){
+		resetDetails();
+	};
+	
+	resetDetails();
+} ]);
