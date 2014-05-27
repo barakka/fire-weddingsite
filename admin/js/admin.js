@@ -84,6 +84,14 @@ adminModule.config([ '$routeProvider', function($routeProvider) {
             groups: fLoader(groupsRef),
 			mailingList: fLoader(mailingListRef)
         }
+	}).when('/cards', {
+		templateUrl : 'cards.html',
+		controller : 'CardsCtrl',
+		resolve: {
+			login: uLoader(),
+            groups: fLoader(groupsRef),
+			mailingList: fLoader(mailingListRef)
+        }
     }).when('/login', {
 		templateUrl : 'login.html',
 		controller : 'LoginCtrl',		
@@ -270,3 +278,20 @@ adminModule.controller("ExportCtrl",["$scope","groups","mailingList", function($
 		saveAs(blob, "mailingList.txt");
 	}
 }]);
+
+adminModule.controller("CardsCtrl",["$scope","groups","mailingList", function($scope,groups, mailingList){
+	
+	$scope.groups = groups;
+	
+}]);
+
+adminModule.directive('qrCode', function() {
+    return function(scope, element, attr) {
+		console.log(attr.qrCode);
+		new QRCode(element[0], {
+		    text: attr.qrCode,
+		    width: 113,
+		    height: 113		    
+		})
+	};
+  });

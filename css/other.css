@@ -1,0 +1,153 @@
+
+body.other {
+    background-image: url("/img/paperBackground.jpg");
+    /*background-repeat: repeat-y;
+    background-size: 100% auto;*/
+    font-family: architects_daughterregular;
+    height: 100%;
+}
+
+body.other div.page-container {
+	height: 100%;
+}
+
+body.other div.content-container {
+	/*background: red;*/
+	height: 50px;
+	width: 100%;
+	margin-top: 25px;
+}
+
+body.other div.frame-container {
+	width: 300px;
+	margin: auto;
+}
+
+body.other div.frame-center{
+	position: absolute;	
+}
+
+body.other h1.pagetitle {
+	margin-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	
+	font-weight: bolder;
+	font-size: 32px;
+	font-family: architects_daughterregular;
+	
+	color: white;
+	background: #558aa9;
+	
+	/*position: absolute;
+	left:0;
+	right: 0;*/
+}
+
+body.other div.frame {
+	width: 100px;
+	height: 117px;	
+	display: inline-block;
+	position: absolute;
+}
+
+body.other div.frame img.photo {	
+	width: 100%;		
+	height: 100%;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 18px;
+}
+
+body.other div.frame span.title {	
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 10px;
+	margin-top: -16px;
+}
+
+body.other div.frame .title.small {
+	font-size: 6px;
+}
+
+body.other div.frame.contacts {
+	left: 25px;
+	top: 0px;
+	z-index: 5;
+    -webkit-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+}
+
+body.other div.frame.application {
+	top: 145px;
+	left: 100px;	
+	z-index: 4;
+	-webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+body.other div.frame.present {
+	top: 20px;
+	left: 170px;
+	-webkit-transform: rotate(10deg);
+	transform: rotate(10deg);	
+}
+
+
+@media (min-width: 768px) { 	
+		
+	body.other h1.pagetitle {
+		margin-top: 20px;
+		padding-top: 10px;
+		padding-bottom: 30px;	
+		font-size: 72px;	
+	}
+	
+	body.other div.content-container {
+		margin-top: 50px;
+	}
+	
+	body.other div.frame-container {
+		width: 600px;		
+	}
+	
+	body.other div.frame {
+		width: 200px;
+		height: 234px;		
+	}
+	
+	body.other div.frame img.photo {	
+		padding-top: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-bottom: 35px;
+	}
+	
+	body.other div.frame span.title {	
+		padding-left: 10px;
+		padding-right: 10px;
+		font-size: 14px;
+		margin-top: -30px;
+	}
+	
+	body.other div.frame .title.small {
+		font-size: 12px;
+	}
+	
+	body.other div.frame.contacts {
+		left: 0px;
+		top: 0px;		
+	}
+	
+	body.other div.frame.application {
+		top: 40px;
+		left: 198px;			
+	}
+	
+	body.other div.frame.present {
+		left: 390px;	
+		top: 40px;
+	}
+	
+}

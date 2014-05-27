@@ -5,9 +5,15 @@
  /* global $ */ 
  /* global angular */
  /* global moment */
+ /* global addToHomescreen */
 
 var weddingModule = angular.module("wedding", ["ngRoute","firebase"]);
 var NO_GROUP_ID="AAAA0000";
+
+addToHomescreen({
+   skipFirstVisit: true,
+   maxDisplayCount: 1
+});
 
 var fLoaderFunction = function($q,$firebase,$firebaseSimpleLogin,groupId,ref){        
     
@@ -162,6 +168,12 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
+        }
+    }).when('/:groupId/other',{
+        templateUrl: 'partials/other.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader()
         }    
     }).when("/:groupId/survey/:stageId",{
         templateUrl: "partials/survey.html",
@@ -214,6 +226,7 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
     $scope.$on("$routeChangeError",function(){
         $location.path("/login").replace();
     });
+        
 }]);
 
 weddingModule.controller("LoginCtrl",["$scope", "$location", "fireLoader","$firebaseSimpleLogin", function($scope,$location,fireLoader,$firebaseSimpleLogin){
@@ -250,19 +263,18 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
                 $location.path("/" + group.id + "/survey/0").replace();
             }
         }
-    }
-
+    }    
+    
     $scope.goTo = function(page){
     	if (page!="questionnaire"){
-    		$location.path("/" + $scope.group.id + "/" + page);
+    		$location.path("/" + group.id + "/" + page);
     	} else {
-    		$location.path("/" + $scope.group.id + "/survey/1");
+    		$location.path("/" + group.id + "/survey/1");
     	}
 	}
-    
 }]);
 
-weddingModule.controller("StaticCtrl",["$scope",  function($scope){    
+weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($scope,$location,group){    
     $scope.openChurchMap = function(){
     	var os = $.ua.os.name;
     	
@@ -289,6 +301,20 @@ weddingModule.controller("StaticCtrl",["$scope",  function($scope){
     
     $scope.openBusMap = function(){
     	alert("¡Hemos dicho próximamente!");
+    }
+    
+    $scope.goTo = function(page){
+    	if (page!="questionnaire"){
+    		$location.path("/" + group.id + "/" + page);
+    	} else {
+    		$location.path("/" + group.id + "/survey/1");
+    	}
+	}
+    
+    $scope.isMobile = function(){
+        var os = $.ua.os.name;
+        
+        return os == 'iOS' || os == "Android";
     }
 }]);
 

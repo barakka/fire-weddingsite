@@ -1,0 +1,19 @@
+<script src="../jslib/qrcode/qrcode.js"></script>
+<link href="css/cards.css" rel="stylesheet">
+
+<div class="cards flex-horizontal">
+	<div class="card flex-vertical flex-fix" ng-repeat="group in groups">
+		<div class="titleArea flex-vertical">
+			<div class="infLabel">Encontrarás toda la información de la boda en la página web</div>
+			<div class="webLabel">axelysolboda.appspot.com</div>
+		</div>
+		<div class="codeArea flex-horizontal flex-grow">
+			<div class="instructionArea flex-vertical">
+				<div class="instructionsLabel">Lee el código QR desde tu dispositivo o introduce TU código en la página</div>
+				<div class="codeLabel">{{group.id}}</div>
+			</div>
+			<div class="qrcode flex-fix" qr-code="http://axelysolboda.appspot.com/#/{{group.id}}"></div>
+		</div>
+		<!--image -->
+	</div>
+</div>
