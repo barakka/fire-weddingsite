@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Fabada';
+    src: url('../../fonts/Fabada-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .font-family {
     font-family: 'Fabada';
