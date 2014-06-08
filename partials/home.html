@@ -3,11 +3,11 @@
 <div class="content-container centered">
 	<div class="frame-container">
 		<div class="frame-center">
-		<div class="frame us">
-	    	<img class="photo" src="/img/us.jpg">
+		<div class="frame us" ng-click="goTo('us')" ng-hide="group.anonymous">
+	    	<img class="photo" src="/img/us.jpg"  >
 	    	<span class="title text-center">Nosotros</span>
 	    </div>
-	    <div class="frame calendar" ng-click="goTo('calendar')">
+	    <div class="frame calendar" ng-click="goTo('calendar')" ng-hide="group.anonymous">
 	    	<img class="photo" src="/img/calendar.jpg">
 	    	<span class="title text-center">Calendario</span>
 	    </div>
@@ -19,7 +19,7 @@
 	    	<img class="photo" src="/img/dinner.jpg">
 	    	<span class="title text-center">El banquete</span>
 	    </div>
-	    <div class="frame accomodation" ng-click="goTo('accomodation')" ng-hide="group.anonymous">
+	    <div class="frame accomodation" ng-click="goTo('accommodation')" >
 	    	<img class="photo" src="/img/accomodation.jpg">
 	    	<span class="title text-center">Alojamiento</span>
 	    </div>
@@ -38,6 +38,10 @@
 	    <div class="frame other" ng-click="goTo('other')" ng-hide="group.anonymous">
 	    	<img class="photo" src="/img/other.jpg">
 	    	<span class="title text-center">Otros</span>
+	    </div>
+		<div class="frame other" ng-click="goTo('contacts')" ng-show="group.anonymous">
+	    	<img class="photo" src="/img/contacts.jpg">
+	    	<span class="title text-center">Contactos</span>
 	    </div>
 	    </div>
 	</div>

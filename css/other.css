@@ -1,11 +1,4 @@
 
-body.other {
-    background-image: url("/img/paperBackground.jpg");
-    /*background-repeat: repeat-y;
-    background-size: 100% auto;*/
-    font-family: architects_daughterregular;
-    height: 100%;
-}
 
 body.other div.page-container {
 	height: 100%;
@@ -28,27 +21,14 @@ body.other div.frame-center{
 }
 
 body.other h1.pagetitle {
-	margin-top: 10px;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-	
-	font-weight: bolder;
-	font-size: 32px;
-	font-family: architects_daughterregular;
-	
-	color: white;
-	background: #558aa9;
-	
-	/*position: absolute;
-	left:0;
-	right: 0;*/
+	font-size: 32px;	
 }
 
 body.other div.frame {
 	width: 100px;
 	height: 117px;	
 	display: inline-block;
-	position: absolute;
+	position: absolute;	
 }
 
 body.other div.frame img.photo {	
@@ -98,10 +78,7 @@ body.other div.frame.present {
 @media (min-width: 768px) { 	
 		
 	body.other h1.pagetitle {
-		margin-top: 20px;
-		padding-top: 10px;
-		padding-bottom: 30px;	
-		font-size: 72px;	
+		font-size: 80px;	
 	}
 	
 	body.other div.content-container {

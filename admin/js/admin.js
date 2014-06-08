@@ -283,6 +283,14 @@ adminModule.controller("CardsCtrl",["$scope","groups","mailingList", function($s
 	
 	$scope.groups = groups;
 	
+	$scope.codeStart = function(code){
+		return code.slice(0,4).toLowerCase();
+	}
+	
+	$scope.codeEnd = function(code){
+		return code.slice(4,8);
+	}
+	
 }]);
 
 adminModule.directive('qrCode', function() {
@@ -290,8 +298,8 @@ adminModule.directive('qrCode', function() {
 		console.log(attr.qrCode);
 		new QRCode(element[0], {
 		    text: attr.qrCode,
-		    width: 113,
-		    height: 113		    
+		    width: 108,
+		    height: 108		    
 		})
 	};
   });

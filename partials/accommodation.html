@@ -1,0 +1,139 @@
+<link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+<link href="css/accommodation.css" rel="stylesheet">
+<div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div> 
+<h1 class="text-center pagetitle font-huge flex-fix">{{pageTitle()}}</h1>
+<div class="content-container flex-grow no-shrink " ng-hide="currentSection">
+	
+	<div class="row">
+		<div class="intro col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 pinned left">			
+			<info class="pin short"></info>
+			<p>Hemos escogido estos hoteles por su ubicación, pues se encuentran a la salida de Valencia, 
+			facilitando el aparcamiento de los coches y comunicados con el centro con metro y autobús.</p>
+			<p>Además como pondremos autobuses para ir y volver del banquete, os dejarán en la misma puerta, 
+			con lo que podréis disfrutar al máximo de la fiesta.</p>
+			<p>Si preferís cerca de la iglesia (es todo peatonal, con lo que tendréis que buscar parking. 				
+			El autobús tb os dejara cerca) os recomendamos los siguientes:</p>			
+		</div>
+	</div>
+	
+	<div class="row flex-horizontal photo-row">
+		<div class="photo-container flex-fix">
+			<div class="frame map">		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/map.jpg">
+		    	</div>
+		    	<span class="title text-center font-normal">Mapa</span>
+	    	</div>
+	    </div>
+		
+		<div class="photo-container  flex-fix" ng-click="openSection('congress')">
+			<div class="frame congress">		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/congress.jpg">
+		    	</div>
+		    	<span class="title text-center font-normal">Zona Palacio</span>
+	    	</div>
+	    </div>
+		
+		<div class="photo-container  flex-fix" ng-click="openSection('center')">
+			<div class="frame center">		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/churchcenter.jpg">
+		    	</div>
+		    	<span class="title text-center font-normal">Zona Iglesia</span>
+	    	</div>
+	    </div>
+			   	        
+    </div>
+	
+	<div class="row flex-horizontal photo-row" >
+		<div class="photo-container  flex-fix" ng-click="openSection('outside')">
+			<div class="frame outside">		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/eliana.jpg">
+		    	</div>
+		    	<span class="title text-center font-normal">Zona Eliana</span>
+	    	</div>
+	    </div>
+		
+		<div class="photo-container  flex-fix" ng-click="openSection('alternatives')">
+			<div class="frame alternatives">		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/alternatives.jpg">
+		    	</div>
+		    	<span class="title text-center font-normal">Alternativas</span>
+	    	</div>
+	    </div>
+			   	        
+    </div>
+	
+</div>
+
+<div class="content-container pages-container flex-grow no-shrink " ng-show="currentSection">	
+	
+	<div class="page pinned left" ng-show="currentSection=='congress'">
+		<info class="pin short"/>
+		<div class="page-text">		
+			<p>se encuentran a la salida de Valencia, facilitando el aparcamiento 			
+			de los coches y comunicados con el centro con metro y autobús.</p>
+			
+	 		<p>Además como pondremos autobuses para ir y volver del banquete, 			 
+			 os dejarán en la misma puerta, con lo que podréis disfrutar al máximo de la fiesta.</p>
+			 
+			<h2>Hoteles</h2>(Precios hab. doble)
+			<ul>
+				<li><b>EXPO HOTEL</b>, AVDA PIO XII (3* - 41,36 EUROS)</li>
+				<li><b>SERCOTEL SOROLLA PALACE</b>, AVDA CORTES VALENCIANAS 58 (4* - 58,66 EUROS)</li>
+				<li><b>CONFORTEL VALENCIA</b>, VALLE DE AYORA (4* - 46,75 EUROS)</li>
+				<li><b>MELIÀ VALENCIA</b>, AVDA CORTES VALENCIANAS (4* - 67,50 EUROS)</li>
+				<li><b>EUROSTARS GRAN VALENCIA</b>, VALLE DE AYORA 3 (4* - 62,90 EUROS)</li>
+			</ul> 
+			<h2>Apartamentos</h2>(Precios para dos)
+			<ul>
+				<li><b>VALENCIA RENTAL</b>, AVDA CORTES VALENCIANAS 46 (35 EUROS)</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="page taped taped-bottom" ng-show="currentSection=='center'">
+		<div class="page-text">		
+			<p>Si preferís cerca de la iglesia (es todo peatonal, con lo que tendréis que buscar parking.
+			El autobús tb os dejara cerca) os recomendamos los siguientes:</p>
+			
+			<h2>Bed & Breakfast</h2>(Precios hab. doble)
+			<ul>
+				<li><b>HULOT B&b</b>, POETA LIERN 16 (30 EUROS, 13 EUROS CAMA INDIV HAB COMPARTIDA)</li>				
+			</ul> 
+			<h2>Hotel</h2>(Precios hab. doble)
+			<ul>
+				<li><b>SWEET HOTEL</b>, CONDE DE MONTORNÉS 8 (74 EUROS, 52.40 EUROS HAB PARA CUATRO)</li>
+				<li><b>SH BOUTIQUE HOTEL</b>, MARQUES DE DOS AGUAS 6 (3* - 64 EUROS)</li>
+			</ul>
+			<h2>Hostal</h2>(Precios hab. doble)
+			<ul>
+				<li><b>PURPLE NEST HOSTEL</b>, PLAZA TETUAN 5 (45 EUROS)</li>
+				<li><b>THE RIVER HOSTEL</b>, PLAZA DEL TEMPLE 6 (43,90 EUROS)</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="page pinned left" ng-show="currentSection=='outside'">
+		<info class="pin short"/>
+		<div class="page-text">
+			<p>Estamos buscando...</p>
+		</div>
+	</div>
+	
+	<div class="page taped" ng-show="currentSection=='alternatives'">
+		<div class="page-text">
+			<p>Estamos buscando...</p>
+		</div>
+	</div>
+	
+	<div class="margin" >
+	
+	</div>
+</div>
+
+
+

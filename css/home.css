@@ -1,10 +1,9 @@
-body.home {
-    background-image: url("/img/paperBackground.jpg");
-    /*background-repeat: repeat-y;
-    background-size: 100% auto;*/
-    font-family: architects_daughterregular;
-    height: 100%;
+body.home h1.pagetitle{
+	font-size: 50px;
+	-webkit-transform: rotate(-1deg);
+	transform: rotate(-1deg); 
 }
+
 
 body.home div.page-container {
 	height: 100%;
@@ -24,23 +23,6 @@ body.home div.frame-container {
 
 body.home div.frame-center{
 	position: absolute;	
-}
-
-body.home h1.pagetitle {
-	margin-top: 10px;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-	
-	font-weight: bolder;
-	font-size: 44px;
-	font-family: architects_daughterregular;
-	
-	color: white;
-	background: #558aa9;
-	
-	/*position: absolute;
-	left:0;
-	right: 0;*/
 }
 
 body.home div.frame {
@@ -143,10 +125,7 @@ body.home div.frame.other {
 @media (min-width: 768px) { 	
 		
 	body.home h1.pagetitle {
-		margin-top: 20px;
-		padding-top: 10px;
-		padding-bottom: 30px;	
-		font-size: 72px;	
+		font-size: 80px;	
 	}
 	
 	body.home div.content-container {

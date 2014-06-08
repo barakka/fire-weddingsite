@@ -2,18 +2,19 @@
 <link href="css/cards.css" rel="stylesheet">
 
 <div class="cards flex-horizontal">
-	<div class="card flex-vertical flex-fix" ng-repeat="group in groups">
-		<div class="titleArea flex-vertical">
-			<div class="infLabel">Encontrarás toda la información de la boda en la página web</div>
-			<div class="webLabel">axelysolboda.appspot.com</div>
-		</div>
-		<div class="codeArea flex-horizontal flex-grow">
-			<div class="instructionArea flex-vertical">
-				<div class="instructionsLabel">Lee el código QR desde tu dispositivo o introduce TU código en la página</div>
-				<div class="codeLabel">{{group.id}}</div>
+	<div class="card flex-vertical font-family" ng-repeat="group in groups" >
+		<div class="card-content flex-vertical">
+			<div class="titleArea flex-vertical">			
+				<div class="webLabel">http://axelysolboda.appspot.com</div>			
 			</div>
-			<div class="qrcode flex-fix" qr-code="http://axelysolboda.appspot.com/#/{{group.id}}"></div>
+			<div class="qrCodeArea flex-horizontal center-width flex-fix"> 
+				<div class="qrCode" qr-code="http://axelysolboda.appspot.com/#/{{group.id}}"/>				
+			</div>
+			<div class="codeArea flex-horizontal center-width flex-grow center-height">			
+				<div class="instructionsLabel">tu código</div>
+				<div class="codeLabel"><span class="code-start">{{codeStart(group.id)}}</span><span class="code-end">{{codeEnd(group.id)}}</span></div>
+			</div>				
 		</div>
-		<!--image -->
 	</div>
+	
 </div>

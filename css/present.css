@@ -1,0 +1,87 @@
+body.present h1.pagetitle {
+	font-size: 36px !important;	
+	text-align: left;
+	padding-left: 15px;
+	margin-top: 20px;
+}
+
+body.present div.description {
+	background: white;
+	border: 2px solid #f08324;
+	text-align: center;
+	font-size:18px;
+	padding: 10px 15px 5px 15px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+body.present div.description p {
+	margin: 0 0 5px;
+}
+
+body.present div.bank{
+	background: #f08324;
+	text-align: center;
+	font-size:14px;
+	-webkit-transform: rotate(3deg);
+	transform: rotate(3deg);
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+	padding: 5px 0px;
+  margin-top: 10px;
+}
+
+body.present div.photo-row{
+	position: relative;
+	padding-bottom: 0px;
+	z-index: 1;
+}
+
+body.present div.photo-container {
+	position: absolute;
+	top: -58px;	
+	right: 40px;
+}
+
+body.present div.frame.present {
+	width: calc(100% + 30px);
+	margin-left: 15px;	
+	-webkit-transform: rotate(20deg);
+	transform: rotate(20deg);
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+
+@media (min-width: 768px) {
+	body.present h1.pagetitle {
+		font-size: 72px !important;	
+	}
+	
+	body.present div.description {
+		background: white;
+		border: 4px solid #f08324;
+		font-size: 30px;
+		padding: 20px 30px 10px 30px;
+	}
+	
+	body.present div.description p {
+		margin: 0 0 10px;
+	}
+	
+	body.present div.bank{
+		font-size:28px;
+    margin-top: 20px;
+	}
+	
+	body.present div.photo-row{
+		padding-bottom: 20px;		
+	}
+	
+	body.present div.photo-container {
+		position: absolute;
+		top: -90px;		
+		right: 20px;
+	}
+	
+	body.present div.frame.present {
+		
+	}	 
+}

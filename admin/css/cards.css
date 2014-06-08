@@ -1,120 +1,99 @@
-div.card {
-	font-family: Calibri;
+
+.font-family {
+    font-family: 'Fabada';
+}
+
+div.cards {
+    flex-wrap: wrap;   
+}
+
+div.card {	
 	border-style: solid;
 	border-width: thin;
 	height: 5.5cm;
 	width: 8.5cm;
 	display:inline-block;
-    
+  /*margin: 10px;*/
+  overflow: hidden;
 }
 
-div.cards {
-    flex-wrap: wrap;
-}
-
-div.infLabel {	
-	font-size: 9pt;
-    padding-left: 5px;	
-    padding-top: 7px;
-}
-
-div.webLabel {
-	color: blue;
-	font-size: 20pt;
-	text-align: center;
-    padding-top: 3px;	
-}
-
-div.instructionsLabel {
-	font-size: 8pt;
-	text-align: center;	
-    padding-top: 8px;
-    padding-left: 5px;
-}
-
-div.codeLabel {
-	font-size: 30pt;
-	font-weight:bold;
-	text-align: center;	
-    padding-left: 5px;
-    padding-top: 12px;
-}
-
-div.qrcode{
-	padding: 10px;
+div.card-content{
+	height: 100%;
 }
 
 div.titleArea {
-    height: 33%;
-    justify-content: center;
+    height: 25%;
+}
+
+div.titleArea div.webLabel {
+	font-size: 11pt;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 2px solid black;
+    padding: 5px 0px;	
 }
 
 div.codeArea {
-	height: 66%
+	
 }
 
-div.instructionArea{
-    
+div.codeArea div.instructionsLabel {
+	font-size: 10pt;
+	text-align: center;	
+  	color: #FF6D22;
+  	font-weight: bold;
+	margin: auto 10px;
+}
+
+div.codeArea div.codeLabel {
+	font-size: 12pt;
+	font-weight:bold;
+	text-align: center;	
+	margin: auto 10px;
+	
+}
+
+div.qrCodeArea{
+	
+}
+
+div.qrCodeArea div.qrcode{
+		vertical-align: center;
+		size: 3cm;
 }
 
 .flex-vertical {
-	display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+	display: flex;    
     flex-direction: column;
 }
 
 .flex-horizontal {
-	display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
+	display: flex;    
     flex-direction: row;
 }
 
 .flex-horizontal.stretch-height{
-	-webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
+	align-content: stretch;
 }
 
 .flex-vertical.center-height{
-	 -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+	justify-content: center;
 }
 
+.flex-vertical.center-width{	 
+    align-content: center;
+}
+.flex-horizontal.center-width{
+	justify-content: center;
+}	
+.flex-horizontal.center-height{
+	align-content: center;
+}	
 .flex-grow {
-	-webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .flex-fix {
-	-webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: none;
-    -ms-flex: none;
-    flex: none;
+	flex: none;
 }
+

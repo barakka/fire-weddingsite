@@ -133,6 +133,12 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
             group: groupLoader(),
             profile: profileLoader()
         }
+    }).when('/:groupId/us',{
+        templateUrl: 'partials/us.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader()
+        }
     }).when('/:groupId/calendar',{
         templateUrl: 'partials/calendar.html',
         controller: 'CalendarCtrl',
@@ -163,14 +169,26 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         resolve: {
             group: groupLoader()
         }
-    }).when('/:groupId/accomodation',{
-        templateUrl: 'partials/fake.html',
-        controller: 'StaticCtrl',
+    }).when('/:groupId/accommodation/:section?',{
+        templateUrl: 'partials/accommodation.html',
+        controller: 'AccommodationCtrl',
         resolve: {
             group: groupLoader()
         }
     }).when('/:groupId/other',{
         templateUrl: 'partials/other.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader()
+        }
+    }).when('/:groupId/present',{
+        templateUrl: 'partials/present.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader()
+        }    
+    }).when('/:groupId/contacts',{
+        templateUrl: 'partials/contacts.html',
         controller: 'StaticCtrl',
         resolve: {
             group: groupLoader()
@@ -205,11 +223,15 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
 		if (parts.length>2){
 			var style = parts[2];
 			
-			if (parts[2] == "church" 
+			if (parts[2] == "us"
+                || parts[2] == "church" 
 				|| parts[2] == "dinner" 
-				|| parts[2] == "calendar" 
+				|| parts[2] == "calendar"
+                || parts[2] == "accommodation" 
 				|| parts[2] == "comment"
-				|| parts[2] == "upload"){
+				|| parts[2] == "upload"
+                || parts[2] == "present"
+                || parts[2] == "contacts"){
 				style += " static-inner";
 			}
 			
@@ -226,6 +248,18 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
     $scope.$on("$routeChangeError",function(){
         $location.path("/login").replace();
     });
+    
+    $scope.back = function(){
+        window.history.back();
+    }
+    
+    $scope.reload = function(){
+        location.reload();
+    }
+    
+    $scope.isWebApp = function(){        
+        return window.navigator.standalone==true;
+    }
         
 }]);
 
@@ -315,7 +349,7 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($
         var os = $.ua.os.name;
         
         return os == 'iOS' || os == "Android";
-    }
+    }       
 }]);
 
 weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$location","profile","$firebase" ,
@@ -621,3 +655,26 @@ weddingModule.controller("UploadCtrl",["$scope", "$http","$firebase", "group", f
 	
 	resetDetails();
 } ]);
+
+weddingModule.controller("AccommodationCtrl",["$scope","$routeParams","$location","group",function($scope,$routeParams,$location,group){
+    $scope.currentSection = $routeParams['section'];
+    
+    $scope.openSection = function(section){
+        $location.path("/" + group.id + "/accommodation/" + section);           
+    }
+    
+    var titles = {
+        'congress' : "Zona Palacio de Congresos",
+        'center' : "Zona Iglesia / Centro",
+        'outside' : "Zona Eliana / Las afueras",
+        'alternatives' : "Alternativas"
+    }
+    
+    $scope.pageTitle = function(){
+        if (titles[$scope.currentSection]){
+            return titles[$scope.currentSection];
+        } else {
+            return "Alojamiento";
+        }
+    }
+}]);

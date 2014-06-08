@@ -1,0 +1,175 @@
+body.contacts div.page-container {
+	/*height: 100%;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;*/
+}
+
+body.contacts h1.pagetitle {
+	font-size: 36px !important;	
+	text-align: left;
+	padding-left: 25px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+body.contacts div.photo-row{
+	position: relative;
+	padding-bottom: 0px;
+	z-index: 1;
+}
+
+body.contacts div.photo-container {
+	position: absolute;
+	top: -58px;	
+	right: 40px;
+}
+
+body.contacts div.frame.contacts {
+	width: calc(100% + 30px);
+	margin-left: 15px;	
+	-webkit-transform: rotate(20deg);
+	transform: rotate(20deg);
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+body.contacts div.contact-page {
+	background: url('../img/libreta.png');
+	background-size: 100% 100%; 
+	padding-top: 10px;
+	margin-bottom: 15px;	
+	-webkit-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+	padding-bottom: 37px;
+	width: 100%;
+	margin: 0px auto 15px auto;
+}
+
+body.contacts div.contact-card{	
+	overflow: hidden;
+	/*height: 110px;*/
+	/*width: 80%;*/
+	margin: 5px 10px;
+	padding: 0px 5px;	
+}
+
+
+
+body.contacts div.contact-page.taped::before {
+	left: initial;
+	right: 0px;
+	top: -4px;
+	-webkit-transform: rotate(35deg);
+	transform: rotate(35deg);
+}
+
+body.contacts div.contact-card div.line {
+	margin: 0px 5px;
+	margin-left: 35px;	
+}
+
+
+body.contacts div.contact-card div.line div a{
+	color: #5010f8;
+}
+
+body.contacts div.contact-name{
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin: 5px;
+	display: inline-block;
+}
+
+body.contacts div.contact-description{
+	font-size: 10px;
+	display: inline-block;
+}
+
+body.contacts div.contact-number{
+	font-size: 14px;
+}
+
+body.contacts div.contact-web{
+	font-size: 14px;
+}
+
+body.contacts div.contact-mail{
+	font-size: 14px;
+}
+
+
+@media (min-width: 768px) {
+	body.contacts h1.pagetitle {
+		font-size: 72px !important;	
+		margin-bottom: 20px;
+	}
+		
+	body.contacts div.photo-row{
+		padding-bottom: 20px;		
+	}
+	
+	body.contacts div.photo-container {
+		position: absolute;
+		top: -90px;		
+		right: 20px;
+	}
+	
+	body.contacts div.frame.contacts {
+		
+	}	
+	
+	body.contacts div.contact-page {
+		padding-top: 20px;
+		margin-bottom: 30px;	
+		padding-bottom: 74px;
+	}
+	
+	body.contacts div.contact-page.taped::before {
+		right: 16px;
+		top: -1px;
+		width: 50px;
+		height: 25px; 
+	}
+	
+	body.contacts div.contact-card{	
+		margin: 10px 20px;
+		padding: 0px 10px;	
+	} 
+	
+	body.contacts div.contact-card div.line {
+		margin: 0px 10px;
+		margin-left: 120px;	
+	}
+		
+	body.contacts div.contact-name{
+		font-size: 36px;
+		margin: 10px;
+	}
+	
+	body.contacts div.contact-description{
+		font-size: 20px;
+	}
+	
+	body.contacts div.contact-number{
+		font-size: 28px;		
+	}
+	
+	body.contacts div.contact-web{
+		font-size: 28px;
+	}
+	
+	body.contacts div.contact-mail{
+		font-size: 28px;
+	}
+}

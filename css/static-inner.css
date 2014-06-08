@@ -14,7 +14,7 @@ body.static-inner h1.pagetitle {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-weight: bolder;
-	font-family: architects_daughterregular;
+	font-family: 'Permanent Marker';
 	font-size: 30px !important;
 }
 
@@ -74,7 +74,8 @@ body.static-inner div.open-map{
 	body.static-inner h1.pagetitle {
 		margin-top: 20px;
 		padding-top: 20px;
-		padding-bottom: 20px;		
+		padding-bottom: 20px;	
+		font-size: 80px !important;	
 	}
 	
 	body.static-inner h1.pagetitle span.subtitle {		

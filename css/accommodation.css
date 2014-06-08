@@ -1,0 +1,193 @@
+body.accommodation div.page-container{
+	height: 100%;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;    
+}
+
+body.accommodation h1.pagetitle {
+    margin: 0px 20px;
+}
+
+body.accommodation div.content-container {
+}
+
+body.accommodation div.intro {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    -webkit-transform-origin:0% 0%;
+    transform-origin:0% 0%;
+    -webkit-transform: rotate(2deg);
+	transform: rotate(2deg);
+    font-family: "Cutive Mono", monospace;
+    text-align: justify;
+    font-size: 10px;   
+    background: white;
+    padding-top: 10px;     
+}
+
+body.accommodation div.photo-row{
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    
+    -webkit-align-content:center;
+    align-content:center;
+}
+
+body.accommodation div.photo-container{
+    width: 25%;
+}
+
+body.accommodation div.map {
+    -webkit-transform: rotate(-1deg);
+	transform: rotate(-1deg);
+}
+body.accommodation div.congress {
+    -webkit-transform: rotate(2deg);
+	transform: rotate(2deg);  
+    -webkit-transform-origin:0% 0%;
+    transform-origin:0% 0%;
+    margin-top: 10px;  
+}
+
+body.accommodation div.center {
+    -webkit-transform: rotate(-4deg);
+	transform: rotate(-4deg);
+    margin-top: 3px;  
+}
+
+body.accommodation div.outside {
+    -webkit-transform: rotate(-3deg);
+	transform: rotate(-3deg); 
+    margin-top: -8px;  
+}
+
+body.accommodation div.alternatives {
+    -webkit-transform: rotate(1deg);
+	transform: rotate(1deg);
+    -webkit-transform-origin:0% 100%;
+    transform-origin:0% 100%;
+}
+
+body.accommodation div.pages-container{
+    width:95%;
+    margin-left: 2%;
+}
+
+body.accommodation div.page {
+    width:100%;
+    padding-bottom: 141%;
+    background: white;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    font-family: "Cutive Mono", monospace;
+    font-size: 10px;
+    text-align: justify;
+    position: relative;
+}
+
+body.accommodation div.page div.page-text {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+body.accommodation div.page div.page-text h2{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0px;
+    display: inline-block;
+}
+
+body.accommodation div.page div.page-text ul {
+    padding-left: 20px;
+}
+
+body.accommodation div.page.pinned{
+    -webkit-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+
+body.accommodation div.page.taped{
+    -webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+body.accommodation div.page.taped::before {
+    left: -15px;
+    top: -12px;
+}
+
+body.accommodation div.page.taped::after {
+    right: -15px;
+    bottom: -12px;
+}
+
+body.accommodation div.margin {
+    height: 15px;
+}
+
+@media (min-width: 768px) {
+	body.accomodation h1.pagetitle {
+		font-size: 72px !important;	
+	}
+    
+    body.accommodation h1.pagetitle {
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    body.accommodation div.intro {
+        font-size: 20px;   
+        background: white;
+        padding-top: 20px;     
+    }    
+    
+    body.accommodation div.intro {
+        margin-bottom: 30px;
+    }
+    
+    body.accommodation div.page {
+        font-size: 20px;        
+    }
+    
+    body.accommodation div.page div.page-text {
+        padding: 20px;        
+    }
+    
+    body.accommodation div.page div.page-text h2{
+        font-size: 28px;
+        margin: 10px 0px;        
+    }
+    
+    body.accommodation div.page div.page-text ul {
+        padding-left: 40px;
+    }        
+    
+    body.accommodation div.page.taped::before {
+        left: -15px;
+        top: -12px;
+    }
+    
+    body.accommodation div.page.taped::after {
+        right: -15px;
+        bottom: -12px;
+    }
+    
+    body.accommodation div.margin {
+        height: 30px;
+    }
+}

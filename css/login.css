@@ -1,7 +1,7 @@
 body.login {
 	width: 100%;
 	height: 100%;
-	background-image: url("../img/paparBackground.jpg");
+	background-image: url("../img/paperBackground.jpg");
 	font-family: architects_daughterregular;
 	color: #558aa9;
 }
@@ -42,22 +42,24 @@ div.logo {
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 0px;
-    /*margin: auto auto;*/
-    /*background-color: rgb(196,22,35);*/
-    /*background-image: url("/img/fondo-trasp.jpg");*/
-    /*position: absolute;*/
     background-color: white;
-    border-color: #558aa9;
-    border: 4px solid;
-    /*bottom: 10%;	   	
-   	left: 15px;
-   	right: 15px;*/
-   	/*top:0;
-   	bottom:0;
-   	left:0;
-   	right:0;*/
+    /*border-color: #558aa9;
+    border: 4px solid;*/    
    	max-width: 800px;
-   	min-width: 300px;
+   	min-width: 275px;
+	-webkit-transform: rotate(2deg);
+	transform: rotate(2deg);
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.form-signin.taped::before{
+	left: -15px;
+	top: -12px;
+}
+
+.form-signin.taped-bottom::after{
+	right: -15px;
+	bottom: -12px;
 }
 
 .form-signin-heading{
