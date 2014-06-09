@@ -18,9 +18,8 @@ div.card {
 	border-width: thin;
 	height: 5.5cm;
 	width: 8.5cm;
-	display:inline-block;
-  /*margin: 10px;*/
-  overflow: hidden;
+	display:inline-block;  
+  	overflow: hidden;
 }
 
 div.card-content{
@@ -46,7 +45,7 @@ div.codeArea {
 div.codeArea div.instructionsLabel {
 	font-size: 10pt;
 	text-align: center;	
-  	color: #FF6D22;
+  	color: #FF6D22 !important;
   	font-weight: bold;
 	margin: auto 10px;
 }
@@ -103,3 +102,20 @@ div.qrCodeArea div.qrcode{
 	flex: none;
 }
 
+@media print{
+	div.container{
+		margin: 0px;
+		padding:0px;
+	}
+	div.cards {
+		display: block;
+		width: 175mm;
+		margin:auto;
+	}
+	div.card {
+		page-break-inside: avoid;
+		margin: 0px 0px -5px 0px;
+		width: 85mm;
+		height: 55mm;
+	}
+}

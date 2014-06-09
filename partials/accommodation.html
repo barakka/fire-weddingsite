@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="row flex-horizontal photo-row">
-		<div class="photo-container flex-fix">
+		<div class="photo-container flex-fix" ng-click="openSection('map')">
 			<div class="frame map">		    	
 		    	<div class="photo-div">
 		    		<img class="photo" src="/img/map.jpg">
@@ -70,6 +70,12 @@
 </div>
 
 <div class="content-container pages-container flex-grow no-shrink " ng-show="currentSection">	
+	
+	<div class="taped taped-bottom accommodation-map" ng-show="currentSection=='map'">
+		<div class="accommodation-map-content">
+			<iframe src="https://mapsengine.google.com/map/embed?mid=zkouqosdiyAI.kRJAYqdG1gWc" ></iframe>
+		</div>
+	</div>
 	
 	<div class="page pinned left" ng-show="currentSection=='congress'">
 		<info class="pin short"/>

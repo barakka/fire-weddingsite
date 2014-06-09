@@ -294,8 +294,7 @@ adminModule.controller("CardsCtrl",["$scope","groups","mailingList", function($s
 }]);
 
 adminModule.directive('qrCode', function() {
-    return function(scope, element, attr) {
-		console.log(attr.qrCode);
+    return function(scope, element, attr) {		
 		new QRCode(element[0], {
 		    text: attr.qrCode,
 		    width: 108,
