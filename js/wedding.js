@@ -7,7 +7,7 @@
  /* global moment */
  /* global addToHomescreen */
 
-var weddingModule = angular.module("wedding", ["ngRoute","firebase"]);
+var weddingModule = angular.module("wedding", ["ngRoute","firebase","angulartics", "angulartics.google.analytics"]);
 var NO_GROUP_ID="AAAA0000";
 
 addToHomescreen({
