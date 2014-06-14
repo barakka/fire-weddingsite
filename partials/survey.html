@@ -4,19 +4,21 @@
         <div class="panel-heading">
             <h3 class="panel-title">¡¡Importante!!</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <p>Responde unas preguntitas, porfa.</p>
             <p>Un minutito ahora, ahorra muchos después.</p>
-            <button class="btn btn-primary" ng-click="next()">Empezar</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()">Empezar</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="1">
         <div class="panel-heading">
             <h3 class="panel-title">Confirmación de asistencia</h3>
         </div>
-        <div class="panel-body">
-            <p>Esta respuesta no es vinculante (hasta el 10 de Julio)</p>
+        <div class="panel-body taped">
+            <p>Esta respuesta no es vinculante </p>
             <form name="confirmationForm">
                 <div class="form-group" ng-class="{'has-error': confirmationForm.participationConfirmed.$invalid}">
                     <label for="participationConfirmed">¿Tienes intención de venir?</label>
@@ -28,15 +30,17 @@
                     </div>
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="2">
         <div class="panel-heading">
             <h3 class="panel-title">Composición del grupo</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <form name="compositionForm">
                 <div class="form-group" ng-class="{'has-error': compositionForm.numParticipants.$invalid}">
                     <label for="numParticipants">¿Cuántos venís (total)?</label>
@@ -54,15 +58,17 @@
                     ng-model="profile.numMajorChildren" name="numMajorChildren">
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="compositionForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="compositionForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="3">
         <div class="panel-heading">
             <h3 class="panel-title">Cena</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <form name="dinnerRequirementsForm">
                 <div class="form-group">
                     <label for="vegetarian">Dinos si tienes algún requisito especial para la cena. Marca tantas como necesites.</label>
@@ -86,15 +92,17 @@
                     name="otherDinnerRequirements">
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="dinnerRequirementsForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="dinnerRequirementsForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>    
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="4">
         <div class="panel-heading">
             <h3 class="panel-title">Transporte</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <form name="transportationForm">
                 <div class="form-group" ng-class="{'has-error': transportationForm.origin.$invalid}">
                     <label for="origin">¿De dónde vienes?</label>
@@ -137,15 +145,17 @@
                     </select>
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="5">
         <div class="panel-heading">
             <h3 class="panel-title">Alojamiento</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <form name="accommodationForm">
                 <div class="form-group" ng-class="{'has-error': accommodationForm.needsAccommodation.$invalid}">
                     <label for="needsAccommodation1">¿Necesitáis alojamiento?</label>
@@ -168,15 +178,17 @@
                     </select>
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="accommodationForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="accommodationForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="6">
         <div class="panel-heading">
             <h3 class="panel-title">Otros servicios</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <form name="otherForm">
                 <div class="form-group">
                     <label for="needsBeautyService">Dinos si necesitas cualquier otra cosa. Marca tantas como necesites.</label>
@@ -199,15 +211,17 @@
                     name="needsOther">
                 </div>
             </form>
-            <button class="btn btn-primary" ng-click="next()" ng-disabled="otherForm.$invalid">Siguente</button>
-            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <div class="button-container flex-horizontal center-width">
+                <button class="btn btn-primary" ng-click="next()" ng-disabled="otherForm.$invalid">Siguente</button>
+                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="7">
         <div class="panel-heading">
             <h3 class="panel-title">Contactos</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body taped">
             <div ng-show="editableUser==null">
                 <p>Corrije tus datos si es necesario...</p>
                 <form name="userForm">
@@ -301,8 +315,10 @@
                         </div>
                     </div>
                 </form>
-                <button class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid">Terminar</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+                <div class="button-container flex-horizontal center-width">
+                    <button class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid">Terminar</button>
+                    <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+                </div>
             </div>
             <div ng-show="editableUser!=null">
                 <form name="editableUserForm">
@@ -326,8 +342,10 @@
                         name="userPhone" ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">
                     </div>
                 </form>
-                <button class="btn btn-primary" ng-click="saveEditableUser()" ng-disabled="editableUserForm.$invalid">Ok</button>
-                <button class="btn btn-primary" ng-click="cancelEditableUser()">Cancelar</button>
+                <div class="button-container flex-horizontal center-width">
+                    <button class="btn btn-primary" ng-click="saveEditableUser()" ng-disabled="editableUserForm.$invalid">Ok</button>
+                    <button class="btn btn-primary" ng-click="cancelEditableUser()">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>

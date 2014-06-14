@@ -1,11 +1,20 @@
 
 <div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div> 
-<h1 class="text-center pagetitle font-huge">Nosotros</h1>
-<div class="content-container flex-vertical flex-grow no-shrink center-height">
-	<div class="row">
+<h1 class="text-center pagetitle font-huge flex-fix">Nosotros</h1>
+<div class="content-container flex-vertical flex-grow flex-no-shrink flex-justify-around">
+	<div class="row flex-fix">
 		<div class="col-md-10  col-md-offset-1 col-xs-10 col-xs-offset-1 us">
-			<div class="taped">
+			<div class="invitation front taped">
 				<img src="img/us-front.jpg"/>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row flex-fix">
+		<div class="col-md-10  col-md-offset-1 col-xs-10 col-xs-offset-1 us">
+			<div class="invitation back pinned right">
+				<info class="pin short"/>
+				<img src="img/us-back.jpg"/>
 			</div>
 		</div>
 	</div>

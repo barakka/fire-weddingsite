@@ -2,7 +2,7 @@ body.login {
 	width: 100%;
 	height: 100%;
 	background-image: url("../img/paperBackground.jpg");
-	font-family: architects_daughterregular;
+	font-family: 'Architects Daughter', cursive;
 	color: #558aa9;
 }
 
@@ -63,7 +63,7 @@ div.logo {
 }
 
 .form-signin-heading{
-	font-family: architects_daughterregular;
+	font-family: 'Architects Daughter', cursive;
 	font-size: 12px;
 	font-weight: bold;
 	color: #558aa9;	
@@ -72,7 +72,7 @@ div.logo {
 }
 
 .form-signin-link a{
-	font-family: architects_daughterregular;
+	font-family: 'Architects Daughter', cursive;
 	font-size: 10px;
 	color: #558aa9;
 	/*background-color: rgba(255,255,255,.5);*/

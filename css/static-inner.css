@@ -2,7 +2,7 @@ body.static-inner {
 	width: 100%;
 	height: 100%;
 	background-image: url("/img/paperBackground.jpg");
-	font-family: architects_daughterregular;
+	font-family: 'Architects Daughter', cursive;
 }
 
 body.static-inner .row {

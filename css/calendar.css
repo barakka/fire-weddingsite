@@ -7,7 +7,7 @@ body.calendar div.page-container {
 }
 
 body.calendar h1.pagetitle {
-	background-color: #f0851a;
+	/*background-color: #f0851a;*/
 }
 
 body.calendar div.content-container {
@@ -15,7 +15,7 @@ body.calendar div.content-container {
 }
 
 body.calendar div.scheduler {
-	background: white;
+	/*background: white;*/
 }
 
 body.calendar div.scheduler h2 {
@@ -25,7 +25,19 @@ body.calendar div.scheduler h2 {
 body.calendar div.event{
 	background: white;
 	padding: 10px;
-	border: 2px solid #558aa9;
+	/*border: 2px solid #558aa9;*/
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+	font-family: "Cutive Mono", monospace;
+	padding-bottom: 40px;
+}
+
+body.calendar div.event.taped::before{
+	left: -15px;
+	top: -11px;
+}
+
+body.calendar div.event.taped::after{
+	
 }
 
 body.calendar div.event span.eventLabel{
@@ -40,6 +52,10 @@ table.fc-header td {
 iframe.calendar {
 	width: 100%;
 	height: 400px;
+}
+
+.fc-widget-header, .fc-widget-content {
+	border: 1px solid #333;
 }
 
 @media (min-width: 768px) { 	

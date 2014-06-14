@@ -10,9 +10,10 @@
 var weddingModule = angular.module("wedding", ["ngRoute","firebase","angulartics", "angulartics.google.analytics"]);
 var NO_GROUP_ID="AAAA0000";
 
-addToHomescreen({
+var addToHome = addToHomescreen({
    skipFirstVisit: true,
-   maxDisplayCount: 1
+   maxDisplayCount: 1,
+   startDelay: -0.5   
 });
 
 var fLoaderFunction = function($q,$firebase,$firebaseSimpleLogin,groupId,ref){        
@@ -350,6 +351,11 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($
         
         return os == 'iOS' || os == "Android";
     }       
+    
+    $scope.showAddToHome = function(){
+        //addToHome.show(true);
+        addToHome.show(true);
+    }
 }]);
 
 weddingModule.controller("SurveyCtrl",["$scope","group","$routeParams","$location","profile","$firebase" ,

@@ -19,8 +19,11 @@ body.us div.us {
     /*margin-top: 35px;*/
 }
 
-body.us div.us div.taped{        
+body.us div.us div.invitation{
     box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+body.us div.us div.front{            
     -webkit-transform: rotate(4deg);
 	transform: rotate(4deg);   
     border-radius: 12px; 
@@ -31,7 +34,26 @@ body.us div.taped::before{
     top: -12px;    
 }
 
-body.us div.us div.taped img {
+body.us div.us div.front img {
     width: 100%;
     border-radius: 12px;
+}
+
+body.us div.us div.back{            
+    -webkit-transform: rotate(-4deg);
+	transform: rotate(-4deg);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;   
+    border-radius: 12px; 
+}
+
+body.us div.us div.back img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    body.us .row{
+        padding-bottom: 40px;
+    }
 }
