@@ -22,14 +22,16 @@ body.us div.us {
 body.us div.us div.taped{        
     box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
     -webkit-transform: rotate(4deg);
-	transform: rotate(4deg);    
+	transform: rotate(4deg);   
+    border-radius: 12px; 
 }
 
 body.us div.taped::before{
     left: -16px;
-    top: -12px;
+    top: -12px;    
 }
 
 body.us div.us div.taped img {
     width: 100%;
+    border-radius: 12px;
 }
