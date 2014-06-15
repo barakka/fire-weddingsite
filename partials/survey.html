@@ -7,10 +7,11 @@
         <div class="panel-body taped">
             <p>Responde unas preguntitas, porfa.</p>
             <p>Un minutito ahora, ahorra muchos después.</p>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()">Empezar</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            <p>Si todo es correcto, solo deberás pulsar Continuar.</p>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Empezar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="1">
@@ -18,22 +19,29 @@
             <h3 class="panel-title">Confirmación de asistencia</h3>
         </div>
         <div class="panel-body taped">
-            <p>Esta respuesta no es vinculante </p>
+            <p>Esta respuesta no es vinculante (hasta el 20 de julio)</p>
             <form name="confirmationForm">
                 <div class="form-group" ng-class="{'has-error': confirmationForm.participationConfirmed.$invalid}">
                     <label for="participationConfirmed">¿Tienes intención de venir?</label>
-                    <div class="form-control">
-                        <label class="radio-inline">
-                            <input type="radio" id="participationConfirmed1" ng-value="{{true}}" ng-model="profile.participationConfirmed" name="participationConfirmed">Si</label>
-                        <label class="radio-inline">
-                            <input type="radio" id="participationConfirmed2" ng-value="{{false}}" ng-model="profile.participationConfirmed" name="participationConfirmed">No</label>
+                    <div class="form-control yesno flex-horizontal flex-justify-around">
+                        <div class="flex-vertical center-width">
+                            <img class="yesno" src="img/axelysol_ok.jpg"/>
+                            <label class="radio-inline">                            
+                                <input type="radio" id="participationConfirmed1" ng-value="{{true}}" ng-model="profile.participationConfirmed" name="participationConfirmed">Sí</label>
+                        </div>
+                        <div class="flex-vertical center-width">
+                            <img class="yesno" src="img/axelysol_ko.jpg"/>
+                            <label class="radio-inline">                            
+                                <input type="radio" id="participationConfirmed2" ng-value="{{false}}" ng-model="profile.participationConfirmed" name="participationConfirmed">No</label>
+                        </div>
                     </div>
                 </div>
             </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="confirmationForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="2">
@@ -54,14 +62,14 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error': compositionForm.numMajorChildren.$invalid}">
                     <label for="numMajorChildren">¿y no tan peques (hasta 17 años)?</label>
-                    <input type="number" class="form-control" id="numMajorChildren" placeholder="no tan peques"
+                    <input type="number" class="form-control" id="numMajorChildren" placeholder="No tan peques"
                     ng-model="profile.numMajorChildren" name="numMajorChildren">
                 </div>
-            </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="compositionForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            </form>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="compositionForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="3">
@@ -83,19 +91,19 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error': dinnerRequirementsForm.allergiesDetails.$invalid}" ng-show="profile.allergies">
                     <label for="allergiesDetails">Alérgico a:</label>
-                    <input type="text" class="form-control" id="allergiesDetails" placeholder="alergias" ng-model="profile.allergiesDetails"
+                    <input type="text" class="form-control" id="allergiesDetails" placeholder="Alergias" ng-model="profile.allergiesDetails"
                     name="allergiesDetails" ng-required="profile.allergies">
                 </div>
                 <div class="form-group" ng-class="{'has-error': dinnerRequirementsForm.otherDinnerRequirements.$invalid}">
                     <label for="otherDinnerRequirements">Otras notas...</label>
-                    <input type="text" class="form-control" id="otherDinnerRequirements" placeholder="notas" ng-model="profile.otherDinnerRequirements"
+                    <input type="text" class="form-control" id="otherDinnerRequirements" placeholder="Notas" ng-model="profile.otherDinnerRequirements"
                     name="otherDinnerRequirements">
                 </div>
-            </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="dinnerRequirementsForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>    
+            </form>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="dinnerRequirementsForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="4">
@@ -119,7 +127,7 @@
                 </div>
                 <div class="form-group" ng-class="{'has-error': transportationForm.orginDetails.$invalid}">
                     <label for="orginDetails">Si quieres concretar...</label>
-                    <input type="text" class="form-control" id="orginDetails" placeholder="detalles" ng-model="profile.orginDetails"
+                    <input type="text" class="form-control" id="orginDetails" placeholder="Detalles" ng-model="profile.orginDetails"
                     name="orginDetails">
                 </div>
                 <div class="form-group" ng-class="{'has-error': transportationForm.transportation.$invalid}" ng-hide="profile.origin == 'Valencia' || profile.origin == null">
@@ -136,19 +144,19 @@
                     </select>
                 </div>
                 <div class="form-group" ng-class="{'has-error': transportationForm.whenComing.$invalid}" ng-hide="profile.origin == 'Valencia' || profile.origin == null">
-                    <label for="whenComing">¿Cuando piensas llegar?</label>
+                    <label for="whenComing">¿Cuándo piensas llegar?</label>
                     <select class="form-control" id="whenComing" ng-model="profile.whenComing" name="whenComing" 
                         ng-required="profile.origin != 'Valencia'">
                         <option value="Viernes">El viernes</option>
-                        <option value="Sabado">El Sabado</option>
+                        <option value="Sabado">El sábado</option>
                         <option value="Otro">Otro dia</option>                        
                     </select>
                 </div>
-            </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            </form>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="transportationForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="5">
@@ -161,7 +169,7 @@
                     <label for="needsAccommodation1">¿Necesitáis alojamiento?</label>
                     <div class="form-control radios-inline">
                         <label class="radio-inline">
-                            <input type="radio" id="needsAccommodation1" ng-value="{{true}}" ng-model="profile.needsAccommodation" name="needsAccommodation">Si</label>
+                            <input type="radio" id="needsAccommodation1" ng-value="{{true}}" ng-model="profile.needsAccommodation" name="needsAccommodation">Sí</label>
                         <label class="radio-inline">
                             <input type="radio" id="needsAccommodation2" ng-value="{{false}}" ng-model="profile.needsAccommodation" name="needsAccommodation">No</label>
                     </div>
@@ -177,11 +185,11 @@
                         <option value="LoQueSea">Duermo en cualquier lado, cuánto más barato mejor</option>
                     </select>
                 </div>
-            </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="accommodationForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            </form>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="accommodationForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="6">
@@ -210,11 +218,11 @@
                     <input type="text" class="form-control" id="needsOther" placeholder="otras" ng-model="profile.needsOther"
                     name="needsOther">
                 </div>
-            </form>
-            <div class="button-container flex-horizontal center-width">
-                <button class="btn btn-primary" ng-click="next()" ng-disabled="otherForm.$invalid">Siguente</button>
-                <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-            </div>
+            </form>            
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="next()" ng-disabled="otherForm.$invalid">Continuar<span class="glyphicon glyphicon-arrow-right"></button>                
         </div>
     </div>
     <div class="panel panel-default" ng-switch-when="7">
@@ -223,12 +231,12 @@
         </div>
         <div class="panel-body taped">
             <div ng-show="editableUser==null">
-                <p>Corrije tus datos si es necesario...</p>
+                <p>Corrige tus datos si es necesario... y marca la/s persona/s de contacto.</p>
                 <form name="userForm">
                     <table class="table hidden-xs">
                         <thead>
                             <tr>
-                                <th>Princ.</th>
+                                <th></th>
                                 <th>Nombre</th>
                                 <th>e-mail</th>
                                 <th>Teléfono</th>
@@ -247,7 +255,7 @@
                                     <input type="email" class="form-control" id="userMail" placeholder="e-mail" ng-model="user.email" name="email" ng-required="user.predefined">
                                 </td>
                                 <td ng-class="{'has-error': uForm.phoneNumber.$invalid}">
-                                    <input type="text" class="form-control" id="userPhone" placeholder="Telefono" ng-model="user.phoneNumber" name="phoneNumber"
+                                    <input type="text" class="form-control" id="userPhone" placeholder="Teléfono" ng-model="user.phoneNumber" name="phoneNumber"
                                     ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">
                                 </td>
                                 <td>
@@ -274,7 +282,7 @@
                     <table class="table visible-xs">
                         <thead>
                             <tr>
-                                <th>Princ.</th>
+                                <th></th>
                                 <th>Nombre</th>
                                 <th></th>
                             </tr>
@@ -308,22 +316,19 @@
                         </tfoot>
                     </table>
                     <div class="form-group" ng-show="hasPredefined()">
-                        <label for="inMailingList" class="hidden-xs">¿Quieres recibir un correo con la novedades sobre la boda a la dirección principal?</label>
+                        <label for="inMailingList" class="hidden-xs">¿Quieres recibir novedades sobre la boda?</label>
                         <div class="form-control checks-inline">
                             <label class="checkbox-inline">
-                                <input type="checkbox" id="inMailingList" ng-model="profile.inMailingList" name="inMailingList">Mantenme informado via e-mail</label>
+                                <input type="checkbox" id="inMailingList" ng-model="profile.inMailingList" name="inMailingList">Mantenme informado vía correo electrónico</label>
                         </div>
                     </div>
                 </form>
-                <div class="button-container flex-horizontal center-width">
-                    <button class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid">Terminar</button>
-                    <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
-                </div>
-            </div>
+                
+            </div>            
             <div ng-show="editableUser!=null">
                 <form name="editableUserForm">
                     <div class="form-group" ng-class="{'has-error': editableUserForm.predefined.$invalid}">
-                        <label for="predefined">Predefinido:</label>
+                        <label for="predefined">¿Persona de contacto?</label>
                         <input type="checkbox" class="" id="predefined" ng-model="editableUser.predefined" name="predefined">
                     </div>
                     <div class="form-group" ng-class="{'has-error': editableUserForm.userName.$invalid}">
@@ -332,21 +337,25 @@
                         required>
                     </div>
                     <div class="form-group" ng-class="{'has-error': editableUserForm.userMail.$invalid}">
-                        <label for="email">e-mail:</label>
-                        <input type="email" class="form-control" id="userMail" placeholder="e-mail" ng-model="editableUser.email"
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="userMail" placeholder="Correo electrónico" ng-model="editableUser.email"
                         name="userMail" ng-required="editableUser.predefined">
                     </div>
                     <div class="form-group" ng-class="{'has-error': editableUserForm.userPhone.$invalid}">
                         <label for="userPhone">Teléfono:</label>
-                        <input type="text" class="form-control" id="userPhone" placeholder="Telefono" ng-model="editableUser.phoneNumber"
+                        <input type="text" class="form-control" id="userPhone" placeholder="Teléfono" ng-model="editableUser.phoneNumber"
                         name="userPhone" ng-pattern="/^(\d{3}[ -]?){2}\d{3}$/">
                     </div>
-                </form>
-                <div class="button-container flex-horizontal center-width">
-                    <button class="btn btn-primary" ng-click="saveEditableUser()" ng-disabled="editableUserForm.$invalid">Ok</button>
-                    <button class="btn btn-primary" ng-click="cancelEditableUser()">Cancelar</button>
-                </div>
+                </form>                
             </div>
+        </div>    
+        <div class="button-container flex-horizontal flex-justify-between" ng-show="editableUser==null">
+            <button class="btn btn-primary" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="save()" ng-disabled="userForm.$invalid">Terminar<span class="glyphicon glyphicon-arrow-right"></button>                
+        </div>
+        <div class="button-container flex-horizontal flex-justify-between" ng-show="editableUser!=null">
+            <button class="btn btn-primary" ng-click="cancelEditableUser()"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+            <button class="btn btn-primary" ng-click="saveEditableUser()" ng-disabled="editableUserForm.$invalid">Ok<span class="glyphicon glyphicon-ok"></button>                
         </div>
     </div>
 </div>
@@ -359,7 +368,7 @@
                 <h4 class="modal-title" id="myModalLabel">Información</h4>
             </div>
             <div class="modal-body">
-                Puedes encontrar algunas opciones para el alojamiento segun tus preferencians en la sección 'Alojamiento'.
+                Puedes encontrar algunas opciones para tu estancia en la sección de 'Alojamiento'.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">Ok</button>                

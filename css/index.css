@@ -157,6 +157,14 @@ iframe.map {
     justify-content: center;
 }
 
+.flex-vertical.center-width{
+	 -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
 .flex-horizontal.center-width{	
   -webkit-box-pack: center;
     -moz-box-pack: center;
@@ -171,6 +179,14 @@ iframe.map {
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
+}
+
+.flex-justify-between {
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: distribute;
+  justify-content: space-between;
 }
 
 .flex-grow {
@@ -229,6 +245,28 @@ div.back-indicator{
     
     -webkit-transform: rotate(-35deg);    
     transform: rotate(-35deg);
+}
+
+.taped-center{
+  position: relative;
+}
+
+.taped-center::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 48%;
+    left: calc(50% - 17px);
+    top: -11px;
+    width: 35px;
+    height: 20px;
+    z-index: 2;
+    background-color: rgba(243,245,228,0.5);
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    
+    -webkit-transform: rotate(-3deg);    
+    transform: rotate(-3deg);
 }
 
 .taped-bottom::after {

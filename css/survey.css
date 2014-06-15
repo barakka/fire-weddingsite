@@ -60,12 +60,45 @@ body.survey div.panel div.panel-heading h3{
     text-align: center;
 }
 
-body.survey div.panel button.btn{
-    margin: 0px 10px;
+body.survey div.panel div.button-container button.btn{
+    margin: 10px 10px;
+    background: none;    
+    font-family: 'Permanent Marker';
+    border: none;
+    color: black;
 }
 
-body.survey div.panel .form-control {
+body.survey div.panel div.button-container button.btn span.glyphicon {
+    margin: 0px 5px;
+}
+
+body.survey div.panel div.button-container button.btn:active,
+body.survey div.panel div.button-container button.btn:focus{
+    border: none;
+    background: none;
+    outline: none;
+}
+
+body.survey div.panel div.button-container button.btn:hover{
+    border: none;
+    color: #558aa9;
+}
+
+body.survey div.panel div.button-container button.btn[disabled]{
+    color:#aaa;
+}
+
+body.survey div.panel input[type='number'].form-control,
+body.survey div.panel input[type='text'].form-control {
     font-family: 'Architects Daughter', cursive;
+}
+
+body.survey div.yesno{
+    height: auto !important;
+}
+body.survey img.yesno{
+    width: 50%;
+    display: block;
 }
 
 @media (min-width: 768px) {
@@ -80,5 +113,9 @@ body.survey div.panel .form-control {
     body.survey div.panel .form-control {
         font-size: 18px;
     }
-     
+    
+    
+    body.survey div.panel div.button-container button.btn{
+        font-size: 20px;    
+    } 
 }
