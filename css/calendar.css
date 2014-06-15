@@ -2,8 +2,21 @@ body.calendar {
 	height: 100%;
 }
 
-body.calendar div.page-container {
+body.calendar div.page-container{
 	height: 100%;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;    
 }
 
 body.calendar h1.pagetitle {
@@ -11,11 +24,13 @@ body.calendar h1.pagetitle {
 }
 
 body.calendar div.content-container {
-	height: 100%;	
+	height: 100%;			
 }
 
 body.calendar div.scheduler {
 	/*background: white;*/
+	padding: 10px;	
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }
 
 body.calendar div.scheduler h2 {
@@ -23,12 +38,15 @@ body.calendar div.scheduler h2 {
 }
 
 body.calendar div.event{
-	background: white;
+	/*background: white;*/
 	padding: 10px;
 	/*border: 2px solid #558aa9;*/
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
-	font-family: "Cutive Mono", monospace;
-	padding-bottom: 40px;
+	/*font-family: "Cutive Mono", monospace;*/
+	/*padding-bottom: 40px;*/
+	-webkit-transform: rotate(2deg);
+	transform: rotate(2deg);
+	margin-bottom: 10px;
 }
 
 body.calendar div.event.taped::before{
@@ -38,6 +56,10 @@ body.calendar div.event.taped::before{
 
 body.calendar div.event.taped::after{
 	
+}
+
+body.calendar div.event h2{
+	margin-top: 0px;
 }
 
 body.calendar div.event span.eventLabel{
@@ -58,8 +80,51 @@ iframe.calendar {
 	border: 1px solid #333;
 }
 
+body.calendar div.button-container {
+	width: 100%;
+	-webkit-box-pack: center;
+}
+
+body.calendar div.button-container button.btn{
+    background: none;    
+    font-family: 'Permanent Marker';
+    border: none;
+    color: black;
+	font-size: 18px;
+	padding: 2px 0px;
+}
+
+body.calendar div.button-container button.btn span.today {
+    margin-left: 5px;
+	padding-right: 5px;
+}
+
+body.calendar div.button-container button.btn:active,
+body.calendar div.button-container button.btn:focus{
+    border: none;
+    background: none;
+    outline: none;
+}
+
+body.calendar div.button-container button.btn:hover{
+    border: none;
+    color: #558aa9;
+}
+
+body.calendar div.button-container button.btn[disabled]{
+    color:#aaa;
+}
+
 @media (min-width: 768px) { 	
 	body.calendar div.scheduler h2 {
 		font-size: 30px;
 	}
+	
+	.fc-content {
+		font-size: 20px;
+	}
+	
+	body.calendar div.button-container button.btn{
+        font-size: 28px;    
+    }
 }

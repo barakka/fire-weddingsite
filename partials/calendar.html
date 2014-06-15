@@ -3,14 +3,20 @@
 <script src='jslib/fullcalendar/gcal.js'></script>
 <script src='jslib/fullcalendar/lang/es.js'></script>
 
-<div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div> 
-<h1 class="text-center pagetitle font-huge">Eventos</h1>
-<div class="content-container" >
+<div class="back-indicator" ng-click="back()" ng-show="isWebApp() && event == null"></div> 
+<h1 class="text-center pagetitle font-huge flex-fix">Eventos</h1>
+<div class="content-container flex-vertical flex-grow flex-no-shrink" >
 	
-	<div id="scheduler" class="scheduler" ng-show="event == null" >       
-	</div>	
+	<div class="button-container flex-horizontal flex-justify-between flex-fix" ng-show="event == null">
+		<button class="btn btn-primary" ng-click="prev()"><span class="glyphicon glyphicon-arrow-left"></button>
+		<button class="btn btn-primary" ng-click="today()"><span class="glyphicon glyphicon-calendar"></span><span class="today">Hoy</span></button>
+		<button class="btn btn-primary" ng-click="next()"><span class="glyphicon glyphicon-arrow-right"></button>
+	</div>
+		
+	<div id="scheduler" class="scheduler lined-paper flex-fix" ng-show="event == null" >       
+	</div>
 	
-	<div class="event taped" ng-show="event !=null">
+	<div class="event lined-paper flex-fix lined-paper taped" ng-show="event !=null">
 		<h2>{{event.title}}</h2>
 		<p><span class="eventLabel">Desde:</span> {{event.start.format('LLLL')}}</p>
 		<p><span class="eventLabel">Hasta:</span> {{event.end.format('LLLL')}}</p>
@@ -18,9 +24,15 @@
 		<div ng-show="event.description">
 			<p ><span class="eventLabel">Que:</span></p>
 			<p>{{event.description}}</p>
-		</div> 
+		</div> 		
+	</div>
+	
+	<div class="button-container" ng-show="event != null" >
+		<button class="btn btn-primary pull-right" ng-click="closeEvent()">Cerrar</button>		
+	</div>	
+	
+	<div class="flex-fix" style="height: 20px;">
 		
-		<button class="btn btn-primary pull-right" ng-click="closeEvent()">Cerrar</button>
 	</div>
 </div>
 

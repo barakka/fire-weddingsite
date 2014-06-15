@@ -13,7 +13,7 @@ var NO_GROUP_ID="AAAA0000";
 var addToHome = addToHomescreen({
    skipFirstVisit: true,
    maxDisplayCount: 1,
-   startDelay: -0.5   
+   startDelay: -0.5,  
 });
 
 var fLoaderFunction = function($q,$firebase,$firebaseSimpleLogin,groupId,ref){        
@@ -307,6 +307,8 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
     		$location.path("/" + group.id + "/survey/1");
     	}
 	}
+    
+    
 }]);
 
 weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($scope,$location,group){    
@@ -353,7 +355,7 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($
     }       
     
     $scope.showAddToHome = function(){
-        //addToHome.show(true);
+        $location.path("/" + group.id + "/home");
         addToHome.show(true);
     }
 }]);
@@ -509,6 +511,11 @@ weddingModule.controller("CalendarCtrl",["$scope","group",function($scope,group)
 		$("#scheduler").fullCalendar({
 			defaultDate : '2014-09-06',
 			events: 'https://www.google.com/calendar/feeds/barakka.org_8g6smdg6nt1ge257qk26o1ekg8%40group.calendar.google.com/public/basic',
+            header: {
+                left: 'title',
+                center: '',
+                right: ''
+            },
 			
 			eventClick: function(calEvent, jsEvent, view) {
 				$scope.event = calEvent;
@@ -522,6 +529,18 @@ weddingModule.controller("CalendarCtrl",["$scope","group",function($scope,group)
 	$scope.closeEvent = function(){
 		$scope.event = null;
 	}
+    
+    $scope.next = function(){
+        $("#scheduler").fullCalendar('next');
+    }
+    
+    $scope.prev = function(){
+        $("#scheduler").fullCalendar('prev');
+    }
+    
+    $scope.today = function(){
+        $("#scheduler").fullCalendar('today');
+    }
 	
 }]);
 

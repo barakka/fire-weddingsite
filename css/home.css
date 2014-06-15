@@ -60,13 +60,13 @@ body.home div.frame.us {
 	transform: rotate(-20deg);
 }
 
-body.home div.frame.calendar {
+/*body.home div.frame.invitation {
 	top: 20px;
 	left: 70px;	
 	z-index: 4;
 	-webkit-transform: rotate(-2deg);
 	transform: rotate(-2deg);
-}
+}*/
 
 body.home div.frame.church {
 	left: 138px;
@@ -80,6 +80,14 @@ body.home div.frame.dinner {
 	z-index: 4;
     -webkit-transform: rotate(20deg);
 	transform: rotate(20deg);
+}
+
+body.home div.frame.calendar {
+	top: 20px;
+	left: 70px;	
+	z-index: 4;
+	-webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
 }
 
 body.home div.frame.accomodation {
@@ -164,10 +172,10 @@ body.home div.frame.other {
 		top: 0px;		
 	}
 	
-	body.home div.frame.calendar {
+	/*body.home div.frame.invitation {
 		top: 40px;
 		left: 140px;			
-	}
+	}*/
 	
 	body.home div.frame.church {
 		left: 272px;	
@@ -176,6 +184,11 @@ body.home div.frame.other {
 	body.home div.frame.dinner {
 		left: 420px;
 		top: -8px;		
+	}
+	
+	body.home div.frame.calendar {
+		top: 40px;
+		left: 140px;			
 	}
 	
 	body.home div.frame.accomodation {

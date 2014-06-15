@@ -189,6 +189,14 @@ iframe.map {
   justify-content: space-between;
 }
 
+.flex-justify-end {
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
 .flex-grow {
 	-webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -286,6 +294,10 @@ div.back-indicator{
     transform: rotate(-35deg);
 }
 
+.pinned {
+  position: relative;
+}
+
 .pinned .pin {
   background-color: #666;
   display: block;
@@ -359,6 +371,17 @@ div.back-indicator{
 .pinned .pin.short:before {
     height: 10px;
     top: 0px;
+}
+
+.lined-paper {
+  background-color: #fff; 
+	background-image: -moz-linear-gradient(top, #eee .1em, transparent .1em);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(.1em,#eee),color-stop(.1em,transparent));
+	background-image: -webkit-linear-gradient(top, #eee .1em, transparent .1em);
+	background-image: -o-linear-gradient(top, #eee .1em, transparent .1em);
+	background-image: -ms-linear-gradient(top, #eee .1em, transparent .1em);
+	background-image: linear-gradient(#eee .1em, transparent .1em); 		
+	background-size: 100% 1.2em;
 }
 
 @media (min-width: 768px) { 
