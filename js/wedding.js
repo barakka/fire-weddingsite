@@ -140,6 +140,12 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         resolve: {
             group: groupLoader()
         }
+    }).when('/:groupId/invitation',{
+        templateUrl: 'partials/invitation.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader()
+        }
     }).when('/:groupId/calendar',{
         templateUrl: 'partials/calendar.html',
         controller: 'CalendarCtrl',
@@ -225,6 +231,7 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
 			var style = parts[2];
 			
 			if (parts[2] == "us"
+                || parts[2] == "invitation"
                 || parts[2] == "church" 
 				|| parts[2] == "dinner" 
 				|| parts[2] == "calendar"

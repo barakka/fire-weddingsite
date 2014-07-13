@@ -1,6 +1,6 @@
 
 body.church h1.pagetitle {
-	background-color: #eb1e77;
+	background-color: transparent;
 }
 
 
@@ -10,11 +10,12 @@ body.church div.description {
 
 
 body.church div.transportation {
-	background-color: #3bb349;
+	background-color: transparent;
 }
 
 body.church div.open-map{
-	background-color: #3bb349;
-	color: white;
+	background-color: transparent;
+	font-family: 'Permanent Marker';
+	color: black;
 } 
 

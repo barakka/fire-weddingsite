@@ -30,7 +30,7 @@ body.upload div.row {
 }
 
 body.upload h1.pagetitle {
-	background-color: #c21d1d;
+	background-color: transparent;
 }
 
 body.upload div.frame.upload {
@@ -55,17 +55,19 @@ body.upload input.image-selector{
 }
 
 body.upload .choose-image{
-	background-color: #fafaca;
+	background-color: transparent;
 	color: black;	
 	padding: 5px;
+	font-family: 'Permanent Marker';
 }
 
 
 body.upload .upload-image,
 body.upload .upload-more{
-	background-color: #c21d1d;
+	background-color: transparent;
 	color: black;	
 	padding: 5px;
+	font-family: 'Permanent Marker';
 }
 
 body.upload .upload-image:disabled {
@@ -126,7 +128,7 @@ body.upload div#frame-preview6 {
 }
 
 body.upload div.preview-container{
-	background-color: #fafaca;
+	background-color: transparent;
 	
 	display: -webkit-box;
     display: -moz-box;
@@ -167,7 +169,7 @@ body.upload div.preview-container{
 }
 
 body.upload div.photo-comment {
-	min-height: 200px;
+	min-height: 200px;	
 }
 
 body.upload .upload-success{
@@ -182,8 +184,6 @@ body.upload .photo-details{
 	margin-bottom: 10px;
 	border-radius: 5px;
 }
-
-
 
 @media (min-width: 768px) { 	
 	body.upload div.frame.upload {

@@ -1,6 +1,6 @@
 
 body.dinner h1.pagetitle {
-	background-color: #3aa647;
+	background-color: transparent;
 }
 
 
@@ -14,8 +14,9 @@ body.dinner div.transportation {
 }
 
 body.dinner div.open-map{
-	background-color: #ebf268;
+	background-color: transparent;
 	color: black;
+	font-family: 'Permanent Marker';
 } 
 
 body.dinner img.photo-map {

@@ -42,7 +42,7 @@ body.comment div.row {
 }
 
 body.comment h1.pagetitle {
-	background-color: #28adad;	
+	background-color: transparent;	
 }
 
 /*body.comment form.comment-form,*/
@@ -94,7 +94,7 @@ body.comment .form-group {
 @media (min-width: 768px) { 
 	body.comment div.frame.comment {
 		width: 14%;
-		top: -50px;		
+		top: -90px;		
 	}
 	
 	body.comment .title-spacer {

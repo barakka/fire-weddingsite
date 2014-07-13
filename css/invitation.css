@@ -1,0 +1,59 @@
+body.invitation div.page-container{
+	height: 100%;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.invitation div.envelope {
+    /*margin-top: 35px;*/
+}
+
+body.invitation div.envelope div.invitation{
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+body.invitation div.envelope div.front{            
+    -webkit-transform: rotate(4deg);
+	transform: rotate(4deg);   
+    border-radius: 12px; 
+}
+
+body.invitation div.taped::before{
+    left: -16px;
+    top: -12px;    
+}
+
+body.invitation div.envelope div.front img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+body.invitation div.envelope div.back{            
+    -webkit-transform: rotate(-4deg);
+	transform: rotate(-4deg);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;   
+    border-radius: 12px; 
+}
+
+body.invitation div.envelope div.back img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    body.invitation .row{
+        padding-bottom: 40px;
+    }
+}

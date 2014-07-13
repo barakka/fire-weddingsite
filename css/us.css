@@ -15,45 +15,176 @@ body.us div.page-container{
     flex-direction: column;
 }
 
-body.us div.us {
-    /*margin-top: 35px;*/
+body.us div.content-container{
+    font-family: 'Permanent Marker';
 }
 
-body.us div.us div.invitation{
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+body.us div.photo-files{
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
-body.us div.us div.front{            
+body.us div.photo-file{
+    font-family: "Cutive Mono", monospace;
+    padding: 20px;    
+    background: white;
+}
+
+body.us div.photo-file h3{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+body.us div.frame {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+body.us div.frame.axel {
+    margin-right: 20px;
     -webkit-transform: rotate(4deg);
-	transform: rotate(4deg);   
-    border-radius: 12px; 
+    transform: rotate(4deg);
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
 }
 
-body.us div.taped::before{
-    left: -16px;
-    top: -12px;    
-}
-
-body.us div.us div.front img {
-    width: 100%;
-    border-radius: 12px;
-}
-
-body.us div.us div.back{            
+body.us div.frame.sol {
+    margin-left: 20px;
     -webkit-transform: rotate(-4deg);
-	transform: rotate(-4deg);
-    -webkit-transform-origin: 100% 0;
-    transform-origin: 100% 0;   
-    border-radius: 12px; 
+    transform: rotate(-4deg);
+    -webkit-transform-origin: top right;
+    transform-origin: top right;
 }
 
-body.us div.us div.back img {
+
+body.us div.profile.half{
+    width: 50%;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+}
+
+body.us div.profile.half div{
+    height: 50%;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+body.us div.joke{
+    text-align: center;    
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 20px;
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    font-family: "Cutive Mono", monospace;
+    background: white;
+}
+
+body.us div.joke.taped-bottom::after{
+    right: -14px;
+    bottom: -10px;
+}
+
+body.us div.video-container{
+    padding: 10px;    
+    margin-top: 20px;
+    font-family: "Cutive Mono", monospace;
+    background: white;
+}
+
+body.us div.video-container h3{
+    text-align:center;
+}
+
+body.us div.youtube-container{
     width: 100%;
-    border-radius: 12px;
+    height: 0px;
+    padding-top: 54%;
+    position: relative;
+}
+
+body.us div.youtube-container iframe#youtubeVideo{
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    top:0px;
+    left:0px;    
+    padding: 0px 15px;
 }
 
 @media (min-width: 768px) {
-    body.us .row{
-        padding-bottom: 40px;
+    body.us div.profile {
+        font-size:19px;
     }
+    
+    body.us div.joke div{
+        font-size:19px;
+    }
+    
+    body.us div.photo-files{
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+ 
+    body.us div.photo-file{
+        padding: 20px;
+        width: 50%;        
+    }
+    
+    body.us div.photo-file.axel{
+        margin-right: 10px;
+    }
+    
+    body.us div.photo-file.sol{
+        margin-left: 10px;
+    }
+    
+    body.us div.photo-file h3{
+        margin-top: 0px;
+        margin-bottom: 20px;        
+    }
+    
+    body.us div.frame {
+        width: 157px;
+        margin-bottom: 20px;
+    }
+    
+    body.us div.frame.axel {
+        margin-right: 20px;        
+    }
+    
+    body.us div.frame.sol {
+        margin-left: 20px;        
+    }
+    
+    body.us div.profile.half{
+        width: 50%;
+    }
+    
+    body.us div.profile.half div{
+        height: 50%;
+        flex-grow: 1;
+    }
+    
+    body.us div.joke{
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 10px;
+    }    
+    
+    body.us div.video-container{
+        padding: 10px;    
+        margin-top: 20px;
+    }
+                
 }

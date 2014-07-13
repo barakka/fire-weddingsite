@@ -58,7 +58,7 @@ adminModule.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'groups-list.html',
 		controller : 'GroupListCtrl',
 		resolve : {
-			login: uLoader()
+			login: uLoader(),			
 		}
 	}).when('/groups/:groupId', {
 		templateUrl : 'group-edit.html',
@@ -82,6 +82,7 @@ adminModule.config([ '$routeProvider', function($routeProvider) {
 		resolve: {
 			login: uLoader(),
             groups: fLoader(groupsRef),
+			profiles: fLoader(profilesRef),
 			mailingList: fLoader(mailingListRef)
         }
 	}).when('/cards', {
@@ -143,10 +144,34 @@ adminModule.controller("GroupListCtrl", ["$scope", "$firebase", function($scope,
 	};
 	
 	$scope.loading = true;
-	$scope.groups = $firebase(groupsRef)
+	$scope.groups = $firebase(groupsRef);
+	$scope.profiles = $firebase(profilesRef);	
+	
 	$scope.groups.$on("loaded",function(data){
-		$scope.loading = false;		
-	})
+		$scope.profiles.$on("loaded",function(data){
+			$scope.loading = false;
+		});
+	});
+	
+	$scope.confirmed = function(id){
+		var profile = $scope.profiles[id];
+		if (profile){
+			return profile.participationConfirmed ? "Si" : "No";
+		} else {
+			return "No se sabe";
+		}		
+	}
+	
+	$scope.profileFor = function(id){
+		var profile = $scope.profiles[id];
+		if (profile){
+			return profile;
+		} else {
+			return {
+				numParticipants: 0
+			};
+		}
+	}
 
 //	var createAccount = function(index){
 //		if (index < $scope.groups.$getIndex().length){
@@ -248,7 +273,7 @@ adminModule.controller("UsersListCtrl", ["$scope","$route","$firebase", function
 	};
 }])
 
-adminModule.controller("ExportCtrl",["$scope","groups","mailingList", function($scope,groups, mailingList){
+adminModule.controller("ExportCtrl",["$scope","groups","profiles", "mailingList", function($scope,groups,profiles, mailingList){
 	
 	
 	$scope.exportGuestList = function(){
@@ -257,7 +282,12 @@ adminModule.controller("ExportCtrl",["$scope","groups","mailingList", function($
 		
 		angular.forEach(groups.$getIndex(), function(key){
 			var group = groups[key];
-			guestList.push(group.id + "," + group.name + ",http://axelysolboda.appspot.com/#/" + group.id + "\r\n");
+			var profile = profiles[key];
+			if (profile){
+				guestList.push(group.id + "," + group.name + "," + profile.participationConfirmed + "," + profile.numParticipants + "," + angular.toJson(profile) + "\r\n");
+			} else {
+				guestList.push(group.id + "," + group.name + ",No se sabe,0,{}\r\n");
+			}
 		});
 		
 		var blob = new Blob(guestList, {type: "text/plain;charset=utf-8"});

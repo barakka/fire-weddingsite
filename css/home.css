@@ -60,16 +60,18 @@ body.home div.frame.us {
 	transform: rotate(-20deg);
 }
 
-/*body.home div.frame.invitation {
-	top: 20px;
+body.home div.frame.invitation {
+	/*top: 20px;*/
+	top: 36px;
 	left: 70px;	
 	z-index: 4;
 	-webkit-transform: rotate(-2deg);
 	transform: rotate(-2deg);
-}*/
+}
 
 body.home div.frame.church {
-	left: 138px;
+	left: 129px;
+	z-index: 5;
 	-webkit-transform: rotate(2deg);
 	transform: rotate(2deg);	
 }
@@ -83,47 +85,63 @@ body.home div.frame.dinner {
 }
 
 body.home div.frame.calendar {
-	top: 20px;
+	/*top: 20px;
 	left: 70px;	
-	z-index: 4;
-	-webkit-transform: rotate(-2deg);
-	transform: rotate(-2deg);
+	z-index: 1;
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);*/
+	top: 115px;
+	left: 0px;
+	z-index: 3;
+	-webkit-transform: rotate(-15deg);
+	transform: rotate(-15deg);
 }
 
 body.home div.frame.accomodation {
-	left: 22px;
-	top: 100px;
+	/*left: 22px;
+	top: 100px;*/
+	top: 145px;
+	left: 70px;
 	z-index: 2;
-    -webkit-transform: rotate(35deg);
-	transform: rotate(35deg);
+    -webkit-transform: rotate(30deg);
+	transform: rotate(30deg);
 }
 
 body.home div.frame.upload {
-	left: 116px;
-	top: 105px;
-	z-index: 1;
+	/*left: 116px;
+	top: 105px;*/
+	left: 138px;
+	top: 120px;
+	z-index: 2;
     -webkit-transform: rotate(-15deg);
 	transform: rotate(-15deg);
 }
 
 body.home div.frame.questionnaire {
 	left: 215px;
-	top: 105px;
+	/*top: 105px;*/
+	top: 98px;
 	z-index: 5;
 	-webkit-transform: rotate(5deg);
 	transform: rotate(5deg);    
 }
 
 body.home div.frame.comment {
-	left: 60px;
+	/*left: 60px;
 	top: 175px;
 	z-index: 0;
 	-webkit-transform: rotate(-3deg);
-	transform: rotate(-5deg);
+	transform: rotate(-5deg);*/
+	left: 100px;
+	top: 225px;
+	z-index: 0;
+    -webkit-transform: rotate(-10deg);
+	transform: rotate(-10deg);
 }
 
 body.home div.frame.other {
-	left: 150px;
+	/*left: 150px;*/
+	left: 182px;
 	top: 185px;
 	z-index: 0;
     -webkit-transform: rotate(15deg);
@@ -172,10 +190,10 @@ body.home div.frame.other {
 		top: 0px;		
 	}
 	
-	/*body.home div.frame.invitation {
+	body.home div.frame.invitation {
 		top: 40px;
 		left: 140px;			
-	}*/
+	}
 	
 	body.home div.frame.church {
 		left: 272px;	
@@ -187,32 +205,32 @@ body.home div.frame.other {
 	}
 	
 	body.home div.frame.calendar {
-		top: 40px;
-		left: 140px;			
+		top: 165px;
+		left: -33px;			
 	}
 	
 	body.home div.frame.accomodation {
-		left: 44px;
-		top: 200px;		
+		left: 135px;
+		top: 225px;		
 	}
 	
 	body.home div.frame.upload {
-		left: 232px;
+		left: 285px;
 		top: 210px;		
 	}
 	
 	body.home div.frame.questionnaire {
-		left: 430px;
+		left: 450px;
 		top: 210px;
 	}
 	
 	body.home div.frame.comment {
 		left: 120px;
-		top: 350px;		
+		top: 410px;		
 	}
 	
 	body.home div.frame.other {
 		left: 300px;
-		top: 370px;		
+		top: 400px;		
 	}
 }

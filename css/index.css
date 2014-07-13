@@ -181,6 +181,14 @@ iframe.map {
   justify-content: space-around;
 }
 
+.flex-align-start {
+  -webkit-box-align: start;
+    -moz-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+}
+
 .flex-justify-between {
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
@@ -382,6 +390,10 @@ div.back-indicator{
 	background-image: -ms-linear-gradient(top, #eee .1em, transparent .1em);
 	background-image: linear-gradient(#eee .1em, transparent .1em); 		
 	background-size: 100% 1.2em;
+}
+
+.shadow {
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }
 
 @media (min-width: 768px) { 
