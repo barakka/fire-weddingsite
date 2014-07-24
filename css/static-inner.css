@@ -42,26 +42,42 @@ body.static-inner div.frame span.title {
 body.static-inner div.frame.church {
 	width: calc(100% + 30px);
 	margin-left: 15px;	
-    -webkit-transform: rotate(-20deg);
-	transform: rotate(-20deg);
+    -webkit-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+	-webkit-transform-origin: top right;
+	transform-origin: top right;
+}
+
+body.static-inner div.frame.dinner {
+	width: calc(100% + 30px);
+	margin-left: 0px;	
+    -webkit-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+	-webkit-transform-origin: top right;
+	transform-origin: top right;
 }
 
 body.static-inner div.frame.upload {
 	width: calc(100% + 30px);
 	margin-left: 15px;	
-    -webkit-transform: rotate(-20deg);
-	transform: rotate(-20deg);
+    -webkit-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+	-webkit-transform-origin: top right;
+	transform-origin: top right;
 }
 
 body.static-inner div.description {
     padding: 10px;
     text-align: justify;
+	-webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
 }
 
 body.static-inner div.transportation {
 	padding: 10px;
 	text-align: justify;
-	margin-left: -15px;
 }
 
 body.static-inner div.open-map{
@@ -94,6 +110,11 @@ body.static-inner div.open-map{
 	}
 	
 	body.static-inner div.frame.church {
+		left: 5%;
+		top: 1%;		    
+	}
+	
+	body.static-inner div.frame.dinner {
 		left: 5%;
 		top: 1%;		    
 	}

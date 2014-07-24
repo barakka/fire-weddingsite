@@ -390,10 +390,17 @@ div.back-indicator{
 	background-image: -ms-linear-gradient(top, #eee .1em, transparent .1em);
 	background-image: linear-gradient(#eee .1em, transparent .1em); 		
 	background-size: 100% 1.2em;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }
 
 .shadow {
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3) !important;
+}
+
+.plain-paper{
+  background: white;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  font-family: "Cutive Mono", monospace;
 }
 
 @media (min-width: 768px) { 
