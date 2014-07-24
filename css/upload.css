@@ -53,7 +53,6 @@ body.upload .form-group {
 }
 
 body.upload .form-control{
-	border:none !important;
 	border-radius: 0px !important;
 }
 
@@ -193,12 +192,8 @@ body.upload .upload-success{
 }
 
 body.upload .photo-details{
-	min-height: 200px;
-	background: white;
 	padding: 10px;
-	border: 2px solid #558aa9;
 	margin-bottom: 10px;
-	border-radius: 5px;
 }
 
 @media (min-width: 768px) { 	
