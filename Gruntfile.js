@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           'bower_components/angular/angular.min.js',
           'bower_components/angular-route/angular-route.min.js',
           'bower_components/angularfire/angularfire.min.js',
-          'bower_components/ua-parser/scr/ua-parser.min.js',
+          'bower_components/ua-parser-js/src/ua-parser.min.js',
           'jslib/addtohome/addtohomescreen.min.js',
           'bower_components/angulartics/dist/angulartics.min.js',
           'bower_components/angulartics/dist/angulartics-ga.min.js'
