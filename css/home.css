@@ -32,9 +32,13 @@ body.home div.frame {
 	position: absolute;
 }
 
-body.home div.frame img.photo {	
-	width: 100%;		
-	height: 100%;
+body.home div.frame div.photo{
+	box-sizing: content-box;
+	background-clip: content-box;
+	background-origin: content-box;
+	background-size: contain;
+	width: 70px;
+	height: 71px;
 	padding-top: 5px;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -148,6 +152,50 @@ body.home div.frame.other {
 	transform: rotate(15deg);
 }
 
+body.home div.frame.us div.photo{
+	background-image: url('../img/us.jpg');
+}
+
+body.home div.frame.invitation div.photo{
+	background-image: url('../img/invitation.jpg');
+}
+
+body.home div.frame.church div.photo{
+	background-image: url('../img/church.jpg');
+}
+
+body.home div.frame.dinner div.photo{
+	background-image: url('../img/dinner.jpg');
+}
+
+body.home div.frame.calendar div.photo{
+	background-image: url('../img/calendar.jpg');
+}
+
+body.home div.frame.accomodation div.photo{
+	background-image: url('../img/accomodation.jpg');
+}
+
+body.home div.frame.upload div.photo{
+	background-image: url('../img/upload.jpg');
+}
+
+body.home div.frame.questionnaire div.photo{
+	background-image: url('../img/questionnaire.jpg');
+}
+
+body.home div.frame.comment div.photo{
+	background-image: url('../img/comment.jpg');
+}
+
+body.home div.frame.other div.photo{
+	background-image: url('../img/other.jpg');
+}
+
+body.home div.frame.other.contacts div.photo{
+	background-image: url('../img/contacts.jpg');
+}
+
 @media (min-width: 768px) { 	
 		
 	body.home h1.pagetitle {
@@ -167,7 +215,9 @@ body.home div.frame.other {
 		height: 188px;		
 	}
 	
-	body.home div.frame img.photo {	
+	body.home div.frame div.photo{
+		width: 140px;
+		height: 143px;
 		padding-top: 10px;
 		padding-left: 10px;
 		padding-right: 10px;

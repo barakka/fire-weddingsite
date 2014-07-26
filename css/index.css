@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    background-image: url("/img/paperBackground.jpg");    
+    background-image: url("../img/paperBackground.jpg");    
     font-family: 'Architects Daughter', cursive;
     height: 100%;
 }
