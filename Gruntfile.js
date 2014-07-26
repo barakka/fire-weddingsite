@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'img/',
-          src: ['*.{png,jpg,gif}'],   // Actual patterns to match
+          src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
           dest: 'dist/img/'                  // Destination path prefix
         }]
       }
@@ -79,17 +79,23 @@ module.exports = function(grunt) {
         options: {
           width: 70
         },
-        files: {
-          'dist/img/home/m/dinner.jpg': 'dist/img/min/dinner.jpg'
-        }
+        files: [{
+          expand: true,
+          cwd: 'dist/img/home/',
+          src: ['*.{png,jpg,gif}'],
+          dest: 'dist/img/home/m'
+        }]
       },
       home_w: {
         options: {
           width: 140
         },
-        files: {
-          'dist/img/home/m/accomodation.jpg': 'dist/img/min/accomodation.jpg'
-        }
+        files: [{
+          expand: true,
+          cwd: 'dist/img/home/',
+          src: ['*.{png,jpg,gif}'],
+          dest: 'dist/img/home/w'
+        }]
       }
     }
   });
@@ -104,7 +110,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['concat:css', 'concat:js', 'concat:jslib', 'cssmin:css']);
-  grunt.registerTask('imgresize', ['image_resize:home_m']);
+  grunt.registerTask('imgresize', ['imagemin', 'image_resize:home_m','image_resize:home_w']);
   
   grunt.registerTask('dist', ['concat:css', 'concat:js', 'concat:jslib', 'cssmin:css','uglify', 'imagemin']);
 };
