@@ -10,6 +10,25 @@
     font-style: normal;
 }*/
 
+@font-face {
+  font-family: 'Architects Daughter';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Architects Daughter'), local('ArchitectsDaughter'), url(https://fonts.gstatic.com/s/architectsdaughter/v5/RXTgOOQ9AAtaVOHxx0IUBBoTIN0je7AiOLXaVBr1ByU.woff2) format('woff2'), url(https://fonts.gstatic.com/s/architectsdaughter/v5/RXTgOOQ9AAtaVOHxx0IUBLX-17DZ7sxHqV95SKqxd6w.woff) format('woff');
+}
+@font-face {
+  font-family: 'Cutive Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cutive Mono'), local('CutiveMono-Regular'), url(https://fonts.gstatic.com/s/cutivemono/v3/N5odNRruTwjvCM8y77PhQYgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2'), url(https://fonts.gstatic.com/s/cutivemono/v3/N5odNRruTwjvCM8y77PhQbrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Permanent Marker'), local('PermanentMarker'), url(https://fonts.gstatic.com/s/permanentmarker/v4/9vYsg5VgPHKK8SXYbf3sMio-5Z6V1O0VBgfXWFfbB4c.woff2) format('woff2'), url(https://fonts.gstatic.com/s/permanentmarker/v4/9vYsg5VgPHKK8SXYbf3sMmVSxyvLCPm9firj_jMeQtQ.woff) format('woff');
+}
+
 html {
 	height: 100%;	
 }

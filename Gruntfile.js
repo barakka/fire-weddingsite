@@ -22,6 +22,7 @@ module.exports = function(grunt) {
           'css/survey.css',
           'css/upload.css',
           'css/us.css',
+          'jslib/addtohome/addtohomescreen.css',
         ],
         dest: 'dist/css/combined.css'
       },

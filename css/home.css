@@ -153,47 +153,47 @@ body.home div.frame.other {
 }
 
 body.home div.frame.us div.photo{
-	background-image: url('../img/us.jpg');
+	background-image: url('../img/home/m/us.jpg');
 }
 
 body.home div.frame.invitation div.photo{
-	background-image: url('../img/invitation.jpg');
+	background-image: url('../img/home/m/invitation.jpg');
 }
 
 body.home div.frame.church div.photo{
-	background-image: url('../img/church.jpg');
+	background-image: url('../img/home/m/church.jpg');
 }
 
 body.home div.frame.dinner div.photo{
-	background-image: url('../img/dinner.jpg');
+	background-image: url('../img/home/m/dinner.jpg');
 }
 
 body.home div.frame.calendar div.photo{
-	background-image: url('../img/calendar.jpg');
+	background-image: url('../img/home/m/calendar.jpg');
 }
 
 body.home div.frame.accomodation div.photo{
-	background-image: url('../img/accomodation.jpg');
+	background-image: url('../img/home/m/accomodation.jpg');
 }
 
 body.home div.frame.upload div.photo{
-	background-image: url('../img/upload.jpg');
+	background-image: url('../img/home/m/upload.jpg');
 }
 
 body.home div.frame.questionnaire div.photo{
-	background-image: url('../img/questionnaire.jpg');
+	background-image: url('../img/home/m/questionnaire.jpg');
 }
 
 body.home div.frame.comment div.photo{
-	background-image: url('../img/comment.jpg');
+	background-image: url('../img/home/m/comment.jpg');
 }
 
 body.home div.frame.other div.photo{
-	background-image: url('../img/other.jpg');
+	background-image: url('../img/home/m/other.jpg');
 }
 
 body.home div.frame.other.contacts div.photo{
-	background-image: url('../img/contacts.jpg');
+	background-image: url('../img/home/m/contacts.jpg');
 }
 
 @media (min-width: 768px) { 	
@@ -282,5 +282,49 @@ body.home div.frame.other.contacts div.photo{
 	body.home div.frame.other {
 		left: 300px;
 		top: 400px;		
+	}
+	
+	body.home div.frame.us div.photo{
+		background-image: url('../img/home/w/us.jpg');
+	}
+	
+	body.home div.frame.invitation div.photo{
+		background-image: url('../img/home/w/invitation.jpg');
+	}
+	
+	body.home div.frame.church div.photo{
+		background-image: url('../img/home/w/church.jpg');
+	}
+	
+	body.home div.frame.dinner div.photo{
+		background-image: url('../img/home/w/dinner.jpg');
+	}
+	
+	body.home div.frame.calendar div.photo{
+		background-image: url('../img/home/w/calendar.jpg');
+	}
+	
+	body.home div.frame.accomodation div.photo{
+		background-image: url('../img/home/w/accomodation.jpg');
+	}
+	
+	body.home div.frame.upload div.photo{
+		background-image: url('../img/home/w/upload.jpg');
+	}
+	
+	body.home div.frame.questionnaire div.photo{
+		background-image: url('../img/home/w/questionnaire.jpg');
+	}
+	
+	body.home div.frame.comment div.photo{
+		background-image: url('../img/home/w/comment.jpg');
+	}
+	
+	body.home div.frame.other div.photo{
+		background-image: url('../img/home/w/other.jpg');
+	}
+	
+	body.home div.frame.other.contacts div.photo{
+		background-image: url('../img/home/w/contacts.jpg');
 	}
 }
