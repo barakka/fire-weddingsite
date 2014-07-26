@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="admin" >
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My AngularJS App</title>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/admin.css" rel="stylesheet">
+</head>
+<body class="admin" ng-controller="AdminCtrl">
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Axel y Sol boda - Admin</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{active : section()=='groups'}"><a href="#/groups">Gestion grupos</a></li>
+            <li ng-class="{active : section()=='export'}"><a href="#/export">Exportar</a></li>
+            <li ng-class="{active : section()=='cards'}"><a href="#/cards">Cards</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-show="loginObj.user">
+                <p class="navbar-text">{{loginObj.user.email}} | <a href="#/login" ng-click="loginObj.$logout()">Logout</a></p>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+		<div ng-view/>
+    </div><!-- /.container -->
+
+	
+	<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src='//cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+  <script src='//cdn.firebase.com/js/simple-login/1.3.2/firebase-simple-login.js'></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+  <script src="//cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="../js/config.js"></script>	
+  <script src="js/admin.js"></script>	
+</body>
+</html>

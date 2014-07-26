@@ -1,0 +1,52 @@
+<div class="panel panel-default group-profile" >
+    <div class="panel-heading">
+        <h3 class="panel-title">Perfil</h3>
+    </div>
+    <div class="panel-body">
+        <div ng-form="profileForm" class="form-horizontal">
+            <div class="form-group" ng-class="{'has-error': profileForm.numParticipants.$invalid}">
+                <label for="numParticipants" class="control-label col-sm-2">¿Participantes?</label>
+                <div class="col-sm-10">
+	                <input type="number" class="form-control" id="numParticipants" placeholder="Participantes"
+	                ng-model="profile.numParticipants" name="numParticipants" min="1">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.numYoungChildren.$invalid}">
+                <label for="numYoungChildren" class="control-label col-sm-2">¿peques (hasta 12 años)?</label>
+                <div class="col-sm-10">
+	                <input type="number" class="form-control" id="numYoungChildren" placeholder="Peques" ng-model="profile.numYoungChildren"
+	                name="numYoungChildren">
+	            </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.numMajorChildren.$invalid}">
+                <label for="numMajorChildren" class="control-label col-sm-2">¿y no tan peques (hasta 17 años)?</label>
+                <div class="col-sm-10">
+	                <input type="number" class="form-control" id="numMajorChildren" placeholder="no tan peques"
+	                ng-model="profile.numMajorChildren" name="numMajorChildren">
+	            </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.origin.$invalid}">
+                <label for="origin" class="control-label col-sm-2">¿Procedencia?</label>
+                <div class="col-sm-10">
+	                <select class="form-control" id="origin" ng-model="profile.origin" name="origin">
+	                    <option value="Alicante">Alicante</option>
+	                    <option value="Barcelona">Barcelona</option>
+	                    <option value="Burgos">Burgos</option>
+	                    <option value="Soria">Soria</option>
+	                    <option value="Valencia">Valencia</option>
+	                    <option value="ValenciaAlrededore">Valencia (alrededores)</option>
+	                    <option value="Vizcaya">Vizcaya</option>
+	                    <option value="Otros">Otros</option>
+	                </select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.orginDetails.$invalid}">
+                <label for="orginDetails" class="control-label col-sm-2">Detalles procedencia:</label>
+                <div class="col-sm-10">
+	                <input type="text" class="form-control" id="orginDetails" placeholder="detalles" ng-model="profile.orginDetails"
+	                name="orginDetails">
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

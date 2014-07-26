@@ -1,0 +1,24 @@
+
+<div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div>
+<h1 class="text-center pagetitle">Otras cositas</h1>
+
+<div class="content-container centered">
+	<div class="frame-container">
+		<div class="frame-center">
+			<div class="frame contacts" ng-click="goTo('contacts')">
+		    	<img class="photo" src="/img/contacts.jpg">
+		    	<span class="title text-center">Contactos</span>
+		    </div>		
+		    <div class="frame application" ng-click="showAddToHome()" ng-show="isMobile()">
+		    	<img class="photo" src="/img/application.jpg">
+		    	<span class="title text-center">Applicación</span>
+		    </div>
+		    <div class="frame present" ng-click="goTo('present')" >
+		    	<img class="photo" src="/img/present.jpg">
+		    	<span class="title text-center">Lista de boda</span>
+		    </div>	    
+	    </div>
+	</div>
+
+</div>
+    

@@ -1,0 +1,54 @@
+<h1 class="text-center pagetitle">Axel y Sol</h1>
+
+<div class="content-container centered">
+	<div class="frame-container">
+		<div class="frame-center">
+		<div class="frame us" ng-click="goTo('us')" ng-hide="group.anonymous">	   	
+			<div class="photo"/>
+	    	<span class="title text-center">Nosotros</span>
+	    </div>
+	    <div class="frame invitation" ng-click="goTo('invitation')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center">La invitación</span>
+	    </div>
+	    <div class="frame church" ng-click="goTo('church')">
+	    	<div class="photo"/>
+	    	<span class="title text-center">La iglesia</span>
+	    </div>
+	    <div class="frame dinner" ng-click="goTo('dinner')">
+	    	<div class="photo"/>
+	    	<span class="title text-center">El banquete</span>
+	    </div>
+		<div class="frame calendar" ng-click="goTo('calendar')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center">Calendario</span>
+	    </div>
+	    <div class="frame accomodation" ng-click="goTo('accommodation')" >
+	    	<div class="photo"/>
+	    	<span class="title text-center">Alojamiento</span>
+	    </div>
+	    <div class="frame upload" ng-click="goTo('upload')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center small">Sube tus fotos</span>
+	    </div>
+	    <div class="frame questionnaire" ng-click="goTo('questionnaire')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center small">Unas preguntitas</span>
+	    </div>
+	    <div class="frame comment" ng-click="goTo('comment')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center small">Deja tu comentario</span>
+	    </div>
+	    <div class="frame other" ng-click="goTo('other')" ng-hide="group.anonymous">
+	    	<div class="photo"/>
+	    	<span class="title text-center">Otros</span>
+	    </div>
+		<div class="frame other contacts" ng-click="goTo('contacts')" ng-show="group.anonymous">
+			<div class="photo"/>	    	
+	    	<span class="title text-center">Contactos</span>
+	    </div>
+	    </div>
+	</div>
+
+</div>
+    

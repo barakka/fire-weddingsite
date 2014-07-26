@@ -35,12 +35,28 @@ module.exports = function(grunt) {
       },
       jslib: {
         src: [
-          'jslib/ua-parser/ua-parser.min.js',
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/moment/min/moment.min.js',
+          'bower_components/moment/lang/es.js',
+          'bower_components/firebase/firebase.js',
+          'bower_components/firebase-simple-login/firebase-simple-login.js',
+          'bower_components/angular/angular.min.js',
+          'bower_components/angular-route/angular-route.min.js',
+          'bower_components/angularfire/angularfire.min.js',
+          'bower_components/ua-parser/scr/ua-parser.min.js',
           'jslib/addtohome/addtohomescreen.min.js',
-          'jslib/angulartics/angulartics.min.js',
-          'jslib/angulartics/angulartics-ga.min.js'
+          'bower_components/angulartics/dist/angulartics.min.js',
+          'bower_components/angulartics/dist/angulartics-ga.min.js'
         ],
-        dest: 'dist/jslib/combined.min.js'
+        dest: 'dist/jslib/jslib.min.js'
+      },
+      fullcalendar: {
+        src: [
+          'bower_components/fullcalendar/dist/fullcalendar.min.js',
+          'bower_components/fullcalendar/dist/gcal.js',
+          'bower_components/fullcalendar/dist/lang/es.js'
+        ],
+        dest: 'dist/jslib/fullcalendar.min.js'
       }
     },
 
@@ -48,6 +64,10 @@ module.exports = function(grunt) {
       css: {
         src: 'dist/css/combined.css',
         dest: 'dist/css/combined.min.css'
+      },
+      fullcalendar: {
+        src: 'bower_components/fullcalendar/dist/fullcalendar.css',
+        dest: 'dist/jslib/fullcalendar.min.css'
       }
     },
 
@@ -55,6 +75,11 @@ module.exports = function(grunt) {
       js: {
         files: {
           'dist/js/combined.min.js': ['dist/js/combined.js']
+        }
+      },
+      admin: {
+        files: {
+          'dist/admin/js/filesaver.min.js': ['bower_components/FileSaver/FileSaver.js']
         }
       }
     },
@@ -98,6 +123,23 @@ module.exports = function(grunt) {
           dest: 'dist/img/home/w'
         }]
       }
+    },
+
+    copy: {
+      main: {
+        src: ['index.html', 'admin/**/*.*', 'partials/**/*.*', 'js/config.js', 'fonts/**/*.*'],
+        dest: 'dist/',
+      },         
+      admin: {
+        src: ['jslib/qrcode/qrcode.min.js'],
+        dest: 'dist/admin/js/qrcode.min.js'
+      },         
+    },
+
+    clean: {
+      dist: {
+        src: ["dist"]
+      }
     }
   });
 
@@ -108,10 +150,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-image-resize');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
   grunt.registerTask('default', ['concat:css', 'concat:js', 'concat:jslib', 'cssmin:css']);
-  grunt.registerTask('imgresize', ['imagemin', 'image_resize:home_m','image_resize:home_w']);
-  
-  grunt.registerTask('dist', ['concat:css', 'concat:js', 'concat:jslib', 'cssmin:css','uglify', 'imagemin']);
+  grunt.registerTask('imgresize', ['imagemin', 'image_resize:home_m', 'image_resize:home_w']);
+
+  grunt.registerTask('dist', ['clean:dist', 'concat:css', 'concat:js', 'concat:jslib', 'concat:fullcalendar', 'cssmin', 'uglify', 'imgresize', 'copy']);
 };

@@ -1,0 +1,25 @@
+<div class="signin-container centered-parent flex-vertical center-height">
+	<!-- img class="img-responsive logo" src="/img/logo.png">-->
+	<!-- div class="logo"></div-->
+	
+    <form class="form-signin form-horizontal taped taped-bottom" name="signinForm" role="form">
+        <h2 class="form-signin-heading">Introduce tu código de acceso:</h2>
+        
+        <input type="text" class="form-control"
+               name="group"  required autofocus ng-model="groupId"
+               ng-minlength="8"
+               ng-maxlength="8"
+               ng-pattern="/\w{4}\d{4}/"
+               ng-change="access()"
+               >
+
+        <div class="text-center invalid-indicator">
+        	<span class="text-danger" ng-show="signinForm.group.$invalid && signinForm.group.$dirty">Valor invalido</span>
+        	<span class="" ng-show="loading">Cargando...</span>
+        </div>
+
+        <!--  <a class="btn btn-lg btn-primary btn-block" ng-href="#/{{groupId}}/home" ng-disabled="signinForm.$invalid">Accede</a>-->
+        <p class="text-center form-signin-link"><a href="#/AAAA0000/home">Acceder sin código</a></p>
+    </form>
+    
+</div>

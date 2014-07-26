@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Fabada';
+    src: url('../../fonts/Fabada-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-family {
+    font-family: 'Fabada';
+}
+
+div.cards {
+    flex-wrap: wrap;   
+}
+
+div.card {	
+	border-style: solid;
+	border-width: thin;
+	height: 5.5cm;
+	width: 8.5cm;
+	display:inline-block;  
+  	overflow: hidden;
+}
+
+div.card-content{
+	height: 100%;
+}
+
+div.titleArea {
+    height: 25%;
+}
+
+div.titleArea div.webLabel {
+	font-size: 11pt;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 2px solid black;
+    padding: 5px 0px;	
+}
+
+div.codeArea {
+	
+}
+
+div.codeArea div.instructionsLabel {
+	font-size: 10pt;
+	text-align: center;	
+  	color: #FF6D22 !important;
+  	font-weight: bold;
+	margin: auto 10px;
+}
+
+div.codeArea div.codeLabel {
+	font-size: 12pt;
+	font-weight:bold;
+	text-align: center;	
+	margin: auto 10px;
+	
+}
+
+div.qrCodeArea{
+	
+}
+
+div.qrCodeArea div.qrcode{
+		vertical-align: center;
+		size: 3cm;
+}
+
+.flex-vertical {
+	display: flex;    
+    flex-direction: column;
+}
+
+.flex-horizontal {
+	display: flex;    
+    flex-direction: row;
+}
+
+.flex-horizontal.stretch-height{
+	align-content: stretch;
+}
+
+.flex-vertical.center-height{
+	justify-content: center;
+}
+
+.flex-vertical.center-width{	 
+    align-content: center;
+}
+.flex-horizontal.center-width{
+	justify-content: center;
+}	
+.flex-horizontal.center-height{
+	align-content: center;
+}	
+.flex-grow {
+	flex: 1 1 auto;
+}
+
+.flex-fix {
+	flex: none;
+}
+
+@media print{
+	div.container{
+		margin: 0px;
+		padding:0px;
+	}
+	div.cards {
+		display: block;
+		width: 175mm;
+		margin:auto;
+	}
+	div.card {
+		page-break-inside: avoid;
+		margin: 0px 0px -5px 0px;
+		width: 85mm;
+		height: 55mm;
+	}
+}

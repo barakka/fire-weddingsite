@@ -1,0 +1,69 @@
+<div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div> 
+<h1 class="text-center pagetitle font-huge">Mas d'Alzedo</span></h1>
+<div class="content-container">
+	
+	<div class="row flex-horizontal stretch-height">
+		<div class="col-md-4 col-xs-4 col-sm-4">
+			<div class="frame dinner pinned right">
+                <info class="pin short"/>		    	
+		    	<div class="photo-div">
+		    		<img class="photo" src="/img/dinnerMasia.jpg">
+		    	</div>
+		    	<span class="title text-center font-small">Av. del Turia 1 / Calle 103, 37, Ribarroja</span>
+	    	</div>
+	    </div>
+	    
+	    <div class="col-xs-7 col-xs-offset-1 col-sm-7 col-sm-offset-1 col-md-7 col-md-offset-1 flex-vertical">
+	    	<div class="description font-normal flex-fix plain-paper taped">
+		    	&nbsp; Mas de Alzedo es una masía señorial del siglo XVIII reconstruida respetando 
+		    	la tradición y atendiendo a los beneficios de las últimas tecnologías. 
+		    	De fácil acceso, está situada en Ribarroja frente al Parque Natural del Turia, 
+		    	a tan sólo 18 minutos del centro de Valencia.
+	    	</div>
+	    </div>
+    
+    </div>
+    
+    <div class="row flex-horizontal stretch-height">
+		<div class="col-md-4 col-xs-5 flex-vertical center-vertical">
+	    	<div class="transportation font-normal flex-grow lined-paper shadow flex-vertical center-height">
+		    	<p>Próximamente os indicaremos la hora y el punto de encuentro 
+		    	donde esperará el autobús</p>
+		    </div>
+	    </div>
+        
+        <div class="col-md-8 col-xs-7 pinned center">
+            <info class="pin short"/>
+			<img class="photo-map" src="/img/planMasia.png">
+			<!-- <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12305.628986521295!2d-0.5386429999999951!3d39.55042400000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDMzJzAxLjUiTiAwwrAzMicxOS4xIlc!5e0!3m2!1sen!2s!4v1396200441755" frameborder="0" style="border:0"></iframe>-->			
+	    </div>
+	    
+    </div>
+    
+    <div class="row">
+    	<div class="col-md-6 col-xs-5">
+	    	<div class="open-map text-center font-button" >
+	    		Cómo llegar:
+	    	</div>
+	    </div>
+	    
+	    <div class="col-md-2 col-xs-3">
+		    <a ng-href="{{openDinnerMap()}}">
+		    	<div class="open-map text-center font-button" style="margin-left: -15px">
+		    		<span class="glyphicon glyphicon-map-marker"></span>&nbsp;<u>Masía</u>
+		    	</div>
+		    </a>
+	    </div>
+	    
+	    <div class="col-md-4 col-xs-4">
+	    			    
+		    	<div class="open-map text-center font-button" style="margin-left: -15px" ng-click="openBusMap()">
+		    		<span class="glyphicon glyphicon-map-marker"></span>&nbsp;<u>Pto. de encuentro</u> 
+		    	</div>
+		    
+	    </div>
+    </div>
+    
+        
+</div>
+

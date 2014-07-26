@@ -1,0 +1,50 @@
+<div class="row" ng-show="loading">
+	Cargando datos....
+</div>
+<table class="table" ng-controller="GroupListCtrl" ng-show="!loading">
+	<thead>
+		<tr>
+			<th width="10%">Codigo</th>
+			<th>Nombre</th>
+			<th>Confirmado</th>
+			<th>Participantes</th>
+			<th width="10%">
+				<a href="#/group" class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-plus"></span> Añadir
+				</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="group in groups">
+			<td>{{group.id}}</td>
+			<td>{{group.name}}</td>
+			<td>{{confirmed(group.id)}}</td>
+			<td>{{profileFor(group.id).numParticipants}}</td>
+			<td>
+				<a href="#/groups/{{group.id}}" class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-pencil"></span> 
+				</a>
+				<button class="btn btn-primary btn-sm" ng-click="remove(group.id)">
+					<span class="glyphicon glyphicon-trash"></span> 
+				</button>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<a href="#/group" class="btn btn-primary btn-sm">
+					<span class="glyphicon glyphicon-plus"></span> Añadir
+				</a>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+<!--<div class="row" ng-show="!loading">
+	<button class="btn btn-primary" ng-click="createAccounts()">Crear cuentas</button>	
+</div>-->

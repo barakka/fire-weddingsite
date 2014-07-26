@@ -1,0 +1,100 @@
+
+
+<div class="back-indicator" ng-click="back()" ng-show="isWebApp()"></div>
+<div class="flex-horizontal flex-justify-around flex-fix">
+	<div class="frame upload">		    	
+    	<div class="photo-div">
+    		<img class="photo" src="/img/upload.jpg">
+    	</div>	
+    	<span class="title text-center font-normal">&nbsp;</span>	    	
+   	</div>
+	<h1 class="text-center pagetitle font-huge flex-fix">El pajarito</h1>
+</div> 
+
+<div class="content-container flex-vertical flex-grow" >
+	
+	<form id="uploadForm" name="uploadForm"
+		method="post" enctype="multipart/form-data" 
+		class="form-horizontal flex-vertical flex-grow title-spacer" 
+		ng-show="!photoDetails.keys">
+		
+		<input type="file" id="image-selector" name="image" accept="image/*" class="image-selector" multiple="multiple">		
+		
+		<div class="form-group flex-fix"
+			ng-class="{'has-error': uploadForm.title.$invalid}">    		
+    		
+    		<div class="col-xs-8 col-md-8 title-container">
+  				<input type="text" class="form-control shadow" name="title" id="title" 
+  					ng-model="photoDetails.title" placeholder="Titulo" required></input>
+			</div>
+   				
+    		<div id="choose-image" class="choose-image text-center font-big col-xs-4 col-md-4" 
+				ng-click="chooseImage()">
+    			<span class="glyphicon glyphicon-camera"></span>&nbsp;<u>Examinar...</u>
+    		</div>
+    			
+  		</div>
+  		
+  		
+  		<div class="preview-container flex-fix" ng-if="previewImages">
+  			<div id="frame-preview{{$index}}" class="frame preview" ng-repeat="image in previewImages">
+    			<div class="photo-div">
+  					<div class="photo">
+  						<div id="image-preview{{$index}}" class="image-preview"></div>
+  					</div>
+				</div>
+				<span class="title text-center font-normal">&nbsp;</span>	
+			</div>
+  		</div>
+  		
+		
+		<div class="form-group flex-vertical flex-grow photo-comment"
+			ng-class="{'has-error': uploadForm.comment.$invalid}">
+    		<label for="comment" class="col-xs-12 col-md-12 font-big">¿Unas palabritas?</label>
+    		<textarea class="form-control flex-grow lined-paper shadow" rows="3" id="comment" name="comment"
+    			ng-model="photoDetails.comment"></textarea>    		
+  		</div>
+  		
+  		<div class="row flex-fix" ng-show="!sending">			  
+			<button class="upload-image text-center font-big col-xs-12 col-md-12" ng-click="upload()"
+				ng-disabled="!previewImages || uploadForm.$invalid">
+    			<span class="glyphicon glyphicon-upload"></span>&nbsp;<u>Enviar</u>
+    		</button>			
+		</div>
+		
+		<div class="row flex-fix" ng-show="sending">
+	    	<div class="uploading-image text-center font-big col-xs-12 col-md-12" 
+	    		disabled>
+	    		<span class="glyphicon glyphicon-refresh"></span>&nbsp;Enviando...
+	    	</div>
+		</div>
+		
+	</form>	
+	
+	<div ng-if="photoDetails.keys" class="flex-vertical flex-grow title-spacer">
+		<div class="row flex-fix upload-success alert alert-success" >
+	    	<span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Imagenes subidas correctamente
+		</div>
+		<div class="preview-container flex-fix">
+  			<div id="frame-preview{{$index}}" class="frame preview" ng-repeat="image in photoDetails.keys">
+    			<div class="photo-div">
+  					<div class="photo">
+  						<div id="image-preview{{$index}}" class="image-preview" ng-style="imageStyle(image)"></div>
+  					</div>
+				</div>
+				<span class="title text-center font-normal">&nbsp;</span>	
+			</div>
+  		</div>
+  		<div class="row flex-grow photo-details lined-paper flex-no-shrink">
+  			<h4>{{photoDetails.title}}</h4>
+  			{{photoDetails.comment}}
+  		</div>
+  		<div class="row flex-fix" >
+	    	<div class="upload-more text-center font-big col-xs-12 col-md-12" 
+	    		ng-click="uploadMore()">
+	    		<span class="glyphicon glyphicon-camera"></span>&nbsp;<u>Subir mas fotos</u>
+	    	</div>
+		</div>		
+	</div>		
+</div>
+
