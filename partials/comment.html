@@ -11,58 +11,53 @@
    	</div>
 	<div class="comments flex-vertical flex-grow title-spacer" ng-show="!composing">
 		<div class="flex-grow comments-list">
-			<div class="comment-frame" ng-repeat="comment in comments | orderByPriority | orderBy:'date':true" 
+			<div class="comment-frame lined-paper shadow pinned center" ng-repeat="comment in comments | orderByPriority | orderBy:'date':true" 
 				ng-controller="CommentCtrl"
 				ng-class-odd="'odd'" ng-class-even="'even'">
+				<info class="pin short"/>
 				<h4><small>De:</small> {{comment.from}}</h2>
 				<p class="commenttext">{{comment.message}}</p>
 				<p class="commentdate"><small>{{date}}</small></p>
 			</div>
 		</div>
 		
-		<button class="submit-comment text-center font-big flex-fix" style="width: 100%" ng-click="addComment()">
-    		<span class="glyphicon glyphicon-envelope"></span>&nbsp;Déjanos tu mensaje
+		<button class="btn-link submit-comment text-center font-big flex-fix" style="width: 100%" ng-click="addComment()">
+    		<span class="glyphicon glyphicon-envelope"></span>&nbsp;<u>Déjanos tu mensaje</u>
     	</button>
 	</div>
-	<form  class="form-horizontal comment-form flex-vertical flex-grow title-spacer" 
+	<form  class="form comment-form flex-vertical flex-grow title-spacer" 
 		name="commentForm" ng-show="composing">
 		<div class="form-group" ng-class="{'has-error': commentForm.to.$invalid}">
-    		<label for="to" class="col-sm-2 control-label">Para</label>
-    		<div class="col-sm-10">
-      			<select class="form-control" required name="to" id="to" ng-model="comment.to">
-					  <option value="Wall">El muro (mensaje público)</option>
-					  <option value="AxelYSol">Axel y Sol / Sol y Axel</option>
-					  <option value="Axel">Axel</option>
-					  <option value="Sol">Sol</option>					  
-				</select>
-    		</div>
+    		<label for="to" class="control-label font-big">Para</label>    		
+  			<select class="form-control shadow" required name="to" id="to" ng-model="comment.to">
+				  <option value="Wall">El muro (mensaje público)</option>
+				  <option value="AxelYSol">Axel y Sol / Sol y Axel</option>
+				  <option value="Axel">Axel</option>
+				  <option value="Sol">Sol</option>					  
+			</select>    		
   		</div>
 		
 		<div class="form-group message-group flex-vertical flex-grow"
 			ng-class="{'has-error': commentForm.message.$invalid}">
-    		<label for="to" class="col-sm-2 control-label">Mensaje</label>
-    		<textarea class="form-control flex-grow" rows="3" id="message" name="message"
+    		<label for="to" class="control-label font-big">Mensaje</label>
+    		<textarea class="form-control flex-grow lined-paper shadow" rows="3" id="message" name="message"
     			ng-model="comment.message" required ></textarea>    		
   		</div>
 		
-		<div class="row" ng-show="!sending">
-			<button class="submit-comment text-center font-big col-xs-12 col-md-12" 
+		<div class="row" ng-show="!sending" style="padding:0px">
+			<button class="btn-link submit-comment text-center font-big col-xs-12 col-md-12" 
     			ng-disabled="commentForm.$invalid" ng-click="saveComment()">
-    		<span class="glyphicon glyphicon-ok"></span>&nbsp;Enviar
-    		</button>
-			<!--button class="submit-comment text-center font-big col-xs-6 col-md-4 col-md-offset-2" 	    		 		
-				ng-click="cancelComment()">
-	    		<span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
-	    	</button-->	
+    		<span class="glyphicon glyphicon-ok"></span>&nbsp;<u>Enviar</u>
+    		</button>			
 		</div>
-		<div class="row" ng-show="!sending">
-			<div class="col-xs-12 text-center font-big">
-				<a ng-click="cancelComment()">Visita el muro</a>
-			</div>
+		<div class="row">
+			<button class="btn-link col-xs-12 text-center font-big" ng-click="cancelComment()">
+				<u>Vuelve el muro</u>
+			</button>
 		</div>
     	
 		<div class="row" ng-show="sending">
-	    	<button class="submitting-comment text-center font-big col-xs-12 col-md-12" 
+	    	<button class="btn-link submitting-comment text-center font-big col-xs-12 col-md-12" 
 	    		disabled
 	    		style="width: 100%">
 	    		<span class="glyphicon glyphicon-envelope"></span>&nbsp;Enviando...
