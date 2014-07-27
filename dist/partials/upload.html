@@ -28,10 +28,10 @@
   					ng-model="photoDetails.title" placeholder="Titulo" required></input>
 			</div>
    				
-    		<div id="choose-image" class="choose-image text-center font-big col-xs-4 col-md-4" 
+    		<button id="choose-image" class="btn-link choose-image text-center font-big col-xs-4 col-md-4" 
 				ng-click="chooseImage()">
     			<span class="glyphicon glyphicon-camera"></span>&nbsp;<u>Examinar...</u>
-    		</div>
+    		</button>
     			
   		</div>
   		
@@ -56,7 +56,7 @@
   		</div>
   		
   		<div class="row flex-fix" ng-show="!sending">			  
-			<button class="upload-image text-center font-big col-xs-12 col-md-12" ng-click="upload()"
+			<button class="btn-link upload-image text-center font-big col-xs-12 col-md-12" ng-click="upload()"
 				ng-disabled="!previewImages || uploadForm.$invalid">
     			<span class="glyphicon glyphicon-upload"></span>&nbsp;<u>Enviar</u>
     		</button>			
@@ -90,10 +90,10 @@
   			{{photoDetails.comment}}
   		</div>
   		<div class="row flex-fix" >
-	    	<div class="upload-more text-center font-big col-xs-12 col-md-12" 
+	    	<button class="btn-link upload-more text-center font-big col-xs-12 col-md-12" 
 	    		ng-click="uploadMore()">
 	    		<span class="glyphicon glyphicon-camera"></span>&nbsp;<u>Subir mas fotos</u>
-	    	</div>
+	    	</button>
 		</div>		
 	</div>		
 </div>

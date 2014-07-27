@@ -261,6 +261,22 @@ div.back-indicator{
 	z-index: 2;	
 }
 
+button.btn-link {
+  background-color: transparent;
+	color: black;	
+	padding: 5px;
+	font-family: 'Permanent Marker';
+	border: none;
+	cursor: default;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+button.btn-link:disabled{
+  background-color: transparent;
+	color: #777;
+}
+
 .taped {
   position: relative;
 }
@@ -970,21 +986,32 @@ body.comment div.page-container {
 
 
 body.comment div.content-container {	
-	flex-grow: 1;		
+	-webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;		
+}
+
+body.comment h1.pagetitle {
+	background-color: transparent;	
+	margin: 0px;
+	margin-right: 50px;
 }
 
 body.comment div.frame.comment {
 	margin: 0;
 	position: absolute;
 	width: 17%;
-	top: -35px;
-	left: 0;
-	-webkit-transform: rotate(-15deg);
-	transform: rotate(-15deg);
+	top: -45px;
+	left: 230px;
+	-webkit-transform: rotate(15deg);
+	transform: rotate(15deg);
+	z-index: 5;
 }
 
 body.comment .title-spacer {
-	margin-top: 20px;	
+	margin-top: 10px;	
 }
 
 
@@ -993,9 +1020,7 @@ body.comment div.row {
 	margin-left: 0;
 }
 
-body.comment h1.pagetitle {
-	background-color: transparent;	
-}
+
 
 /*body.comment form.comment-form,*/
 body.comment div.comments{
@@ -1006,18 +1031,26 @@ body.comment div.comments-list {
 	overflow-x: hidden;
 	overflow-y: auto;
 	margin-bottom: 10px;
+	padding-top: 15px;
 }
 
-body.comment div.comment-frame{
-	background: white;
-	padding: 10px;
-	border: 2px solid #558aa9;
-	margin-bottom: 10px;
-	border-radius: 5px;
+body.comment div.comment-frame{	
+	padding: 10px;	
+	margin-bottom: 10px;	
+	margin-right: 50px;
+	-webkit-transform: rotate(3deg);
+	transform: rotate(3deg);
+	-webkit-transform-origin: top center;
+	transform-origin: top center;
+	margin-left:15px;
 }
 
 body.comment div.comment-frame.even{
 	text-align: right;
+	margin-right: 15px;
+	margin-left: 50px;
+	-webkit-transform: rotate(-3deg);
+	transform: rotate(-3deg);
 }
 
 body.comment div.comment-frame.even p.commentdate {
@@ -1028,38 +1061,37 @@ body.comment div.comment-frame.odd p.commentdate {
 	text-align: right;
 }
 
-body.comment .submit-comment{
-	background-color: #28adad;
-	color: black;	
-	padding: 5px;
-}
-
-body.comment .submitting-comment{
-	padding: 5px;
-} 
 
 body.comment .form-group {
 	margin-left: 0px;
 	margin-right: 0px;
+	margin-bottom: 5px;
+}
+
+body.comment .form-control {
+	border-radius: 0px;
 }
 
 @media (min-width: 768px) { 
 	body.comment div.frame.comment {
 		width: 14%;
-		top: -90px;		
+		top: -110px;		
+		left: 645px;
 	}
 	
 	body.comment .title-spacer {
-		margin-top: 60px;
+		margin-top: 15px;
+	}		
+	
+	body.comment div.comments-list{
+		padding-top: 20px;
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 	
-	body.comment .submit-comment{
-		padding: 10px;
+	body.comment div.comment-frame{
+		margin-bottom: 35px;
 	}
-	
-	body.comment .submitting-comment{
-		padding: 10px;
-	}	
 }
 
 body.contacts div.page-container {
@@ -2188,31 +2220,6 @@ body.upload .title-container{
 
 body.upload input.image-selector{
 	display: none;
-}
-
-body.upload .choose-image{
-	background-color: transparent;
-	color: black;	
-	padding: 5px;
-	font-family: 'Permanent Marker';
-}
-
-
-body.upload .upload-image,
-body.upload .upload-more{
-	background-color: transparent;
-	color: black;	
-	padding: 5px;
-	font-family: 'Permanent Marker';
-	border: none;
-	cursor: default;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
-
-body.upload .upload-image:disabled {
-	background-color: transparent;
-	color: #777;
 }
 
 body.upload .uploading-image{

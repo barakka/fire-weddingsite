@@ -64,31 +64,6 @@ body.upload input.image-selector{
 	display: none;
 }
 
-body.upload .choose-image{
-	background-color: transparent;
-	color: black;	
-	padding: 5px;
-	font-family: 'Permanent Marker';
-}
-
-
-body.upload .upload-image,
-body.upload .upload-more{
-	background-color: transparent;
-	color: black;	
-	padding: 5px;
-	font-family: 'Permanent Marker';
-	border: none;
-	cursor: default;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
-
-body.upload .upload-image:disabled {
-	background-color: transparent;
-	color: #777;
-}
-
 body.upload .uploading-image{
 	padding: 5px;
 }

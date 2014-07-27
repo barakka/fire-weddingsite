@@ -261,6 +261,22 @@ div.back-indicator{
 	z-index: 2;	
 }
 
+button.btn-link {
+  background-color: transparent;
+	color: black;	
+	padding: 5px;
+	font-family: 'Permanent Marker';
+	border: none;
+	cursor: default;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+button.btn-link:disabled{
+  background-color: transparent;
+	color: #777;
+}
+
 .taped {
   position: relative;
 }

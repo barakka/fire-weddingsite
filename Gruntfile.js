@@ -154,7 +154,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat:css', 'concat:js', 'concat:jslib', 'cssmin:css']);
+  grunt.registerTask('default', ['concat:css', 'concat:js', 'cssmin', 'uglify','copy']);
   grunt.registerTask('imgresize', ['imagemin', 'image_resize:home_m', 'image_resize:home_w']);
 
   grunt.registerTask('dist', ['clean:dist', 'concat:css', 'concat:js', 'concat:jslib', 'concat:fullcalendar', 'cssmin', 'uglify', 'imgresize', 'copy']);
