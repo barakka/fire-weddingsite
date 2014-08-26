@@ -1,0 +1,57 @@
+body.flashmob div.page-container{
+	height: 100%;
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+body.flashmob div.content-container{
+    font-family: 'Permanent Marker';
+}
+
+
+body.flashmob div.video-container{
+    padding: 10px;    
+    margin-top: 20px;
+    font-family: "Cutive Mono", monospace;
+    background: white;
+}
+
+body.flashmob div.video-container h3{
+    text-align:center;
+}
+
+body.flashmob div.youtube-container{
+    width: 100%;
+    height: 0px;
+    padding-top: 54%;
+    position: relative;
+}
+
+body.flashmob div.youtube-container iframe#youtubeVideo{
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    top:0px;
+    left:0px;    
+    padding: 0px 15px;
+}
+
+@media (min-width: 768px) {
+    
+    body.flashmob div.video-container{
+        padding: 10px;    
+        margin-top: 20px;
+    }
+                
+}

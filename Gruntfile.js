@@ -14,6 +14,7 @@ module.exports = function(grunt) {
           'css/comment.css',
           'css/contacts.css',
           'css/dinner.css',
+          'css/flashmob.css',
           'css/home.css',
           'css/invitation.css',
           'css/login.css',

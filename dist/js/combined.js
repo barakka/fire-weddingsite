@@ -166,13 +166,15 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         templateUrl: 'partials/us.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
         }
     }).when('/:groupId/invitation',{
         templateUrl: 'partials/invitation.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
         }
     }).when('/:groupId/calendar',{
         templateUrl: 'partials/calendar.html',
@@ -184,13 +186,15 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         templateUrl: 'partials/church.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
         }
     }).when('/:groupId/dinner',{
         templateUrl: 'partials/dinner.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
         }
     }).when('/:groupId/upload/:key?',{
         templateUrl: 'partials/upload.html',
@@ -214,19 +218,29 @@ weddingModule.config([ '$routeProvider', function ($routeProvider) {
         templateUrl: 'partials/other.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: profileLoader()
         }
     }).when('/:groupId/present',{
         templateUrl: 'partials/present.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
         }    
     }).when('/:groupId/contacts',{
         templateUrl: 'partials/contacts.html',
         controller: 'StaticCtrl',
         resolve: {
-            group: groupLoader()
+            group: groupLoader(),
+            profile: function(){return null;}
+        }    
+    }).when('/:groupId/flashmob',{
+        templateUrl: 'partials/flashmob.html',
+        controller: 'StaticCtrl',
+        resolve: {
+            group: groupLoader(),
+            profile: function(){return null;}
         }    
     }).when("/:groupId/survey/:stageId",{
         templateUrl: "partials/survey.html",
@@ -267,7 +281,8 @@ weddingModule.controller("IndexCtrl",["$scope", "$location","$route", function($
 				|| parts[2] == "comment"
 				|| parts[2] == "upload"
                 || parts[2] == "present"
-                || parts[2] == "contacts"){
+                || parts[2] == "contacts"
+                || parts[2] == "flashmob"){
 				style += " static-inner";
 			}
 			
@@ -337,6 +352,7 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
     
     $scope.goTo = function(page){
     	if (page!="questionnaire"){
+            console.log("/" + group.id + "/" + page);
     		$location.path("/" + group.id + "/" + page);
     	} else {
     		$location.path("/" + group.id + "/survey/1");
@@ -346,7 +362,7 @@ weddingModule.controller("HomeCtrl",["$scope", "$location", "group","profile", f
     
 }]);
 
-weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($scope,$location,group){    
+weddingModule.controller("StaticCtrl",["$scope","$location","group","profile",  function($scope,$location,group,profile){    
     $scope.openChurchMap = function(){
     	var os = $.ua.os.name;
     	
@@ -377,6 +393,7 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($
     
     $scope.goTo = function(page){
     	if (page!="questionnaire"){
+            console.log("/" + group.id + "/" + page);
     		$location.path("/" + group.id + "/" + page);
     	} else {
     		$location.path("/" + group.id + "/survey/1");
@@ -392,6 +409,14 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group",  function($
     $scope.showAddToHome = function(){
         $location.path("/" + group.id + "/home");
         addToHome.show(true);
+    }
+    
+    $scope.isFlashMob = function(){
+        if (profile){
+            return profile.flashMob == true;
+        }
+        
+        return false;
     }
 }]);
 
