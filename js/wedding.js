@@ -360,7 +360,7 @@ weddingModule.controller("StaticCtrl",["$scope","$location","group","profile",  
     }
     
     $scope.openBusMap = function(){
-    	alert("¡Hemos dicho próximamente!");
+    	return "https://mapsengine.google.com/map/edit?mid=zkouqosdiyAI.kwMZK4ita1zQ";
     }
     
     $scope.goTo = function(page){

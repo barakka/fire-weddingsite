@@ -26,9 +26,13 @@
     
     <div class="row flex-horizontal stretch-height">
 		<div class="col-md-4 col-xs-5 flex-vertical center-vertical">
-	    	<div class="transportation font-normal flex-grow lined-paper shadow flex-vertical center-height">
-		    	<p>Próximamente os indicaremos la hora y el punto de encuentro 
-		    	donde esperará el autobús</p>
+	    	<div class="transportation font-normal flex-grow lined-paper shadow flex-vertical">
+		    	<p>Disponible servicio de Autobus para el traslado a la Masía</p>
+                <p>Puntos de encuentro:</p>
+                <ul>
+                    <li>19.30 Calle de la Paz con Calle Medinas</li>
+                    <li>19:45 En la rotonda de Av.da Cortes Valencianes con Carrer de La Safor (en la Dama de Elche en el lado enfrente de MediaMarkt)</li>
+                </ul>
 		    </div>
 	    </div>
         
@@ -56,11 +60,11 @@
 	    </div>
 	    
 	    <div class="col-md-4 col-xs-4">
-	    			    
-		    	<div class="open-map text-center font-button" style="margin-left: -15px" ng-click="openBusMap()">
+	       <a ng-href="{{openBusMap()}}">
+		    	<div class="open-map text-center font-button" style="margin-left: -15px">
 		    		<span class="glyphicon glyphicon-map-marker"></span>&nbsp;<u>Pto. de encuentro</u> 
 		    	</div>
-		    
+           </a> 
 	    </div>
     </div>
     

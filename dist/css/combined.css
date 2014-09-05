@@ -1288,6 +1288,17 @@ body.dinner img.photo-map {
 	border: 1px solid #cccccc;
 }
 
+body.dinner div.transportation ul{
+	padding-left:10px;
+}
+
+
+@media (min-width: 768px) {
+	body.dinner div.transportation ul{
+		padding-left:18px;
+	}
+}
+
 
 body.flashmob div.page-container{
 	height: 100%;
